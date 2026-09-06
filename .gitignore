@@ -1,0 +1,14 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+figma-thumb.png
+figma-thumb.webp
+figma-preview.jpg
+figma-preview.webp
+figma-preview-lg.jpg
