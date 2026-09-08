@@ -16,7 +16,7 @@ export function ContactPage() {
           {site.email}
         </a>
         <div className="mt-8 flex justify-center">
-          <Button href={site.cvPath} download="CV.pdf" variant="secondary">
+          <Button href={site.cvPath} download="Waleed-Khan-Updated-CV.pdf" variant="secondary">
             Download CV
           </Button>
         </div>

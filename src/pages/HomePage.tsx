@@ -31,7 +31,7 @@ export function HomePage() {
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button to="/projects">View projects</Button>
-            <Button href={site.cvPath} download="CV.pdf" variant="secondary">
+            <Button href={site.cvPath} download="Waleed-Khan-Updated-CV.pdf" variant="secondary">
               Download CV
             </Button>
           </div>
