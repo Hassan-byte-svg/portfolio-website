@@ -27,7 +27,7 @@ export function Button({
   variant = 'primary',
   className = '',
 }: Props) {
-  const cls = `inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-medium tracking-[-0.01em] transition-colors ${styles[variant]} ${className}`
+  const cls = `inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-normal tracking-[-0.01em] transition-colors ${styles[variant]} ${className}`
 
   if (to) {
     return (

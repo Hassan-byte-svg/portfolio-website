@@ -8,11 +8,11 @@ export function ResearchCard({ item }: { item: ResearchItem }) {
       <ImagePlaceholder src={item.image} className="aspect-[4/3] w-full" />
       <div>
         <p className="text-[13px] text-muted">{item.year}</p>
-        <h3 className="mt-2 text-[26px] font-semibold tracking-[-0.03em]">{item.title}</h3>
+        <h3 className="mt-2 text-[26px] font-light tracking-[-0.03em]">{item.title}</h3>
         <p className="mt-3 max-w-[540px] text-[16px] leading-[1.7] text-muted">{item.summary}</p>
         <Link
           to={`/research/${item.slug}`}
-          className="mt-5 inline-flex items-center gap-2 text-[15px] font-medium hover:opacity-60"
+          className="mt-5 inline-flex items-center gap-2 text-[15px] font-normal hover:opacity-60"
         >
           View research
           <span aria-hidden="true">→</span>

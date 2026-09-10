@@ -1,5 +1,4 @@
 import { Button } from '../components/Button'
-import { ColorPalette } from '../components/ColorPalette'
 import { ImagePlaceholder } from '../components/ImagePlaceholder'
 import { ProjectCard } from '../components/ProjectCard'
 import { Section } from '../components/Section'
@@ -11,15 +10,15 @@ export function SimplePage() {
     <>
       <Section className="pb-16 pt-10 sm:pb-24 sm:pt-16">
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-          <p className="font-serif text-[28px] tracking-[-0.03em]">Simple Page</p>
+          <p className="text-[28px] font-light tracking-[-0.03em]">Simple Page</p>
           <Button to="/contact" variant="secondary">
             Get in Touch
           </Button>
         </div>
         <div className="mx-auto mt-16 max-w-[860px] text-center">
-          <h1 className="font-serif text-[40px] leading-[1.12] tracking-[-0.03em] sm:text-[58px] lg:text-[64px]">
-            Design, leadership <em className="font-normal italic">and</em> strategy
-            for <span className="font-sans font-semibold">mission-critical</span>{' '}
+          <h1 className="text-[40px] font-light leading-[1.12] tracking-[-0.03em] sm:text-[58px] lg:text-[64px]">
+            Design, leadership <em className="font-light italic">and</em> strategy
+            for <span className="font-normal">mission-critical</span>{' '}
             environments.
           </h1>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -38,7 +37,7 @@ export function SimplePage() {
             className="aspect-[4/5] w-full"
           />
           <div className="space-y-5 text-[16px] leading-[1.8] text-muted">
-            <h2 className="font-serif text-[36px] leading-[1.15] tracking-[-0.03em] text-ink">
+            <h2 className="text-[36px] font-light leading-[1.15] tracking-[-0.03em] text-ink">
               Designing with empathy, building with purpose
             </h2>
             <p>
@@ -55,20 +54,6 @@ export function SimplePage() {
         <div className="mt-14 flex flex-col gap-16">
           {projects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
-          ))}
-        </div>
-      </Section>
-
-      <Section className="py-16 sm:py-24">
-        <SectionHeading title="Color system" />
-        <div className="mt-10 grid gap-8">
-          {projects.map((project) => (
-            <div key={project.slug}>
-              <p className="mb-3 text-[13px] font-medium uppercase tracking-[0.12em] text-muted">
-                {project.title}
-              </p>
-              <ColorPalette colors={project.palette} />
-            </div>
           ))}
         </div>
       </Section>

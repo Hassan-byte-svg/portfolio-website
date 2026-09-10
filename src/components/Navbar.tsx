@@ -17,7 +17,7 @@ export function Navbar() {
   return (
     <header className="relative z-30">
       <div className="mx-auto flex max-w-[1120px] items-center justify-between px-5 py-6 sm:px-8">
-        <Link to="/" className="text-[15px] font-semibold tracking-[-0.02em]" onClick={() => setOpen(false)}>
+        <Link to="/" className="text-[15px] font-normal tracking-[-0.02em]" onClick={() => setOpen(false)}>
           {site.name}
         </Link>
         <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
@@ -27,7 +27,7 @@ export function Navbar() {
               to={link.to}
               end={link.to === '/'}
               className={({ isActive }) =>
-                `text-[14px] tracking-[-0.01em] text-ink/75 transition-colors hover:text-ink ${isActive ? 'text-ink' : ''}`
+                `text-[14px] font-normal tracking-[-0.01em] text-ink/75 transition-colors hover:text-ink ${isActive ? 'text-ink' : ''}`
               }
             >
               {link.label}

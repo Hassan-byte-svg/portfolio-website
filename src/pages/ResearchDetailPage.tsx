@@ -10,7 +10,7 @@ export function ResearchDetailPage() {
   if (!item) {
     return (
       <Section className="py-24 text-center">
-        <h1 className="text-3xl font-semibold">Research not found</h1>
+        <h1 className="text-3xl font-light">Research not found</h1>
         <Link to="/research" className="mt-6 inline-block hover:opacity-60">
           ← Back to research
         </Link>
@@ -24,7 +24,7 @@ export function ResearchDetailPage() {
         ← Back to research
       </Link>
       <p className="mt-8 text-[13px] text-muted">{item.year}</p>
-      <h1 className="mt-2 max-w-[820px] font-serif text-[40px] leading-[1.15] tracking-[-0.03em] sm:text-[56px]">
+      <h1 className="mt-2 max-w-[820px] text-[40px] font-light leading-[1.15] tracking-[-0.03em] sm:text-[56px]">
         {item.title}
       </h1>
       <p className="mt-5 max-w-[640px] text-[17px] leading-[1.7] text-muted">
@@ -35,7 +35,7 @@ export function ResearchDetailPage() {
         <a
           href={item.file}
           download
-          className="inline-flex rounded-full border border-ink px-6 py-3 text-[15px] font-medium hover:bg-soft"
+          className="inline-flex rounded-full border border-ink px-6 py-3 text-[15px] font-normal hover:bg-soft"
         >
           Download research
         </a>

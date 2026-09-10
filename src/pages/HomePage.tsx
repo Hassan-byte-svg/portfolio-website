@@ -20,9 +20,9 @@ export function HomePage() {
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.035)_1px,transparent_1px)] bg-[size:72px_72px]" />
         <div className="pointer-events-none absolute left-1/2 top-10 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-[#8aa0ff]/25 blur-[100px]" />
         <div className="relative mx-auto max-w-[860px] text-center">
-          <h1 className="font-serif text-[40px] leading-[1.12] tracking-[-0.03em] text-ink sm:text-[58px] lg:text-[68px]">
-            Design, leadership <em className="italic font-normal">and</em> strategy
-            for <span className="font-sans font-semibold">mission-critical</span>{' '}
+          <h1 className="text-[40px] font-light leading-[1.12] tracking-[-0.03em] text-ink sm:text-[58px] lg:text-[68px]">
+            Design, leadership <em className="italic font-light">and</em> strategy
+            for <span className="font-normal">mission-critical</span>{' '}
             environments.
           </h1>
           <p className="mx-auto mt-6 max-w-[560px] text-[16px] leading-[1.7] text-muted sm:text-[17px]">
@@ -40,7 +40,7 @@ export function HomePage() {
           </div>
         </div>
         <div className="relative mx-auto mt-16 max-w-[1120px] text-center">
-          <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-muted">
+          <p className="text-[12px] font-normal uppercase tracking-[0.16em] text-muted">
             Trusted by teams at companies like
           </p>
           <div className="mt-6 grid grid-cols-2 items-center gap-4 sm:grid-cols-4">
@@ -91,9 +91,9 @@ export function HomePage() {
           <table className="w-full min-w-[540px] text-left">
             <thead>
               <tr className="border-b border-line text-[12px] uppercase tracking-[0.12em] text-muted">
-                <th className="py-4 font-medium">Title</th>
-                <th className="py-4 font-medium">Organizers</th>
-                <th className="py-4 font-medium">Year</th>
+                <th className="py-4 font-normal">Title</th>
+                <th className="py-4 font-normal">Organizers</th>
+                <th className="py-4 font-normal">Year</th>
               </tr>
             </thead>
             <tbody>

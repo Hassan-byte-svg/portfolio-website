@@ -12,7 +12,7 @@ export function ContactPage() {
         description="Use the email below, or add a form later if the Figma contact page includes one."
       />
       <div className="mx-auto mt-12 max-w-[520px] text-center">
-        <a href={`mailto:${site.email}`} className="text-[22px] font-medium tracking-[-0.02em] hover:opacity-60">
+        <a href={`mailto:${site.email}`} className="text-[22px] font-normal tracking-[-0.02em] hover:opacity-60">
           {site.email}
         </a>
         <div className="mt-8 flex justify-center">
