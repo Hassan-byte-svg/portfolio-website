@@ -1,6 +1,12 @@
 import { useTheme } from '../theme/ThemeProvider'
 
-export function ThemeToggle({ label }: { label?: boolean }) {
+export function ThemeToggle({
+  label,
+  compact,
+}: {
+  label?: boolean
+  compact?: boolean
+}) {
   const { theme, toggleTheme } = useTheme()
   const isDark = theme === 'dark'
 
@@ -10,7 +16,11 @@ export function ThemeToggle({ label }: { label?: boolean }) {
       onClick={toggleTheme}
       aria-pressed={isDark}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className="inline-flex items-center justify-center gap-2 rounded-full border border-ink/80 bg-canvas px-5 py-3 text-[15px] font-normal tracking-[-0.01em] text-ink transition-colors hover:bg-soft"
+      className={
+        compact
+          ? 'inline-flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink transition-colors hover:bg-soft'
+          : 'inline-flex items-center justify-center gap-2 rounded-full border border-ink/80 bg-canvas px-5 py-3 text-[15px] font-normal tracking-[-0.01em] text-ink transition-colors hover:bg-soft'
+      }
     >
       {isDark ? <SunIcon /> : <MoonIcon />}
       {label ? <span>{isDark ? 'Light mode' : 'Dark mode'}</span> : null}

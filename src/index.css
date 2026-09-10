@@ -45,3 +45,37 @@ body {
 #root {
   min-height: 100vh;
 }
+
+.logo-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+}
+
+.logo-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 2.5rem;
+  align-items: center;
+  animation: logo-marquee-rtl 28s linear infinite;
+}
+
+@keyframes logo-marquee-rtl {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee-track {
+    animation: none;
+  }
+}

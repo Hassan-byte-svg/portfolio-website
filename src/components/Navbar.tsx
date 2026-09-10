@@ -37,7 +37,7 @@ export function Navbar() {
             ))}
           </nav>
           <div className="hidden md:block">
-            <ThemeToggle />
+            <ThemeToggle compact />
           </div>
           <button
             type="button"

@@ -1,6 +1,6 @@
 import { Button } from '../components/Button'
-import { ThemeToggle } from '../components/ThemeToggle'
 import { ImagePlaceholder } from '../components/ImagePlaceholder'
+import { LogoMarquee } from '../components/LogoMarquee'
 import { ProjectCard } from '../components/ProjectCard'
 import { Section } from '../components/Section'
 import { SectionHeading } from '../components/SectionHeading'
@@ -8,7 +8,6 @@ import { TestimonialCard } from '../components/TestimonialCard'
 import { VideoPlaceholder } from '../components/VideoPlaceholder'
 import {
   fieldExposure,
-  logos,
   projects,
   site,
   testimonials,
@@ -17,9 +16,9 @@ import {
 export function HomePage() {
   return (
     <>
-      <section className="relative overflow-hidden px-5 pb-20 pt-16 sm:px-8 sm:pb-28 sm:pt-24">
+      <section className="relative overflow-hidden px-5 pb-16 pt-6 sm:px-8 sm:pb-20 sm:pt-8">
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.035)_1px,transparent_1px)] bg-[size:72px_72px]" />
-        <div className="pointer-events-none absolute left-1/2 top-10 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-[#8aa0ff]/25 blur-[100px]" />
+        <div className="pointer-events-none absolute left-1/2 top-6 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-[#8aa0ff]/25 blur-[100px]" />
         <div className="relative mx-auto max-w-[860px] text-center">
           <h1 className="text-[40px] font-light leading-[1.12] tracking-[-0.03em] text-ink sm:text-[58px] lg:text-[68px]">
             Design, leadership <em className="italic font-light">and</em> strategy
@@ -35,27 +34,9 @@ export function HomePage() {
             <Button href={site.cvPath} download="Waleed-Khan-Updated-CV.pdf" variant="secondary">
               Download CV
             </Button>
-            <Button to="/contact" variant="ghost">
-              Get in Touch
-            </Button>
-            <ThemeToggle label />
           </div>
         </div>
-        <div className="relative mx-auto mt-16 max-w-[1120px] text-center">
-          <p className="text-[12px] font-normal uppercase tracking-[0.16em] text-muted">
-            Trusted by teams at companies like
-          </p>
-          <div className="mt-6 grid grid-cols-2 items-center gap-4 sm:grid-cols-4">
-            {logos.map((logo) => (
-              <ImagePlaceholder
-                key={logo}
-                src={logo}
-                className="mx-auto h-10 w-[140px]"
-                rounded="rounded-md"
-              />
-            ))}
-          </div>
-        </div>
+        <LogoMarquee />
       </section>
 
       <Section className="py-20 sm:py-28">
