@@ -11,7 +11,7 @@ export function ProjectsPage() {
         title="Featured Case Studies"
         description="Three case studies from the Figma file. Open any one for the full page."
       />
-      <div className="mt-16 flex flex-col gap-16">
+      <div className="mt-12 flex flex-col gap-6">
         {projects.map((project) => (
           <ProjectCard key={project.slug} project={project} />
         ))}

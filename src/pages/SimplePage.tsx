@@ -51,7 +51,7 @@ export function SimplePage() {
 
       <Section className="py-16 sm:py-24">
         <SectionHeading title="Featured Case Studies" />
-        <div className="mt-14 flex flex-col gap-16">
+        <div className="mt-12 flex flex-col gap-6">
           {projects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}

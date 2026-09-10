@@ -57,7 +57,7 @@ export function HomePage() {
           title="Featured Case Studies"
           description="Selected product and research work. Open a case study for the full layout."
         />
-        <div className="mt-16 flex flex-col gap-16">
+        <div className="mt-12 flex flex-col gap-6">
           {projects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}
@@ -68,22 +68,22 @@ export function HomePage() {
         <SectionHeading
           eyebrow="Conferences & talks"
           title="Exposure in the Field"
-          description="Talks, events, and field work. Replace row copy in the content file."
+          description="Roles, companies, and years from the field."
         />
         <div className="mt-12 overflow-x-auto">
           <table className="w-full min-w-[540px] text-left">
             <thead>
               <tr className="border-b border-line text-[12px] uppercase tracking-[0.12em] text-muted">
-                <th className="py-4 font-normal">Title</th>
-                <th className="py-4 font-normal">Organizers</th>
+                <th className="py-4 font-normal">Role</th>
+                <th className="py-4 font-normal">Company</th>
                 <th className="py-4 font-normal">Year</th>
               </tr>
             </thead>
             <tbody>
-              {fieldExposure.map((row, index) => (
-                <tr key={`${row.year}-${index}`} className="border-b border-line">
-                  <td className="py-5 text-[16px]">{row.title}</td>
-                  <td className="py-5 text-[16px] text-muted">{row.context}</td>
+              {fieldExposure.map((row) => (
+                <tr key={`${row.company}-${row.year}`} className="border-b border-line">
+                  <td className="py-5 text-[16px]">{row.role}</td>
+                  <td className="py-5 text-[16px] text-muted">{row.company}</td>
                   <td className="py-5 text-[16px] text-muted">{row.year}</td>
                 </tr>
               ))}

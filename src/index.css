@@ -13,6 +13,7 @@
   --color-orange: #f5a623;
   --font-weight-light: 300;
   --font-weight-normal: 400;
+  --font-weight-medium: 500;
 }
 
 html[data-theme="dark"] {

@@ -11,12 +11,14 @@ export const site = {
 
 export type ProjectLayout = "ai-reply" | "desktop" | "pde"
 
+export type TagTone = "blue" | "green" | "orange"
+
 export type Project = {
   slug: string
   title: string
   caseStudyTitle: string
-  tag: string
-  tagTone: "blue" | "green" | "lilac"
+  category: string
+  tagTone: TagTone
   summary: string
   year: string
   role: string
@@ -33,11 +35,12 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "ai-supply-management",
-    title: "AI Supply",
+    title: "AI Reply Messaging App",
     caseStudyTitle: "Case study of AI Reply",
-    tag: "Product Design",
+    category: "Mobile App Design",
     tagTone: "blue",
-    summary: "AI Reply Messaging App — can AI reply for you without taking away your voice?",
+    summary:
+      "A quick 2-minute glimpse into how I turn complex problems into elegant, human-centered solutions.",
     year: "2024",
     role: "Product Designer (UI/UX)",
     platform: "Android Mobile",
@@ -61,14 +64,14 @@ export const projects: Project[] = [
   },
   {
     slug: "track-my-time",
-    title: "Track My Time",
-    caseStudyTitle: "Track My Time — Desktop",
-    tag: "UX Design & Strategy",
+    title: "ThinkFlow macOS Productivity App",
+    caseStudyTitle: "ThinkFlow macOS Productivity App",
+    category: "macOS Productivity App",
     tagTone: "green",
-    summary: "Desktop product-design workspace for the Track My Time productivity app.",
+    summary: "Stay in flow, even when your work changes.",
     year: "2024",
     role: "UX Design",
-    platform: "Desktop",
+    platform: "macOS",
     duration: "2024",
     image: "/assets/images/projects/track-my-time/cover.jpg",
     video: "/assets/videos/projects/track-my-time.mp4",
@@ -78,19 +81,25 @@ export const projects: Project[] = [
     ],
     layout: "desktop",
     figmaNodeId: "40-200",
-    tags: ["Product Design", "Desktop", "Productivity"],
+    tags: [
+      "macOS",
+      "Productivity",
+      "Product Design",
+      "UX Thinking",
+      "UX Research",
+      "User Experience",
+    ],
   },
   {
     slug: "pde-auto-group",
-    title: "PDE Auto Group",
-    caseStudyTitle: "UX UI Project",
-    tag: "Product Design",
-    tagTone: "lilac",
-    summary:
-      "A customer-focused POS system to improve efficiency of offline auto parts stores.",
+    title: "POS Auto Spare Parts Web Application",
+    caseStudyTitle: "POS Auto Spare Parts Web Application",
+    category: "Software Application",
+    tagTone: "orange",
+    summary: "Stay in flow, even when your work changes.",
     year: "2023",
     role: "UX UI",
-    platform: "POS / Tablet",
+    platform: "Web",
     duration: "2023",
     image: "/assets/images/projects/pde-auto-group/cover.jpg",
     video: "/assets/videos/projects/pde-auto-group.mp4",
@@ -100,7 +109,14 @@ export const projects: Project[] = [
     ],
     layout: "pde",
     figmaNodeId: "40-3055",
-    tags: ["UX UI", "POS", "Auto parts"],
+    tags: [
+      "macOS",
+      "Productivity",
+      "Product Design",
+      "UX Thinking",
+      "UX Research",
+      "User Experience",
+    ],
   },
 ]
 
@@ -138,10 +154,14 @@ export const research: ResearchItem[] = [
 ]
 
 export const fieldExposure = [
-  { title: "Talk title", context: "Event / organizer", year: "2024" },
-  { title: "Talk title", context: "Event / organizer", year: "2023" },
-  { title: "Talk title", context: "Event / organizer", year: "2022" },
-  { title: "Talk title", context: "Event / organizer", year: "2021" },
+  { role: "UI/UX Design Internship", company: "Filmbaill", year: "2023" },
+  { role: "UI/UX Designer", company: "Softvionist", year: "2024" },
+  { role: "UI/UX Design Specialist", company: "ReadyChatAI", year: "2025" },
+  {
+    role: "Product Designer and Researcher",
+    company: "EuroJet Intercontinental",
+    year: "2026",
+  },
 ]
 
 export const testimonials = [
