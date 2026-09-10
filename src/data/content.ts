@@ -27,6 +27,7 @@ export type Project = {
   gallery: string[]
   layout: ProjectLayout
   tags: string[]
+  figmaNodeId: string
 }
 
 export const projects: Project[] = [
@@ -48,6 +49,7 @@ export const projects: Project[] = [
       "/assets/images/projects/ai-supply-management/02.jpg",
     ],
     layout: "ai-reply",
+    figmaNodeId: "40-376",
     tags: [
       "Human-AI Interaction",
       "Product Design",
@@ -75,6 +77,7 @@ export const projects: Project[] = [
       "/assets/images/projects/track-my-time/desktop-02.jpg",
     ],
     layout: "desktop",
+    figmaNodeId: "40-200",
     tags: ["Product Design", "Desktop", "Productivity"],
   },
   {
@@ -96,6 +99,7 @@ export const projects: Project[] = [
       "/assets/images/projects/pde-auto-group/pos.jpg",
     ],
     layout: "pde",
+    figmaNodeId: "40-3055",
     tags: ["UX UI", "POS", "Auto parts"],
   },
 ]
