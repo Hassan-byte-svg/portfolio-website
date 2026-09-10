@@ -12,8 +12,8 @@ export function TestimonialCard({
   avatar: string
 }) {
   return (
-    <article className="rounded-[16px] border border-line bg-white p-6 sm:p-7">
-      <p className="text-[42px] font-light leading-none text-black/20">“</p>
+    <article className="rounded-[16px] border border-line bg-canvas p-6 sm:p-7">
+      <p className="text-[42px] font-light leading-none text-ink/20">“</p>
       <p className="mt-2 min-h-[96px] text-[15px] leading-[1.7] text-muted">
         {quote || '\u00a0'}
       </p>

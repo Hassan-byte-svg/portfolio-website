@@ -1,4 +1,5 @@
 import { Button } from '../components/Button'
+import { ThemeToggle } from '../components/ThemeToggle'
 import { ImagePlaceholder } from '../components/ImagePlaceholder'
 import { ProjectCard } from '../components/ProjectCard'
 import { Section } from '../components/Section'
@@ -37,6 +38,7 @@ export function HomePage() {
             <Button to="/contact" variant="ghost">
               Get in Touch
             </Button>
+            <ThemeToggle label />
           </div>
         </div>
         <div className="relative mx-auto mt-16 max-w-[1120px] text-center">
