@@ -1,5 +1,7 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
-import { FigmaCaseStudyEmbed } from '../components/FigmaCaseStudyEmbed'
+import { AiReplyCaseStudy } from '../components/AiReplyCaseStudy'
+import { DesktopCaseStudy } from '../components/DesktopCaseStudy'
+import { PdeCaseStudy } from '../components/PdeCaseStudy'
 import { Section } from '../components/Section'
 import { getProject, projectRedirects } from '../data/content'
 
@@ -24,7 +26,13 @@ export function ProjectDetailPage() {
     )
   }
 
-  return (
-    <FigmaCaseStudyEmbed nodeId={project.figmaNodeId} title={project.caseStudyTitle} />
-  )
+  if (project.layout === 'ai-reply') {
+    return <AiReplyCaseStudy project={project} />
+  }
+
+  if (project.layout === 'desktop') {
+    return <DesktopCaseStudy project={project} />
+  }
+
+  return <PdeCaseStudy project={project} />
 }
