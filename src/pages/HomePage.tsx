@@ -30,9 +30,12 @@ export function HomePage() {
             space here for the supporting line from the Figma file.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button to="/projects">View projects</Button>
+            <Button to="/projects">View my work</Button>
             <Button href={site.cvPath} download="Waleed-Khan-Updated-CV.pdf" variant="secondary">
               Download CV
+            </Button>
+            <Button to="/contact" variant="ghost">
+              Get in Touch
             </Button>
           </div>
         </div>

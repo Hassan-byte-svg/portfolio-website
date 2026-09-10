@@ -22,7 +22,7 @@ export function ProjectCard({ project }: { project: Project }) {
         >
           {project.tag}
         </span>
-        <h3 className="mt-4 font-sans text-[28px] font-semibold leading-[1.2] tracking-[-0.03em] text-ink sm:text-[32px]">
+        <h3 className="mt-4 font-serif text-[28px] leading-[1.2] tracking-[-0.03em] text-ink sm:text-[34px]">
           {project.title}
         </h3>
         <p className="mt-3 max-w-[460px] text-[16px] leading-[1.7] text-muted">

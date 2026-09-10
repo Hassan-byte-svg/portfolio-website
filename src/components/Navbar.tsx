@@ -3,7 +3,9 @@ import { Link, NavLink } from 'react-router-dom'
 import { site } from '../data/content'
 
 const links = [
+  { to: '/', label: 'Home' },
   { to: '/projects', label: 'Work' },
+  { to: '/simple', label: 'Simple Page' },
   { to: '/about', label: 'About' },
   { to: '/research', label: 'Research' },
   { to: '/contact', label: 'Contact' },
@@ -23,8 +25,9 @@ export function Navbar() {
             <NavLink
               key={link.to}
               to={link.to}
+              end={link.to === '/'}
               className={({ isActive }) =>
-                `text-[14px] text-ink/80 transition-colors hover:text-ink ${isActive ? 'text-ink' : ''}`
+                `text-[14px] tracking-[-0.01em] text-ink/75 transition-colors hover:text-ink ${isActive ? 'text-ink' : ''}`
               }
             >
               {link.label}

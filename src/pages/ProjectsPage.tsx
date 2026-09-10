@@ -8,8 +8,8 @@ export function ProjectsPage() {
     <Section className="pb-20 pt-10 sm:pb-28 sm:pt-16">
       <SectionHeading
         eyebrow="Work"
-        title="Projects"
-        description="Every project shown in the design. Open a case study for the detail layout."
+        title="Featured Case Studies"
+        description="Three case studies from the Figma file. Open any one for the full page."
       />
       <div className="mt-16 flex flex-col gap-16">
         {projects.map((project) => (

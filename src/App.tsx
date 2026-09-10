@@ -8,6 +8,7 @@ import { ProjectDetailPage } from './pages/ProjectDetailPage'
 import { ProjectsPage } from './pages/ProjectsPage'
 import { ResearchDetailPage } from './pages/ResearchDetailPage'
 import { ResearchPage } from './pages/ResearchPage'
+import { SimplePage } from './pages/SimplePage'
 import { ScrollToTop } from './components/ScrollToTop'
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/work" element={<Navigate to="/projects" replace />} />
+          <Route path="/simple" element={<SimplePage />} />
           <Route path="/projects/:slug" element={<ProjectDetailPage />} />
           <Route path="/research" element={<ResearchPage />} />
           <Route path="/research/:slug" element={<ResearchDetailPage />} />
