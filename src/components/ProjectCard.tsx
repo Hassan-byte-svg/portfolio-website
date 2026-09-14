@@ -5,15 +5,15 @@ import { TagList } from './TagList'
 
 const cardTones: Record<TagTone, { card: string; category: string }> = {
   blue: {
-    card: 'bg-[#EAF4FA]',
+    card: 'bg-[#2F90C2]/[0.03]',
     category: 'text-[#2F90C2]',
   },
   green: {
-    card: 'bg-[#EEF7F1]',
+    card: 'bg-[#3D9A6A]/[0.03]',
     category: 'text-[#3D9A6A]',
   },
   orange: {
-    card: 'bg-[#FBF4EC]',
+    card: 'bg-[#E08A3C]/[0.03]',
     category: 'text-[#E08A3C]',
   },
 }
