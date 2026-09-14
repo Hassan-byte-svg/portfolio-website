@@ -171,10 +171,8 @@ export const testimonials = [
 ]
 
 export const logos = [
-  "/assets/images/logos/logo-01.svg",
-  "/assets/images/logos/logo-02.svg",
-  "/assets/images/logos/logo-03.svg",
-  "/assets/images/logos/logo-04.svg",
+  { src: "/assets/images/logos/readychatai.svg", alt: "ReadyChatAI" },
+  { src: "/assets/images/logos/eurojet.svg", alt: "Euro Jet Intercontinental" },
 ]
 
 export function getProject(slug: string) {
