@@ -165,9 +165,27 @@ export const fieldExposure = [
 ]
 
 export const testimonials = [
-  { quote: "", name: "", role: "", avatar: "/assets/images/testimonials/01.jpg" },
-  { quote: "", name: "", role: "", avatar: "/assets/images/testimonials/02.jpg" },
-  { quote: "", name: "", role: "", avatar: "/assets/images/testimonials/03.jpg" },
+  {
+    quote:
+      "Waleed Khan is focused and dedicated professional with great UX Design skills. His attention to detail and professionalism are outstanding, delivering work that exceeds expectations. He went above and beyond, deliver on time and was very proactive with his communication.",
+    name: "ryan_nguyen",
+    role: "Online International Client",
+    avatar: "/assets/images/testimonials/01.jpg",
+  },
+  {
+    quote:
+      "This was the second time I am working with Waleed. Ready to discuss problems, takes his time to understand the challenge and comes with solutions. Will continue in the near future working with him for sure.",
+    name: "ryan_nguyen",
+    role: "Online International Client",
+    avatar: "/assets/images/testimonials/02.jpg",
+  },
+  {
+    quote:
+      "amazing, quick turnaround and followed the specification requested.",
+    name: "ryan_nguyen",
+    role: "Online International Client",
+    avatar: "/assets/images/testimonials/03.jpg",
+  },
 ]
 
 export const logos = [
