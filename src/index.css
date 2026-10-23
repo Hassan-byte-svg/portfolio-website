@@ -5,6 +5,7 @@
   --font-serif: Georgia, "Times New Roman", ui-serif, serif;
   --color-ink: #0f172b;
   --color-muted: #45556c;
+  --color-copy: #666666;
   --color-eyebrow: #9fa2a7;
   --color-line: #e6e6e6;
   --color-fill: #e9e9e9;
@@ -21,6 +22,7 @@
 html[data-theme="dark"] {
   --color-ink: #f3f5f8;
   --color-muted: #a8b4c4;
+  --color-copy: #a8a8a8;
   --color-eyebrow: #9fa2a7;
   --color-line: #2c2c34;
   --color-fill: #1b1b22;

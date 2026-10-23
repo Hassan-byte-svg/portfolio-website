@@ -1,47 +1,29 @@
 import { Link, useLocation } from 'react-router-dom'
-import type { Project, TagTone } from '../data/content'
+import type { Project } from '../data/content'
 import { ImagePlaceholder } from './ImagePlaceholder'
 import { TagList } from './TagList'
 
-const cardTones: Record<TagTone, { card: string; category: string }> = {
-  blue: {
-    card: 'bg-[#2F90C2]/[0.03]',
-    category: 'text-[#2F90C2]',
-  },
-  green: {
-    card: 'bg-[#3D9A6A]/[0.03]',
-    category: 'text-[#3D9A6A]',
-  },
-  orange: {
-    card: 'bg-[#E08A3C]/[0.03]',
-    category: 'text-[#E08A3C]',
-  },
-}
-
 export function ProjectCard({ project }: { project: Project }) {
   const location = useLocation()
-  const tone = cardTones[project.tagTone]
 
   return (
-    <article
-      className={`grid items-center gap-8 rounded-[28px] px-5 py-5 sm:px-8 sm:py-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12 ${tone.card}`}
-    >
+    <article className="grid items-center gap-8 rounded-[24px] bg-[#00A0C2]/[0.03] px-5 py-5 sm:px-8 sm:py-8 lg:grid-cols-[630px_minmax(0,1fr)] lg:gap-10">
       <ImagePlaceholder
         src={project.image}
         alt=""
-        className="aspect-[16/11] w-full"
-        rounded="rounded-[22px]"
+        className="aspect-[630/465] w-full max-w-[630px] lg:h-[465px] lg:w-[630px] lg:max-w-none"
+        rounded="rounded-[24px]"
       />
       <div>
-        <p className={`text-[24px] font-normal ${tone.category}`}>{project.category}</p>
-        <h3 className="heading-section mt-2 text-[32px] sm:text-[40px]">
+        <p className="text-[24px] font-normal text-[#00A0C2]">{project.category}</p>
+        <h3 className="mt-2 text-[32px] font-normal leading-[1.2] tracking-[-0.02em] text-ink sm:text-[46px]">
           {project.title}
         </h3>
-        <p className="heading-sub mt-3 max-w-[460px]">
+        <p className="mt-3 max-w-[520px] text-[24px] font-light leading-[1.5] text-copy">
           {project.summary}
         </p>
         <div className="mt-5">
-          <TagList tags={project.tags} tone={project.tagTone} />
+          <TagList tags={project.tags} />
         </div>
         <Link
           to={`/projects/${project.slug}`}
