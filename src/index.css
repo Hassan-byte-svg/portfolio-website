@@ -5,6 +5,7 @@
   --font-serif: Georgia, "Times New Roman", ui-serif, serif;
   --color-ink: #0f172b;
   --color-muted: #45556c;
+  --color-eyebrow: #9fa2a7;
   --color-line: #e6e6e6;
   --color-fill: #e9e9e9;
   --color-canvas: #ffffff;
@@ -20,6 +21,7 @@
 html[data-theme="dark"] {
   --color-ink: #f3f5f8;
   --color-muted: #a8b4c4;
+  --color-eyebrow: #9fa2a7;
   --color-line: #2c2c34;
   --color-fill: #1b1b22;
   --color-canvas: #0c0c10;
@@ -58,8 +60,8 @@ body {
 
 .heading-section {
   color: var(--color-ink);
-  font-size: clamp(32px, 4vw, 64px);
-  font-weight: 300;
+  font-size: clamp(36px, 5.5vw, 75px);
+  font-weight: 400;
   letter-spacing: -0.03em;
   line-height: 1.15;
 }
@@ -69,6 +71,14 @@ body {
   font-size: clamp(18px, 2.4vw, 32px);
   font-weight: 300;
   line-height: 1.45;
+}
+
+.heading-eyebrow {
+  color: var(--color-eyebrow);
+  font-size: clamp(18px, 2.4vw, 32px);
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: 1.3;
 }
 
 .label-nav {

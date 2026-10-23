@@ -39,9 +39,13 @@ export function HomePage() {
 
       <Section className="py-20 sm:py-28">
         <SectionHeading
-          eyebrow="What I do"
-          title="My Process In Motion"
-          description="A look at how the work moves from research and framing into interface and delivery."
+          eyebrow="Behind the scene"
+          title={
+            <>
+              My Process In <span className="text-muted">Motion</span>
+            </>
+          }
+          description="A quick 2-minute glimpse into how I turn complex problems into elegant, human-centered solutions."
         />
         <VideoPlaceholder
           src="/assets/videos/process.mp4"

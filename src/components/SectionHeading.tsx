@@ -1,6 +1,8 @@
+import type { ReactNode } from 'react'
+
 type Props = {
   eyebrow?: string
-  title: string
+  title: ReactNode
   description?: string
   align?: 'center' | 'left'
 }
@@ -12,10 +14,8 @@ export function SectionHeading({
   align = 'center',
 }: Props) {
   return (
-    <div className={align === 'center' ? 'mx-auto max-w-[820px] text-center' : 'max-w-[820px]'}>
-      {eyebrow ? (
-        <p className="mb-3 text-[24px] font-normal text-muted">{eyebrow}</p>
-      ) : null}
+    <div className={align === 'center' ? 'mx-auto max-w-[920px] text-center' : 'max-w-[920px]'}>
+      {eyebrow ? <p className="heading-eyebrow mb-3">{eyebrow}</p> : null}
       <h2 className="heading-section">{title}</h2>
       {description ? <p className="heading-sub mt-4">{description}</p> : null}
     </div>
