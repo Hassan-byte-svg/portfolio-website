@@ -68,6 +68,14 @@ body {
     local("SFProText-LightItalic"), local("SF Pro Text Light Italic");
 }
 
+@font-face {
+  font-family: "SF Pro Light";
+  font-style: normal;
+  font-weight: 400;
+  src: local("SFProDisplay-Regular"), local("SF Pro Display Regular"),
+    local("SF Pro Display"), local("SFProText-Regular");
+}
+
 .heading-main {
   color: var(--color-ink);
   font-family: "SF Pro Light", Inter, -apple-system, BlinkMacSystemFont,
@@ -87,6 +95,12 @@ body {
   font-style: italic;
   font-weight: 300;
   font-variation-settings: "wght" 300;
+}
+
+.heading-main .heading-strong {
+  font-style: normal;
+  font-weight: 400;
+  font-variation-settings: "wght" 400;
 }
 
 .heading-section {
