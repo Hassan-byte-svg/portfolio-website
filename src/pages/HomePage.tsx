@@ -5,7 +5,6 @@ import { ProjectCard } from '../components/ProjectCard'
 import { Section } from '../components/Section'
 import { SectionHeading } from '../components/SectionHeading'
 import { TestimonialCard } from '../components/TestimonialCard'
-import { VideoPlaceholder } from '../components/VideoPlaceholder'
 import {
   fieldExposure,
   projects,
@@ -36,22 +35,6 @@ export function HomePage() {
         </div>
         <LogoMarquee />
       </section>
-
-      <Section className="py-20 sm:py-28">
-        <SectionHeading
-          eyebrow="Behind the scene"
-          title={
-            <>
-              My Process In <span className="text-muted">Motion</span>
-            </>
-          }
-          description="A quick 2-minute glimpse into how I turn complex problems into elegant, human-centered solutions."
-        />
-        <VideoPlaceholder
-          src="/assets/videos/process.mp4"
-          className="mt-12 aspect-[16/8] w-full"
-        />
-      </Section>
 
       <Section className="py-20 sm:py-28">
         <SectionHeading
