@@ -54,7 +54,7 @@ body {
 
 .heading-main {
   color: var(--color-ink);
-  font-size: clamp(32px, 4vw, 56px);
+  font-size: clamp(36px, 5vw, 70px);
   font-weight: 300;
   letter-spacing: -0.03em;
   line-height: 1.12;
@@ -121,4 +121,12 @@ body {
   .logo-marquee-track {
     animation: none;
   }
+}
+
+footer .heading-section {
+  color: #ffffff;
+}
+
+footer .heading-sub {
+  color: rgba(255, 255, 255, 0.7);
 }
