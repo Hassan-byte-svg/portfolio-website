@@ -13,6 +13,12 @@ export const site = {
   },
 } as const
 
+export const aboutCopy = [
+  "I'm a UX/UI Designer passionate about creating digital experiences that are not only visually appealing but deeply rooted in user needs and business goals. My approach centers on understanding the why behind every design decision.",
+  "With a foundation in design thinking and user research, I bridge the gap between complex problems and elegant solutions. I believe great design is invisible—it guides users naturally, removes friction, and creates moments of delight without demanding attention.",
+  "My process begins with deep user empathy, evolves through iterative prototyping, and is validated through rigorous testing. Every pixel serves a purpose, every interaction tells a story, and every solution is measured against real user outcomes.",
+] as const
+
 export type ProjectLayout = "ai-reply" | "desktop" | "pde"
 
 export type TagTone = "blue" | "green" | "orange"

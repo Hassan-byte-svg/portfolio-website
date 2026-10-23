@@ -1,7 +1,7 @@
 import { ImagePlaceholder } from '../components/ImagePlaceholder'
 import { Section } from '../components/Section'
 import { SectionHeading } from '../components/SectionHeading'
-import { site } from '../data/content'
+import { aboutCopy, site } from '../data/content'
 import { Button } from '../components/Button'
 
 export function AboutPage() {
@@ -14,11 +14,9 @@ export function AboutPage() {
           className="aspect-[4/5] w-full"
         />
         <div className="heading-sub space-y-5">
-          <p>
-            I solve complex problems through human centered design combining
-            research, usability principles and design thinking to create
-            experiences that truly matter.
-          </p>
+          {aboutCopy.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
           <p>
             Contact:{' '}
             <a href={`mailto:${site.email}`} className="font-normal text-ink hover:opacity-60">

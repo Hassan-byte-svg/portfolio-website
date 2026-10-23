@@ -6,6 +6,7 @@ import { Section } from '../components/Section'
 import { SectionHeading } from '../components/SectionHeading'
 import { TestimonialCard } from '../components/TestimonialCard'
 import {
+  aboutCopy,
   fieldExposure,
   projects,
   site,
@@ -51,9 +52,9 @@ export function HomePage() {
 
       <Section className="py-14 sm:py-20">
         <SectionHeading
-          eyebrow="Conferences & talks"
+          eyebrow="Experience"
           title="Exposure in the Field"
-          description="Roles, companies, and years from the field."
+          description="A quick 2-minute glimpse into how I turn complex problems into elegant, human-centered solutions."
         />
         <div className="mt-8 overflow-x-auto">
           <table className="w-full min-w-[540px] text-left">
@@ -88,10 +89,13 @@ export function HomePage() {
       </Section>
 
       <Section className="py-14 sm:py-20">
-        <div className="grid gap-5 md:grid-cols-3">
-          {testimonials.map((item, index) => (
-            <TestimonialCard key={item.avatar || index} {...item} />
-          ))}
+        <SectionHeading title="Feedback" />
+        <div className="mt-8 rounded-[28px] bg-soft p-4 sm:p-6">
+          <div className="grid gap-4 md:grid-cols-3">
+            {testimonials.map((item, index) => (
+              <TestimonialCard key={item.avatar || index} {...item} />
+            ))}
+          </div>
         </div>
       </Section>
 
@@ -100,15 +104,10 @@ export function HomePage() {
           eyebrow="About me"
           title="Designing with empathy, building with purpose"
         />
-        <div className="heading-sub mx-auto mt-6 max-w-[640px] space-y-4 text-center">
-          <p>
-            This section is reserved for the about copy from the Figma file.
-            Keep the layout, then replace the text in one place.
-          </p>
-          <p>
-            The same about story continues on the dedicated About page, with
-            additional empty image areas ready for portraits and process photos.
-          </p>
+        <div className="heading-sub mx-auto mt-6 max-w-[760px] space-y-5 text-center">
+          {aboutCopy.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
         </div>
       </Section>
     </>
