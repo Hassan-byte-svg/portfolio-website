@@ -10,21 +10,27 @@ export function SimplePage() {
     <>
       <Section className="pb-16 pt-10 sm:pb-24 sm:pt-16">
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-          <p className="text-[28px] font-light tracking-[-0.03em]">Simple Page</p>
+          <p className="heading-section">Simple Page</p>
           <Button to="/contact" variant="secondary">
             Get in Touch
           </Button>
         </div>
-        <div className="mx-auto mt-16 max-w-[860px] text-center">
-          <h1 className="text-[40px] font-light leading-[1.12] tracking-[-0.03em] sm:text-[58px] lg:text-[64px]">
+        <div className="mx-auto mt-16 max-w-[1100px] text-center">
+          <h1 className="heading-main">
             Design, leadership <em className="font-light italic">and</em> strategy
-            for <span className="font-normal">mission-critical</span>{' '}
-            environments.
+            for mission-critical environments.
           </h1>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button to="/projects">View my work</Button>
-            <Button to="/contact" variant="secondary">
-              Get in Touch
+          <p className="heading-sub mx-auto mt-8 max-w-[720px]">
+            I solve complex problems through human centered design combining
+            research, usability principles and design thinking to create
+            experiences that truly matter
+          </p>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button to="/projects">
+              View my work <span aria-hidden="true">→</span>
+            </Button>
+            <Button href={site.cvPath} download="Waleed-Khan-Updated-CV.pdf" variant="secondary">
+              Download CV <span aria-hidden="true">↓</span>
             </Button>
           </div>
         </div>
@@ -36,8 +42,8 @@ export function SimplePage() {
             src="/assets/images/about/portrait.jpg"
             className="aspect-[4/5] w-full"
           />
-          <div className="space-y-5 text-[16px] leading-[1.8] text-muted">
-            <h2 className="text-[36px] font-light leading-[1.15] tracking-[-0.03em] text-ink">
+          <div className="heading-sub space-y-5">
+            <h2 className="heading-section">
               Designing with empathy, building with purpose
             </h2>
             <p>

@@ -5,7 +5,7 @@ export function LogoMarquee() {
 
   return (
     <div className="relative mx-auto mt-12 max-w-[1120px] text-center">
-      <p className="text-[12px] font-normal uppercase tracking-[0.16em] text-muted">
+      <p className="text-[24px] font-normal text-muted">
         Trusted by teams at companies like
       </p>
       <div className="logo-marquee mt-6">

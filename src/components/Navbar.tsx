@@ -4,11 +4,8 @@ import { ThemeToggle } from './ThemeToggle'
 import { site } from '../data/content'
 
 const links = [
-  { to: '/', label: 'Home' },
   { to: '/projects', label: 'Work' },
-  { to: '/simple', label: 'Simple Page' },
   { to: '/about', label: 'About' },
-  { to: '/research', label: 'Research' },
   { to: '/contact', label: 'Contact' },
 ]
 
@@ -18,23 +15,29 @@ export function Navbar() {
   return (
     <header className="relative z-30">
       <div className="mx-auto flex max-w-[1120px] items-center justify-between px-5 py-6 sm:px-8">
-        <Link to="/" className="text-[15px] font-normal tracking-[-0.02em]" onClick={() => setOpen(false)}>
+        <Link to="/" className="label-nav text-ink" onClick={() => setOpen(false)}>
           {site.name}
         </Link>
-        <div className="flex items-center gap-3">
-          <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
+        <div className="flex items-center gap-4">
+          <nav className="hidden items-center gap-10 md:flex" aria-label="Primary">
             {links.map((link) => (
               <NavLink
                 key={link.to}
                 to={link.to}
-                end={link.to === '/'}
                 className={({ isActive }) =>
-                  `text-[14px] font-normal tracking-[-0.01em] text-ink/75 transition-colors hover:text-ink ${isActive ? 'text-ink' : ''}`
+                  `label-nav transition-colors hover:text-ink ${isActive ? 'text-ink' : ''}`
                 }
               >
                 {link.label}
               </NavLink>
             ))}
+            <a
+              href={site.cvPath}
+              download="Waleed-Khan-Updated-CV.pdf"
+              className="label-nav transition-colors hover:text-ink"
+            >
+              Resume
+            </a>
           </nav>
           <div className="hidden md:block">
             <ThemeToggle compact />
@@ -62,11 +65,19 @@ export function Navbar() {
                 key={link.to}
                 to={link.to}
                 onClick={() => setOpen(false)}
-                className="text-[16px] py-1"
+                className="label-nav py-1"
               >
                 {link.label}
               </NavLink>
             ))}
+            <a
+              href={site.cvPath}
+              download="Waleed-Khan-Updated-CV.pdf"
+              className="label-nav py-1"
+              onClick={() => setOpen(false)}
+            >
+              Resume
+            </a>
             <ThemeToggle label />
           </div>
         </nav>

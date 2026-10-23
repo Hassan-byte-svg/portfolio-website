@@ -19,20 +19,18 @@ export function HomePage() {
       <section className="relative overflow-hidden px-5 pb-16 pt-6 sm:px-8 sm:pb-20 sm:pt-8">
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.035)_1px,transparent_1px)] bg-[size:72px_72px]" />
         <div className="pointer-events-none absolute left-1/2 top-6 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-[#8aa0ff]/25 blur-[100px]" />
-        <div className="relative mx-auto max-w-[860px] text-center">
-          <h1 className="text-[40px] font-light leading-[1.12] tracking-[-0.03em] text-ink sm:text-[58px] lg:text-[68px]">
+        <div className="relative mx-auto max-w-[1100px] text-center">
+          <h1 className="heading-main">
             Design, leadership <em className="italic font-light">and</em> strategy
-            for <span className="font-normal">mission-critical</span>{' '}
-            environments.
+            for mission-critical environments.
           </h1>
-          <p className="mx-auto mt-6 max-w-[560px] text-[16px] leading-[1.7] text-muted sm:text-[17px]">
-            Product design, research, and strategy for complex systems — with
-            space here for the supporting line from the Figma file.
-          </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button to="/projects">View my work</Button>
+          <p className="heading-sub mx-auto mt-8 max-w-[720px]">{site.intro}</p>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button to="/projects">
+              View my work <span aria-hidden="true">→</span>
+            </Button>
             <Button href={site.cvPath} download="Waleed-Khan-Updated-CV.pdf" variant="secondary">
-              Download CV
+              Download CV <span aria-hidden="true">↓</span>
             </Button>
           </div>
         </div>
@@ -73,7 +71,7 @@ export function HomePage() {
         <div className="mt-12 overflow-x-auto">
           <table className="w-full min-w-[540px] text-left">
             <thead>
-              <tr className="border-b border-line text-[12px] uppercase tracking-[0.12em] text-muted">
+              <tr className="border-b border-line text-[24px] font-normal text-muted">
                 <th className="py-4 font-normal">Role</th>
                 <th className="py-4 font-normal">Company</th>
                 <th className="py-4 font-normal">Year</th>
@@ -82,9 +80,9 @@ export function HomePage() {
             <tbody>
               {fieldExposure.map((row) => (
                 <tr key={`${row.company}-${row.year}`} className="border-b border-line">
-                  <td className="py-5 text-[16px]">{row.role}</td>
-                  <td className="py-5 text-[16px] text-muted">{row.company}</td>
-                  <td className="py-5 text-[16px] text-muted">{row.year}</td>
+                  <td className="py-5 text-[24px] font-normal">{row.role}</td>
+                  <td className="py-5 text-[24px] font-normal text-muted">{row.company}</td>
+                  <td className="py-5 text-[24px] font-normal text-muted">{row.year}</td>
                 </tr>
               ))}
             </tbody>
@@ -115,7 +113,7 @@ export function HomePage() {
           eyebrow="About me"
           title="Designing with empathy, building with purpose"
         />
-        <div className="mx-auto mt-8 max-w-[680px] space-y-5 text-center text-[16px] leading-[1.8] text-muted">
+        <div className="heading-sub mx-auto mt-8 max-w-[720px] space-y-5 text-center">
           <p>
             This section is reserved for the about copy from the Figma file.
             Keep the layout, then replace the text in one place.

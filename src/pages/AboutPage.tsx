@@ -2,6 +2,7 @@ import { ImagePlaceholder } from '../components/ImagePlaceholder'
 import { Section } from '../components/Section'
 import { SectionHeading } from '../components/SectionHeading'
 import { site } from '../data/content'
+import { Button } from '../components/Button'
 
 export function AboutPage() {
   return (
@@ -12,15 +13,23 @@ export function AboutPage() {
           src="/assets/images/about/portrait.jpg"
           className="aspect-[4/5] w-full"
         />
-        <div className="space-y-5 text-[16px] leading-[1.8] text-muted">
+        <div className="heading-sub space-y-5">
           <p>
-            Use this column for the longer about narrative from the Figma
-            design. The portrait area on the left stays empty until you add
-            `/assets/images/about/portrait.jpg`.
+            I solve complex problems through human centered design combining
+            research, usability principles and design thinking to create
+            experiences that truly matter.
           </p>
           <p>
-            Contact: {site.email}
+            Contact:{' '}
+            <a href={`mailto:${site.email}`} className="font-normal text-ink hover:opacity-60">
+              {site.email}
+            </a>
           </p>
+          <div className="pt-2">
+            <Button href={site.cvPath} download="Waleed-Khan-Updated-CV.pdf" variant="secondary">
+              Download CV <span aria-hidden="true">↓</span>
+            </Button>
+          </div>
           <div className="grid grid-cols-2 gap-4 pt-4">
             <ImagePlaceholder
               src="/assets/images/about/01.jpg"

@@ -3,6 +3,10 @@ export const site = {
   email: "hello@email.com",
   year: 2026,
   cvPath: "/assets/CV.pdf",
+  headline:
+    "Design, leadership and strategy for mission-critical environments.",
+  intro:
+    "I solve complex problems through human centered design combining research, usability principles and design thinking to create experiences that truly matter",
   social: {
     linkedin: "https://www.linkedin.com/",
     x: "https://x.com/",

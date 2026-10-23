@@ -33,11 +33,11 @@ export function ProjectCard({ project }: { project: Project }) {
         rounded="rounded-[22px]"
       />
       <div>
-        <p className={`text-[15px] font-medium ${tone.category}`}>{project.category}</p>
-        <h3 className="mt-2 text-[28px] font-normal leading-[1.2] tracking-[-0.03em] text-[#0F172B] sm:text-[34px]">
+        <p className={`text-[24px] font-normal ${tone.category}`}>{project.category}</p>
+        <h3 className="heading-section mt-2 text-[32px] sm:text-[40px]">
           {project.title}
         </h3>
-        <p className="mt-3 max-w-[460px] text-[16px] font-light leading-[1.7] text-[#6B6B6B]">
+        <p className="heading-sub mt-3 max-w-[460px]">
           {project.summary}
         </p>
         <div className="mt-5">
@@ -46,7 +46,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <Link
           to={`/projects/${project.slug}`}
           state={{ from: `${location.pathname}${location.search}` }}
-          className="mt-6 inline-flex items-center gap-2 text-[16px] font-medium text-[#0F172B] transition-opacity hover:opacity-60"
+          className="mt-6 inline-flex items-center gap-2 text-[24px] font-normal text-ink transition-opacity hover:opacity-60"
         >
           View Case Study
           <span aria-hidden="true">↗</span>

@@ -16,8 +16,8 @@ export function ProjectDetailPage() {
   if (!project) {
     return (
       <Section className="py-24 text-center">
-        <h1 className="text-[40px] font-light tracking-[-0.03em]">Project not found</h1>
-        <Link to="/projects" className="mt-6 inline-block text-[15px] font-normal hover:opacity-60">
+        <h1 className="heading-section">Project not found</h1>
+        <Link to="/projects" className="label-nav mt-6 inline-block hover:text-ink">
           ← Back
         </Link>
       </Section>

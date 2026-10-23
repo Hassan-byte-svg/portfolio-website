@@ -13,10 +13,10 @@ type Props = {
 }
 
 const styles: Record<Variant, string> = {
-  primary: 'bg-ink text-canvas hover:opacity-90',
-  secondary: 'bg-canvas text-ink border border-ink/80 hover:bg-soft',
-  ghost: 'bg-transparent text-ink hover:opacity-70',
-  light: 'bg-canvas text-ink hover:bg-soft',
+  primary: 'bg-ink text-white hover:opacity-90',
+  secondary: 'bg-canvas text-ink border border-ink hover:bg-soft',
+  ghost: 'bg-transparent text-muted hover:text-ink',
+  light: 'bg-white text-ink hover:bg-soft',
 }
 
 export function Button({
@@ -27,7 +27,7 @@ export function Button({
   variant = 'primary',
   className = '',
 }: Props) {
-  const cls = `inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-normal tracking-[-0.01em] transition-colors ${styles[variant]} ${className}`
+  const cls = `inline-flex h-[61px] w-[229px] items-center justify-center gap-2 whitespace-nowrap rounded-full text-[24px] font-normal tracking-[-0.01em] transition-colors ${styles[variant]} ${className}`
 
   if (to) {
     return (

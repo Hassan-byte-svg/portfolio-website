@@ -8,7 +8,7 @@ export function BackLink({ fallback = '/projects' }: { fallback?: string }) {
   return (
     <button
       type="button"
-      className="text-[14px] font-normal text-muted hover:text-ink"
+      className="label-nav hover:text-ink"
       onClick={() => {
         if (from) {
           navigate(from)

@@ -9,7 +9,7 @@ export function ProjectsPage() {
       <SectionHeading
         eyebrow="Work"
         title="Featured Case Studies"
-        description="Three case studies from the Figma file. Open any one for the full page."
+        description="I solve complex problems through human centered design combining research, usability principles and design thinking to create experiences that truly matter."
       />
       <div className="mt-12 flex flex-col gap-6">
         {projects.map((project) => (

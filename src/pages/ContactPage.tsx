@@ -9,15 +9,16 @@ export function ContactPage() {
       <SectionHeading
         eyebrow="Contact"
         title="Get in touch"
-        description="Use the email below, or add a form later if the Figma contact page includes one."
+        description="I solve complex problems through human centered design combining research, usability principles and design thinking to create experiences that truly matter."
       />
-      <div className="mx-auto mt-12 max-w-[520px] text-center">
-        <a href={`mailto:${site.email}`} className="text-[22px] font-normal tracking-[-0.02em] hover:opacity-60">
+      <div className="mx-auto mt-12 max-w-[640px] text-center">
+        <a href={`mailto:${site.email}`} className="heading-section hover:opacity-60">
           {site.email}
         </a>
-        <div className="mt-8 flex justify-center">
+        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <Button href={`mailto:${site.email}`}>Email me</Button>
           <Button href={site.cvPath} download="Waleed-Khan-Updated-CV.pdf" variant="secondary">
-            Download CV
+            Download CV <span aria-hidden="true">↓</span>
           </Button>
         </div>
       </div>

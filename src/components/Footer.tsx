@@ -7,10 +7,10 @@ export function Footer() {
       <div className="relative overflow-hidden px-5 py-24 text-center sm:px-8 sm:py-32">
         <div className="pointer-events-none absolute inset-x-0 bottom-[-40%] mx-auto h-[420px] max-w-[720px] rounded-full bg-[#4f67ff]/25 blur-[90px]" />
         <div className="relative mx-auto max-w-[720px]">
-          <h2 className="text-[40px] font-light leading-[1.12] tracking-[-0.03em] sm:text-[52px]">
+          <h2 className="heading-section text-white">
             Let’s create something amazing together
           </h2>
-          <p className="mx-auto mt-5 max-w-[520px] text-[16px] leading-[1.7] text-white/70">
+          <p className="heading-sub mx-auto mt-5 max-w-[640px] text-white/70">
             Open to new collaborations, research conversations, and product work.
           </p>
           <div className="mt-8">

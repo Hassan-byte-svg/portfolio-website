@@ -12,18 +12,12 @@ export function SectionHeading({
   align = 'center',
 }: Props) {
   return (
-    <div className={align === 'center' ? 'mx-auto max-w-[720px] text-center' : 'max-w-[720px]'}>
+    <div className={align === 'center' ? 'mx-auto max-w-[820px] text-center' : 'max-w-[820px]'}>
       {eyebrow ? (
-        <p className="mb-3 text-[12px] font-normal uppercase tracking-[0.18em] text-muted">
-          {eyebrow}
-        </p>
+        <p className="mb-3 text-[24px] font-normal text-muted">{eyebrow}</p>
       ) : null}
-      <h2 className="text-[36px] font-light leading-[1.15] tracking-[-0.02em] text-ink sm:text-[44px]">
-        {title}
-      </h2>
-      {description ? (
-        <p className="mt-4 text-[16px] font-light leading-[1.7] text-muted">{description}</p>
-      ) : null}
+      <h2 className="heading-section">{title}</h2>
+      {description ? <p className="heading-sub mt-4">{description}</p> : null}
     </div>
   )
 }
