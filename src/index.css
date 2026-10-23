@@ -54,7 +54,7 @@ body {
 
 .heading-main {
   color: var(--color-ink);
-  font-size: clamp(36px, 5vw, 70px);
+  font-size: clamp(36px, 6vw, 85px);
   font-weight: 300;
   letter-spacing: -0.03em;
   line-height: 1.08;
@@ -70,7 +70,7 @@ body {
 
 .heading-sub {
   color: var(--color-muted);
-  font-size: clamp(16px, 2vw, 26px);
+  font-size: clamp(15px, 1.6vw, 20px);
   font-weight: 300;
   line-height: 1.45;
 }
