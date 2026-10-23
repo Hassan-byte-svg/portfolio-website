@@ -16,14 +16,14 @@ export function TestimonialCard({
       <p className="font-serif text-[40px] leading-none text-[#C4C4D4]" aria-hidden="true">
         “
       </p>
-      <p className="heading-sub mt-4 flex-1 text-[24px]">
+      <p className="heading-sub mt-4 flex-1">
         {quote}
       </p>
-      <div className="mt-8 flex items-center gap-3">
+      <div className="mt-6 flex items-center gap-3">
         <ImagePlaceholder src={avatar} rounded="rounded-full" className="h-11 w-11 shrink-0 bg-[#D9D9D9]" />
         <div>
-          <p className="text-[24px] font-normal leading-tight text-ink">{name}</p>
-          <p className="mt-0.5 text-[24px] font-normal leading-tight text-muted">{role}</p>
+          <p className="text-[16px] font-normal leading-tight text-ink">{name}</p>
+          <p className="mt-0.5 text-[14px] font-normal leading-tight text-muted">{role}</p>
         </div>
       </div>
     </article>

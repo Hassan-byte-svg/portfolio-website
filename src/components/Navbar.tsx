@@ -14,12 +14,12 @@ export function Navbar() {
 
   return (
     <header className="relative z-30">
-      <div className="mx-auto flex max-w-[1120px] items-center justify-between px-5 py-6 sm:px-8">
+      <div className="mx-auto flex max-w-[1120px] items-center justify-between px-5 py-4 sm:px-8">
         <Link to="/" className="label-nav text-ink" onClick={() => setOpen(false)}>
           {site.name}
         </Link>
         <div className="flex items-center gap-4">
-          <nav className="hidden items-center gap-10 md:flex" aria-label="Primary">
+          <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
             {links.map((link) => (
               <NavLink
                 key={link.to}

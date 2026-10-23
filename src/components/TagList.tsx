@@ -15,11 +15,11 @@ export function TagList({
         : 'bg-[#2F90C3]/[0.07] text-copy'
 
   return (
-    <ul className="flex flex-wrap gap-3">
+    <ul className="flex flex-wrap gap-2">
       {tags.map((tag) => (
         <li
           key={tag}
-          className={`inline-flex items-center rounded-full px-5 py-2.5 text-[16px] font-medium leading-none ${surface}`}
+          className={`inline-flex items-center rounded-full px-3 py-1.5 text-[13px] font-medium leading-none ${surface}`}
         >
           {tag}
         </li>

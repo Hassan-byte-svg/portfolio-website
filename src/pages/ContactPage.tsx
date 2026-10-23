@@ -5,7 +5,7 @@ import { site } from '../data/content'
 
 export function ContactPage() {
   return (
-    <Section className="pb-20 pt-10 sm:pb-28 sm:pt-16">
+    <Section className="pb-16 pt-8 sm:pb-20 sm:pt-12">
       <SectionHeading
         eyebrow="Contact"
         title="Get in touch"

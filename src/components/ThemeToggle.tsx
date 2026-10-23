@@ -19,7 +19,7 @@ export function ThemeToggle({
       className={
         compact
           ? 'inline-flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink transition-colors hover:bg-soft'
-          : 'inline-flex items-center justify-center gap-2 rounded-full border border-ink bg-canvas px-5 py-3 text-[24px] font-normal text-ink transition-colors hover:bg-soft'
+          : 'inline-flex items-center justify-center gap-2 rounded-full border border-ink bg-canvas px-4 py-2 text-[16px] font-normal text-ink transition-colors hover:bg-soft'
       }
     >
       {isDark ? <SunIcon /> : <MoonIcon />}

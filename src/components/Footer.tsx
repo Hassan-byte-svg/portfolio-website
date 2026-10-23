@@ -4,7 +4,7 @@ import { site } from '../data/content'
 export function Footer() {
   return (
     <footer className="mt-24 bg-night text-white">
-      <div className="relative overflow-hidden px-5 py-24 text-center sm:px-8 sm:py-32">
+      <div className="relative overflow-hidden px-5 py-16 text-center sm:px-8 sm:py-24">
         <div className="pointer-events-none absolute inset-x-0 bottom-[-40%] mx-auto h-[420px] max-w-[720px] rounded-full bg-[#4f67ff]/25 blur-[90px]" />
         <div className="relative mx-auto max-w-[720px]">
           <h2 className="heading-section text-white">

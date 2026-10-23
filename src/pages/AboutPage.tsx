@@ -6,7 +6,7 @@ import { Button } from '../components/Button'
 
 export function AboutPage() {
   return (
-    <Section className="pb-20 pt-10 sm:pb-28 sm:pt-16">
+    <Section className="pb-16 pt-8 sm:pb-20 sm:pt-12">
       <SectionHeading eyebrow="About" title="Designing with empathy, building with purpose" />
       <div className="mx-auto mt-12 grid max-w-[980px] items-start gap-10 md:grid-cols-[0.9fr_1.1fr] md:gap-16">
         <ImagePlaceholder
