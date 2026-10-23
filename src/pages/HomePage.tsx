@@ -15,7 +15,7 @@ import {
 export function HomePage() {
   return (
     <>
-      <section className="relative overflow-hidden px-5 pb-12 pt-6 sm:px-8 sm:pb-14 sm:pt-8">
+      <section className="relative overflow-hidden px-5 pb-16 pt-6 sm:px-8 sm:pb-[72px] sm:pt-8">
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.035)_1px,transparent_1px)] bg-[size:72px_72px]" />
         <div className="pointer-events-none absolute left-1/2 top-6 h-[320px] w-[560px] -translate-x-1/2 rounded-full bg-[#8aa0ff]/25 blur-[100px]" />
         <div className="relative mx-auto max-w-[980px] text-center">
@@ -33,8 +33,8 @@ export function HomePage() {
             </Button>
           </div>
         </div>
-        <LogoMarquee />
       </section>
+      <LogoMarquee />
 
       <Section className="py-14 sm:py-20">
         <SectionHeading

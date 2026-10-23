@@ -4,9 +4,9 @@ export function LogoMarquee() {
   const strip = [...logos, ...logos, ...logos, ...logos]
 
   return (
-    <div className="relative mx-auto mt-16 max-w-[1120px] text-center">
+    <div className="relative mx-auto mt-12 max-w-[1120px] text-center sm:mt-16">
       <p className="text-[16px] font-normal text-muted">
-        Trusted by teams at companies like
+        Selected Clients and Collaborations
       </p>
       <div className="logo-marquee mt-6">
         <div className="logo-marquee-track">
