@@ -53,35 +53,40 @@ body {
 }
 
 @font-face {
-  font-family: "SF Pro Display";
+  font-family: "SF Pro Light";
   font-style: normal;
   font-weight: 300;
   src: local("SFProDisplay-Light"), local("SF Pro Display Light"),
-    local("SF Pro Display"), local(".SFNS-Light");
+    local("SFProText-Light"), local("SF Pro Text Light");
 }
 
 @font-face {
-  font-family: "SF Pro Display";
+  font-family: "SF Pro Light";
   font-style: italic;
   font-weight: 300;
   src: local("SFProDisplay-LightItalic"), local("SF Pro Display Light Italic"),
-    local("SF Pro Display Italic");
+    local("SFProText-LightItalic"), local("SF Pro Text Light Italic");
 }
 
 .heading-main {
   color: var(--color-ink);
-  font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont,
+  font-family: "SF Pro Light", Inter, -apple-system, BlinkMacSystemFont,
     sans-serif;
   font-size: clamp(40px, 7vw, 100px);
   font-weight: 300;
+  font-style: normal;
   font-synthesis: none;
+  font-variation-settings: "wght" 300;
   letter-spacing: -0.03em;
   line-height: 1.08;
+  -webkit-font-smoothing: antialiased;
 }
 
 .heading-main em {
   font-family: inherit;
+  font-style: italic;
   font-weight: 300;
+  font-variation-settings: "wght" 300;
 }
 
 .heading-section {
