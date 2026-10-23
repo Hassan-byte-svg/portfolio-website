@@ -52,12 +52,36 @@ body {
   min-height: 100vh;
 }
 
+@font-face {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 300;
+  src: local("SFProDisplay-Light"), local("SF Pro Display Light"),
+    local("SF Pro Display"), local(".SFNS-Light");
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  font-style: italic;
+  font-weight: 300;
+  src: local("SFProDisplay-LightItalic"), local("SF Pro Display Light Italic"),
+    local("SF Pro Display Italic");
+}
+
 .heading-main {
   color: var(--color-ink);
+  font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont,
+    sans-serif;
   font-size: clamp(40px, 7vw, 100px);
   font-weight: 300;
+  font-synthesis: none;
   letter-spacing: -0.03em;
   line-height: 1.08;
+}
+
+.heading-main em {
+  font-family: inherit;
+  font-weight: 300;
 }
 
 .heading-section {

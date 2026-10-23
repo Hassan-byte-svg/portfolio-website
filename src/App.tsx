@@ -10,6 +10,7 @@ import { ResearchDetailPage } from './pages/ResearchDetailPage'
 import { ResearchPage } from './pages/ResearchPage'
 import { SimplePage } from './pages/SimplePage'
 import { ScrollToTop } from './components/ScrollToTop'
+import { PreloadedCaseStudies } from './components/PreloadedCaseStudies'
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
+      <PreloadedCaseStudies />
     </BrowserRouter>
   )
 }

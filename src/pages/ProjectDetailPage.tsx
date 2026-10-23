@@ -25,6 +25,6 @@ export function ProjectDetailPage() {
   }
 
   return (
-    <FigmaCaseStudyEmbed nodeId={project.figmaNodeId} title={project.caseStudyTitle} />
+    <FigmaCaseStudyEmbed title={project.caseStudyTitle} />
   )
 }
