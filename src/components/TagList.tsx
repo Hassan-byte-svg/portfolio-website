@@ -11,8 +11,10 @@ export function TagList({
 
   const cardSurface =
     tone === 'orange'
-      ? 'bg-[#FFF6ED] text-copy'
-      : 'bg-[#2F90C3]/[0.07] text-copy'
+      ? 'bg-[#E9A54C]/[0.07] text-copy'
+      : tone === 'green'
+        ? 'bg-[#75B798]/[0.07] text-copy'
+        : 'bg-[#00A0C2]/[0.07] text-copy'
 
   const surface =
     variant === 'dark'

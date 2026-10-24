@@ -5,14 +5,14 @@ import { warmupCaseStudy } from './PreloadedCaseStudies'
 import { TagList } from './TagList'
 
 const cardSurface = {
-  blue: 'bg-canvas',
-  green: 'bg-canvas',
-  orange: 'bg-[#FFFCF9] [:is(html[data-theme=dark])_&]:bg-soft',
+  blue: 'bg-[#00A0C2]/[0.03]',
+  green: 'bg-[#75B798]/[0.03]',
+  orange: 'bg-[#E9A54C]/[0.03]',
 } as const
 
 const categoryColor = {
   blue: 'text-[#00A0C2]',
-  green: 'text-[#00A0C2]',
+  green: 'text-[#75B798]',
   orange: 'text-[#E9A54C]',
 } as const
 
