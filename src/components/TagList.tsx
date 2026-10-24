@@ -1,18 +1,25 @@
 export function TagList({
   tags,
   variant = 'card',
+  tone = 'blue',
 }: {
   tags: string[]
   variant?: 'card' | 'dark' | 'light'
+  tone?: 'blue' | 'green' | 'orange'
 }) {
   if (!tags.length) return null
+
+  const cardSurface =
+    tone === 'orange'
+      ? 'bg-[#FFF6ED] text-copy'
+      : 'bg-[#2F90C3]/[0.07] text-copy'
 
   const surface =
     variant === 'dark'
       ? 'border border-white/20 bg-white/[0.06] text-white'
       : variant === 'light'
         ? 'border border-black/10 bg-white text-[#0F172B]'
-        : 'bg-[#2F90C3]/[0.07] text-copy'
+        : cardSurface
 
   return (
     <ul className="flex flex-wrap gap-2">

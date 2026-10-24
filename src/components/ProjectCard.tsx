@@ -4,13 +4,25 @@ import { ImagePlaceholder } from './ImagePlaceholder'
 import { warmupCaseStudy } from './PreloadedCaseStudies'
 import { TagList } from './TagList'
 
+const cardSurface = {
+  blue: 'bg-canvas',
+  green: 'bg-canvas',
+  orange: 'bg-[#FFFCF9] [:is(html[data-theme=dark])_&]:bg-soft',
+} as const
+
+const categoryColor = {
+  blue: 'text-[#00A0C2]',
+  green: 'text-[#00A0C2]',
+  orange: 'text-[#E9A54C]',
+} as const
+
 export function ProjectCard({ project }: { project: Project }) {
   const location = useLocation()
   const prefetch = () => warmupCaseStudy(project.slug)
 
   return (
     <article
-      className="grid items-center gap-6 rounded-[20px] bg-[#00A0C2]/[0.03] px-4 py-4 sm:px-6 sm:py-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-8"
+      className={`grid items-center gap-6 rounded-[20px] px-4 py-4 sm:px-6 sm:py-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-8 ${cardSurface[project.tagTone]}`}
       onPointerEnter={prefetch}
     >
       <ImagePlaceholder
@@ -20,7 +32,7 @@ export function ProjectCard({ project }: { project: Project }) {
         rounded="rounded-[16px]"
       />
       <div>
-        <p className="text-[16px] font-normal text-[#00A0C2]">{project.category}</p>
+        <p className={`text-[16px] font-normal ${categoryColor[project.tagTone]}`}>{project.category}</p>
         <h3 className="mt-1.5 text-[26px] font-normal leading-[1.25] tracking-[-0.02em] text-ink lg:text-[32px]">
           {project.title}
         </h3>
@@ -28,7 +40,7 @@ export function ProjectCard({ project }: { project: Project }) {
           {project.summary}
         </p>
         <div className="mt-4">
-          <TagList tags={project.tags} />
+          <TagList tags={project.tags} tone={project.tagTone} />
         </div>
         <Link
           to={`/projects/${project.slug}`}
