@@ -185,32 +185,15 @@ body {
   transform: none;
 }
 
-.case-cover {
-  animation: case-cover-in 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@keyframes case-cover-in {
-  from {
-    opacity: 0;
-    transform: translateY(18px) scale(0.985);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .logo-marquee-track,
   .showcase-track {
     animation: none;
   }
 
-  .reveal,
-  .case-cover {
+  .reveal {
     opacity: 1;
     transform: none;
-    animation: none;
   }
 }
 

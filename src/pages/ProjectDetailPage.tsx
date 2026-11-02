@@ -25,6 +25,6 @@ export function ProjectDetailPage() {
   }
 
   return (
-    <FigmaCaseStudyEmbed title={project.caseStudyTitle} image={project.image} />
+    <FigmaCaseStudyEmbed title={project.caseStudyTitle} />
   )
 }

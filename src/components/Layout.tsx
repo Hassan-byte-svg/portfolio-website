@@ -8,7 +8,7 @@ export function Layout() {
 
   if (isCaseStudy) {
     return (
-      <div className="min-h-screen bg-canvas">
+      <div className="h-screen overflow-hidden bg-[#0a0a0a]">
         <main>
           <Outlet />
         </main>

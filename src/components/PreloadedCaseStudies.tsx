@@ -5,6 +5,7 @@ import { figmaProtoSrc } from './FigmaCaseStudyEmbed'
 
 const WARMUP_EVENT = 'warmup-case-study'
 const MAX_MOUNTED = 2
+const HEADER_HEIGHT = 65
 
 export function warmupCaseStudy(slug: string) {
   if (typeof window === 'undefined') return
@@ -21,6 +22,13 @@ export function PreloadedCaseStudies() {
     ? pathname.slice('/projects/'.length).split('/')[0]
     : null
   const [warmedSlugs, setWarmedSlugs] = useState<string[]>([])
+  const [pixelRatio, setPixelRatio] = useState(() => window.devicePixelRatio || 1)
+
+  useEffect(() => {
+    const syncRatio = () => setPixelRatio(window.devicePixelRatio || 1)
+    window.addEventListener('resize', syncRatio)
+    return () => window.removeEventListener('resize', syncRatio)
+  }, [])
 
   useEffect(() => {
     const onWarmup = (event: Event) => {
@@ -68,32 +76,39 @@ export function PreloadedCaseStudies() {
         const active = slug === activeSlug
 
         return (
-          <iframe
+          <div
             key={slug}
-            title={project.caseStudyTitle}
-            src={figmaProtoSrc(project.figmaNodeId)}
-            allowFullScreen
-            loading="eager"
-            className="border-0"
-            ref={(frame) => {
-              if (frame) frame.setAttribute('fetchpriority', active ? 'high' : 'low')
-            }}
             aria-hidden={!active}
-            style={
-              active
-                ? { display: 'block', width: '100%', height: '24000px' }
-                : {
-                    position: 'fixed',
-                    left: 0,
-                    top: 0,
-                    width: '100%',
-                    height: '24000px',
-                    opacity: 0,
-                    pointerEvents: 'none',
-                    zIndex: -1,
-                  }
-            }
-          />
+            style={{
+              position: 'fixed',
+              left: 0,
+              top: HEADER_HEIGHT,
+              width: '100%',
+              height: `calc(100vh - ${HEADER_HEIGHT}px)`,
+              overflow: 'hidden',
+              zIndex: active ? 10 : -1,
+              opacity: active ? 1 : 0,
+              pointerEvents: active ? 'auto' : 'none',
+            }}
+          >
+            <iframe
+              title={project.caseStudyTitle}
+              src={figmaProtoSrc(project.figmaNodeId)}
+              allowFullScreen
+              loading="eager"
+              className="border-0"
+              ref={(frame) => {
+                if (frame) frame.setAttribute('fetchpriority', active ? 'high' : 'low')
+              }}
+              style={{
+                width: `${pixelRatio * 100}%`,
+                height: `${pixelRatio * 100}%`,
+                transform: `scale(${1 / pixelRatio})`,
+                transformOrigin: 'top left',
+                display: 'block',
+              }}
+            />
+          </div>
         )
       })}
     </>
