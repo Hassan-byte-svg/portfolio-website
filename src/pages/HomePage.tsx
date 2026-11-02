@@ -75,8 +75,8 @@ export function HomePage() {
           <Reveal>
             <p className="heading-eyebrow">Hi! I am Waleed Khan</p>
             <h1 ref={headingRef} className="heading-main heading-hero mx-auto mt-5 max-w-[920px]">
-              Designing <span className="heading-strong">Digital Experiences</span> That{" "}
-              <span className="heading-strong">Make an Impact.</span>
+              Designing <span className="heading-strong">Digital Experiences</span> That Make{" "}
+              <span className="heading-strong">an Impact.</span>
             </h1>
             <p className="heading-sub mx-auto mt-8 max-w-[720px]">{site.intro}</p>
           </Reveal>
