@@ -13,10 +13,12 @@ type Props = {
 }
 
 const styles: Record<Variant, string> = {
-  primary: 'bg-ink text-white hover:opacity-90',
-  secondary: 'bg-canvas text-ink border border-ink hover:bg-soft',
-  ghost: 'bg-transparent text-muted hover:text-ink',
-  light: 'bg-white text-ink hover:bg-soft',
+  primary:
+    'bg-ink text-white duration-300 hover:opacity-90 [:is(html[data-theme=dark])_&]:text-[#0a0a0a] [:is(html[data-theme=dark])_&]:hover:bg-black [:is(html[data-theme=dark])_&]:hover:text-white [:is(html[data-theme=dark])_&]:hover:opacity-100',
+  secondary:
+    'border border-ink bg-canvas text-ink duration-300 hover:bg-soft [:is(html[data-theme=dark])_&]:hover:border-black [:is(html[data-theme=dark])_&]:hover:bg-black [:is(html[data-theme=dark])_&]:hover:text-white',
+  ghost: 'bg-transparent text-muted duration-300 hover:text-ink',
+  light: 'bg-white text-[#0a0a0a] duration-300 hover:bg-black hover:text-white',
 }
 
 export function Button({
