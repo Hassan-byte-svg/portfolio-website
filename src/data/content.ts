@@ -91,7 +91,7 @@ export const projects: Project[] = [
       "/assets/images/projects/track-my-time/desktop-02.jpg",
     ],
     layout: "desktop",
-    figmaNodeId: "40-200",
+    figmaNodeId: "40-717",
     tags: [
       "macOS",
       "Productivity",
