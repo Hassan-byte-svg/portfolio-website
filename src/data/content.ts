@@ -55,7 +55,7 @@ export const projects: Project[] = [
     role: "Product Designer (UI/UX)",
     platform: "Android Mobile",
     duration: "3.5 Mon",
-    image: "/assets/images/projects/ai-supply-management/cover.jpg",
+    image: "/assets/images/projects/ai-supply-management/cover.png",
     video: "/assets/videos/projects/ai-supply-management.mp4",
     gallery: [
       "/assets/images/projects/ai-supply-management/01.jpg",
@@ -83,7 +83,7 @@ export const projects: Project[] = [
     role: "UX Design",
     platform: "macOS",
     duration: "2024",
-    image: "/assets/images/projects/track-my-time/cover.jpg",
+    image: "/assets/images/projects/track-my-time/cover.png",
     video: "/assets/videos/projects/track-my-time.mp4",
     gallery: [
       "/assets/images/projects/track-my-time/desktop-01.jpg",
@@ -111,7 +111,7 @@ export const projects: Project[] = [
     role: "UX UI",
     platform: "Web",
     duration: "2023",
-    image: "/assets/images/projects/pde-auto-group/cover.jpg",
+    image: "/assets/images/projects/pde-auto-group/cover.png",
     video: "/assets/videos/projects/pde-auto-group.mp4",
     gallery: [
       "/assets/images/projects/pde-auto-group/thumbnail.jpg",
@@ -164,7 +164,7 @@ export const research: ResearchItem[] = [
 ]
 
 export const fieldExposure = [
-  { role: "UI/UX Design Internship", company: "Filmbaill", year: "2023" },
+  { role: "UI/UX Design Internship", company: "Filmbailly", year: "2023" },
   { role: "UI/UX Designer", company: "Softvionist", year: "2024" },
   { role: "UI/UX Design Specialist", company: "ReadyChatAI", year: "2025" },
   {
@@ -199,9 +199,13 @@ export const testimonials = [
 ]
 
 export const logos = [
-  { src: "/assets/images/logos/readychatai.svg", alt: "ReadyChatAI" },
-  { src: "/assets/images/logos/eurojet.svg", alt: "Euro Jet Intercontinental" },
+  { src: "/assets/images/logos/readychat.png", alt: "ReadyChatAI" },
+  { src: "/assets/images/logos/ait.png", alt: "AIT" },
+  { src: "/assets/images/logos/mark.png", alt: "Mark" },
+  { src: "/assets/images/logos/ait.png", alt: "AIT" },
 ]
+
+export const showcaseStrip = "/assets/images/showcase/strip.png"
 
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug)
