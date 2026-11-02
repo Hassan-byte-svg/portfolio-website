@@ -6,11 +6,33 @@ import { site } from '../data/content'
 const links = [
   { to: '/projects', label: 'Work' },
   { to: '/about', label: 'About' },
-  { to: '/contact', label: 'Contact' },
-]
+] as const
 
 export function Navbar() {
   const [open, setOpen] = useState(false)
+
+  const resumeLink = (
+    <a
+      href={site.cvPath}
+      download="Waleed-Khan-Updated-CV.pdf"
+      className="label-nav transition-colors hover:text-ink"
+      onClick={() => setOpen(false)}
+    >
+      Resume
+    </a>
+  )
+
+  const contactLink = (
+    <NavLink
+      to="/contact"
+      onClick={() => setOpen(false)}
+      className={({ isActive }) =>
+        `label-nav transition-colors hover:text-ink ${isActive ? 'text-ink' : ''}`
+      }
+    >
+      Contact
+    </NavLink>
+  )
 
   return (
     <header className="relative z-30">
@@ -31,13 +53,8 @@ export function Navbar() {
                 {link.label}
               </NavLink>
             ))}
-            <a
-              href={site.cvPath}
-              download="Waleed-Khan-Updated-CV.pdf"
-              className="label-nav transition-colors hover:text-ink"
-            >
-              Resume
-            </a>
+            {resumeLink}
+            {contactLink}
           </nav>
           <div className="hidden md:block">
             <ThemeToggle compact />
@@ -70,14 +87,8 @@ export function Navbar() {
                 {link.label}
               </NavLink>
             ))}
-            <a
-              href={site.cvPath}
-              download="Waleed-Khan-Updated-CV.pdf"
-              className="label-nav py-1"
-              onClick={() => setOpen(false)}
-            >
-              Resume
-            </a>
+            {resumeLink}
+            {contactLink}
             <ThemeToggle label />
           </div>
         </nav>

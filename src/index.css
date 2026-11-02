@@ -103,6 +103,11 @@ body {
   font-variation-settings: "wght" 400;
 }
 
+.heading-hero {
+  font-size: clamp(40px, 6.2vw, 72px);
+  line-height: 1.12;
+}
+
 .heading-section {
   color: var(--color-ink);
   font-size: clamp(28px, 2.8vw, 40px);

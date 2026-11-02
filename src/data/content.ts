@@ -1,5 +1,5 @@
 export const site = {
-  name: "Portfolio",
+  name: "Waleed Khan-Product Designer",
   email: "hello@email.com",
   year: 2026,
   cvPath: "/assets/CV.pdf",

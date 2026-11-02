@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { Button } from '../components/Button'
 import { ImagePlaceholder } from '../components/ImagePlaceholder'
 import { LogoMarquee } from '../components/LogoMarquee'
@@ -14,16 +15,65 @@ import {
 } from '../data/content'
 
 export function HomePage() {
+  const headingRef = useRef<HTMLHeadingElement>(null)
+  const glowRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const glow = glowRef.current
+    const heading = headingRef.current
+    if (!glow || !heading) return
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    const restGlow = () => {
+      const box = heading.getBoundingClientRect()
+      glow.style.transition =
+        'left 0.7s cubic-bezier(0.22, 1, 0.36, 1), top 0.7s cubic-bezier(0.22, 1, 0.36, 1)'
+      glow.style.left = `${box.left + box.width / 2}px`
+      glow.style.top = `${box.top + box.height / 2}px`
+    }
+
+    const followGlow = (event: PointerEvent) => {
+      if (reduced) return
+      glow.style.transition = 'left 0.12s linear, top 0.12s linear'
+      glow.style.left = `${event.clientX}px`
+      glow.style.top = `${event.clientY}px`
+    }
+
+    const leaveWindow = (event: MouseEvent) => {
+      if (event.relatedTarget) return
+      restGlow()
+    }
+
+    const frame = window.requestAnimationFrame(restGlow)
+    window.addEventListener('pointermove', followGlow)
+    document.documentElement.addEventListener('mouseleave', restGlow)
+    document.addEventListener('mouseout', leaveWindow)
+    window.addEventListener('resize', restGlow)
+
+    return () => {
+      window.cancelAnimationFrame(frame)
+      window.removeEventListener('pointermove', followGlow)
+      document.documentElement.removeEventListener('mouseleave', restGlow)
+      document.removeEventListener('mouseout', leaveWindow)
+      window.removeEventListener('resize', restGlow)
+    }
+  }, [])
+
   return (
     <>
-      <section className="relative overflow-hidden px-5 pb-16 pt-6 sm:px-8 sm:pb-[72px] sm:pt-8">
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.035)_1px,transparent_1px)] bg-[size:72px_72px]" />
-        <div className="pointer-events-none absolute left-1/2 top-6 h-[320px] w-[560px] -translate-x-1/2 rounded-full bg-[#8aa0ff]/25 blur-[100px]" />
+      <div
+        id="home-cursor-glow"
+        ref={glowRef}
+        aria-hidden="true"
+        className="pointer-events-none fixed left-1/2 top-[240px] z-0 h-[420px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#9bb4ff]/35 blur-[110px]"
+      />
+      <section className="relative z-[1] -mt-[72px] overflow-hidden px-5 pb-16 pt-[92px] sm:px-8 sm:pb-[72px] sm:pt-[100px]">
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(15,23,43,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,43,0.045)_1px,transparent_1px)] bg-[size:56px_56px]" />
         <div className="relative mx-auto max-w-[1100px] text-center">
-          <h1 className="heading-main">
-            <span className="heading-strong">Design, leadership</span>{' '}
-            <em>and</em> strategy for{' '}
-            <span className="heading-strong">mission-critical</span> environments.
+          <p className="heading-eyebrow">Hi! I am Waleed Khan</p>
+          <h1 ref={headingRef} className="heading-main heading-hero mx-auto mt-5 max-w-[920px]">
+            Designing Digital Experiences That Make an Impact.
           </h1>
           <p className="heading-sub mx-auto mt-8 max-w-[720px]">{site.intro}</p>
           <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -38,7 +88,7 @@ export function HomePage() {
       </section>
       <LogoMarquee />
 
-      <Section className="py-14 sm:py-20">
+      <Section className="relative z-[1] py-14 sm:py-20">
         <SectionHeading
           eyebrow="Works & case studies"
           title="Featured Case Studies"
@@ -51,7 +101,7 @@ export function HomePage() {
         </div>
       </Section>
 
-      <Section className="py-14 sm:py-20">
+      <Section className="relative z-[1] py-14 sm:py-20">
         <SectionHeading
           eyebrow="Experience"
           title="Exposure in the Field"
@@ -89,7 +139,7 @@ export function HomePage() {
         </div>
       </Section>
 
-      <Section className="py-14 sm:py-20">
+      <Section className="relative z-[1] py-14 sm:py-20">
         <SectionHeading title="Feedback" />
         <div className="mt-8 rounded-[28px] bg-soft p-4 sm:p-6">
           <div className="grid gap-4 md:grid-cols-3">
@@ -100,7 +150,7 @@ export function HomePage() {
         </div>
       </Section>
 
-      <Section className="py-14 sm:py-20">
+      <Section className="relative z-[1] py-14 sm:py-20">
         <SectionHeading
           eyebrow="About me"
           title="Designing with empathy, building with purpose"
