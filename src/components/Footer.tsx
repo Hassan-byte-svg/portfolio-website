@@ -19,7 +19,22 @@ export function Footer() {
             </Button>
           </div>
           <div className="mt-8 flex items-center justify-center gap-5 text-white/80">
-            <a href={site.social.linkedin} aria-label="LinkedIn" className="hover:text-white">
+            <a
+              href={site.social.behance}
+              aria-label="Behance"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-white"
+            >
+              <BehanceIcon />
+            </a>
+            <a
+              href={site.social.linkedin}
+              aria-label="LinkedIn"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-white"
+            >
               <LinkedInIcon />
             </a>
             <a href={site.social.x} aria-label="X" className="hover:text-white">
@@ -32,6 +47,14 @@ export function Footer() {
         © {site.year} {site.name}
       </div>
     </footer>
+  )
+}
+
+function BehanceIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.99 5.375 5.426.078.659.112 1.287.112 1.828 0 .31-.022.551-.056.771h-8.21c.13 1.86 1.467 2.951 3.385 2.951 1.551 0 2.562-.668 2.962-1.651h2.631zm-7.686-3.82h5.456c-.139-1.503-1.16-2.48-2.72-2.48-1.63 0-2.57 1.01-2.736 2.48zM6.42 16.91c.942 0 1.66-.449 2.15-1.199l2.18 1.32c-.89 1.49-2.47 2.47-4.33 2.47-3.12 0-5.42-2.23-5.42-5.49 0-3.27 2.3-5.51 5.42-5.51 2.98 0 4.89 1.85 4.89 5.01v.5H3.18c.18 1.64 1.46 2.9 3.24 2.9zm-.27-6.84c-1.18 0-2.15.73-2.39 1.96h4.72c-.17-1.2-1.05-1.96-2.33-1.96z" />
+    </svg>
   )
 }
 

@@ -8,7 +8,8 @@ export const site = {
   intro:
     "I solve complex problems through human centered design combining research, usability principles and design thinking to create experiences that truly matter",
   social: {
-    linkedin: "https://www.linkedin.com/",
+    behance: "https://www.behance.net/waleedkhan7023",
+    linkedin: "https://www.linkedin.com/in/waleed-khan-606869290/",
     x: "https://x.com/",
   },
 } as const
