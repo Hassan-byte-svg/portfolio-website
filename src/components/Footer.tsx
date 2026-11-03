@@ -41,6 +41,10 @@ export function Footer() {
               <XIcon />
             </a>
           </div>
+          <p className="heading-sub mx-auto mt-6 max-w-[520px] text-white/70">
+            Your feedback matters! Share your thoughts about my portfolio, design work, and overall
+            experience.
+          </p>
         </div>
       </div>
       <div className="border-t border-white/10 px-5 py-5 text-center text-[13px] text-white/50 sm:px-8">
