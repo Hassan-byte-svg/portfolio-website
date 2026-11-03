@@ -11,6 +11,7 @@ export function AboutPage() {
       <div className="mx-auto mt-12 grid max-w-[980px] items-start gap-10 md:grid-cols-[0.9fr_1.1fr] md:gap-16">
         <ImagePlaceholder
           src="/assets/images/about/portrait.jpg"
+          alt="Waleed Khan"
           className="aspect-[4/5] w-full"
         />
         <div className="heading-sub space-y-5">
@@ -27,16 +28,6 @@ export function AboutPage() {
             <Button href={site.cvPath} download="Waleed-Khan-Updated-CV.pdf" variant="secondary">
               Download CV <span aria-hidden="true">↓</span>
             </Button>
-          </div>
-          <div className="grid grid-cols-2 gap-4 pt-4">
-            <ImagePlaceholder
-              src="/assets/images/about/01.jpg"
-              className="aspect-[4/3] w-full"
-            />
-            <ImagePlaceholder
-              src="/assets/images/about/02.jpg"
-              className="aspect-[4/3] w-full"
-            />
           </div>
         </div>
       </div>
