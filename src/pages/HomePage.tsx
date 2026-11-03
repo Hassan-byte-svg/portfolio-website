@@ -143,7 +143,10 @@ export function HomePage() {
       </Section>
 
       <Section className="relative z-[1] py-14 sm:py-20">
-        <SectionHeading title="Feedback" />
+        <SectionHeading
+          title="Feedback"
+          description="Your feedback matters! Share your thoughts about my portfolio, design work, and overall experience."
+        />
         <div className="mt-8 rounded-[28px] bg-soft p-4 sm:p-6">
           <div className="grid gap-4 md:grid-cols-3">
             {testimonials.map((item, index) => (
