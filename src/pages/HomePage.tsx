@@ -138,13 +138,13 @@ export function HomePage() {
       </section>
       <LogoMarquee />
 
-      <Section className="relative z-[1] py-14 sm:py-20" innerClassName="max-w-[1240px]">
+      <Section className="relative z-[1] py-14 sm:py-20" innerClassName="max-w-[1400px]">
         <SectionHeading
           eyebrow="Works & case studies"
           title="Featured Case Studies"
           description="Selected product and research work. Open a case study for the full layout."
         />
-        <div className="mt-10 flex flex-col gap-7">
+        <div className="mt-10 flex flex-col gap-8">
           {projects.map((project, index) => (
             <Reveal key={project.slug} delay={index * 90}>
               <ProjectCard project={project} />

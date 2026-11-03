@@ -20,7 +20,7 @@ export function ImagePlaceholder({
         <img
           src={src}
           alt={alt}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover [image-rendering:auto]"
           onError={(event) => {
             event.currentTarget.style.display = 'none'
           }}
