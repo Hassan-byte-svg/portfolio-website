@@ -22,21 +22,21 @@ export function ProjectCard({ project }: { project: Project }) {
 
   return (
     <article
-      className={`grid items-center gap-6 rounded-[20px] px-4 py-4 sm:px-6 sm:py-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-8 ${cardSurface[project.tagTone]}`}
+      className={`grid items-center gap-7 rounded-[24px] px-5 py-6 sm:px-8 sm:py-8 lg:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)] lg:gap-12 lg:px-10 lg:py-10 ${cardSurface[project.tagTone]}`}
       onPointerEnter={prefetch}
     >
       <ImagePlaceholder
         src={project.image}
         alt=""
         className="aspect-[630/465] w-full"
-        rounded="rounded-[16px]"
+        rounded="rounded-[18px]"
       />
       <div>
         <p className={`text-[16px] font-normal ${categoryColor[project.tagTone]}`}>{project.category}</p>
-        <h3 className="mt-1.5 text-[26px] font-normal leading-[1.25] tracking-[-0.02em] text-ink lg:text-[32px]">
+        <h3 className="mt-2 text-[28px] font-normal leading-[1.25] tracking-[-0.02em] text-ink sm:text-[32px] lg:text-[38px]">
           {project.title}
         </h3>
-        <p className="mt-2 max-w-[460px] text-[16px] font-light leading-[1.5] text-copy">
+        <p className="mt-3 max-w-[520px] text-[17px] font-light leading-[1.5] text-copy">
           {project.summary}
         </p>
         <div className="mt-4">

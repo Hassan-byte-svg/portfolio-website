@@ -18,58 +18,104 @@ import {
 export function HomePage() {
   const headingRef = useRef<HTMLHeadingElement>(null)
   const glowRef = useRef<HTMLDivElement>(null)
+  const heroRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const glow = glowRef.current
     const heading = headingRef.current
-    if (!glow || !heading) return
+    const hero = heroRef.current
+    if (!glow || !heading || !hero) return
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    let atRest = false
+    let pointerX = 0
+    let pointerY = 0
+    let hasPointer = false
 
-    const restGlow = () => {
+    const restGlow = (force = false) => {
+      if (atRest && !force) return
+      atRest = true
+      const sectionBox = hero.getBoundingClientRect()
       const box = heading.getBoundingClientRect()
       glow.style.transition =
         'left 0.7s cubic-bezier(0.22, 1, 0.36, 1), top 0.7s cubic-bezier(0.22, 1, 0.36, 1)'
-      glow.style.left = `${box.left + box.width / 2}px`
-      glow.style.top = `${box.top + box.height / 2}px`
+      glow.style.left = `${box.left - sectionBox.left + box.width / 2}px`
+      glow.style.top = `${box.top - sectionBox.top + box.height / 2}px`
+    }
+
+    const placeGlow = (x: number, y: number) => {
+      const sectionBox = hero.getBoundingClientRect()
+      const inside =
+        x >= sectionBox.left &&
+        x <= sectionBox.right &&
+        y >= sectionBox.top &&
+        y <= sectionBox.bottom
+
+      if (!inside || reduced) {
+        restGlow()
+        return
+      }
+
+      atRest = false
+      glow.style.transition = 'left 0.12s linear, top 0.12s linear'
+      glow.style.left = `${x - sectionBox.left}px`
+      glow.style.top = `${y - sectionBox.top}px`
     }
 
     const followGlow = (event: PointerEvent) => {
-      if (reduced) return
-      glow.style.transition = 'left 0.12s linear, top 0.12s linear'
-      glow.style.left = `${event.clientX}px`
-      glow.style.top = `${event.clientY}px`
+      pointerX = event.clientX
+      pointerY = event.clientY
+      hasPointer = true
+      placeGlow(pointerX, pointerY)
     }
 
     const leaveWindow = (event: MouseEvent) => {
       if (event.relatedTarget) return
+      hasPointer = false
       restGlow()
     }
 
-    const frame = window.requestAnimationFrame(restGlow)
+    const onScroll = () => {
+      if (!hasPointer) return
+      placeGlow(pointerX, pointerY)
+    }
+
+    const onResize = () => {
+      if (hasPointer) placeGlow(pointerX, pointerY)
+      else restGlow(true)
+    }
+
+    const onLeavePage = () => restGlow()
+
+    const frame = window.requestAnimationFrame(() => restGlow(true))
     window.addEventListener('pointermove', followGlow)
-    document.documentElement.addEventListener('mouseleave', restGlow)
+    document.documentElement.addEventListener('mouseleave', onLeavePage)
     document.addEventListener('mouseout', leaveWindow)
-    window.addEventListener('resize', restGlow)
+    window.addEventListener('resize', onResize)
+    window.addEventListener('scroll', onScroll, { passive: true })
 
     return () => {
       window.cancelAnimationFrame(frame)
       window.removeEventListener('pointermove', followGlow)
-      document.documentElement.removeEventListener('mouseleave', restGlow)
+      document.documentElement.removeEventListener('mouseleave', onLeavePage)
       document.removeEventListener('mouseout', leaveWindow)
-      window.removeEventListener('resize', restGlow)
+      window.removeEventListener('resize', onResize)
+      window.removeEventListener('scroll', onScroll)
     }
   }, [])
 
   return (
     <>
-      <div
-        id="home-cursor-glow"
-        ref={glowRef}
-        aria-hidden="true"
-        className="pointer-events-none fixed left-1/2 top-[240px] z-0 h-[420px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#9bb4ff]/35 blur-[110px]"
-      />
-      <section className="relative z-[1] -mt-[72px] overflow-hidden px-5 pb-16 pt-[92px] sm:px-8 sm:pb-[72px] sm:pt-[100px]">
+      <section
+        ref={heroRef}
+        className="relative z-[1] -mt-[72px] overflow-hidden px-5 pb-16 pt-[92px] sm:px-8 sm:pb-[72px] sm:pt-[100px]"
+      >
+        <div
+          id="home-cursor-glow"
+          ref={glowRef}
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-[42%] z-0 h-[420px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#9bb4ff]/35 blur-[110px]"
+        />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(15,23,43,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,43,0.045)_1px,transparent_1px)] bg-[size:56px_56px]" />
         <div className="relative mx-auto max-w-[1100px] text-center">
           <Reveal>
@@ -92,13 +138,13 @@ export function HomePage() {
       </section>
       <LogoMarquee />
 
-      <Section className="relative z-[1] py-14 sm:py-20">
+      <Section className="relative z-[1] py-14 sm:py-20" innerClassName="max-w-[1240px]">
         <SectionHeading
           eyebrow="Works & case studies"
           title="Featured Case Studies"
           description="Selected product and research work. Open a case study for the full layout."
         />
-        <div className="mt-8 flex flex-col gap-5">
+        <div className="mt-10 flex flex-col gap-7">
           {projects.map((project, index) => (
             <Reveal key={project.slug} delay={index * 90}>
               <ProjectCard project={project} />
