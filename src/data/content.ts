@@ -1,6 +1,6 @@
 export const site = {
   name: "Waleed Khan-Product Designer",
-  email: "hello@email.com",
+  email: "wk5993030@gmail.com",
   year: 2026,
   cvPath: "/assets/CV.pdf",
   headline:
