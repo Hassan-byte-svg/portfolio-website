@@ -3,6 +3,8 @@ type Props = {
   alt?: string
   className?: string
   rounded?: string
+  priority?: boolean
+  fit?: 'cover' | 'contain'
 }
 
 export function ImagePlaceholder({
@@ -10,17 +12,25 @@ export function ImagePlaceholder({
   alt = '',
   className = '',
   rounded = 'rounded-[16px]',
+  priority = false,
+  fit = 'cover',
 }: Props) {
+  const keepsOwnBackground = className.includes('bg-')
+
   return (
     <div
-      className={`relative overflow-hidden bg-fill ${rounded} ${className}`}
-      aria-label={alt || 'Image placeholder'}
+      className={`media-frame ${rounded} ${className}`}
+      style={keepsOwnBackground ? undefined : { backgroundColor: '#ffffff' }}
     >
       {src ? (
         <img
           src={src}
           alt={alt}
-          className="absolute inset-0 h-full w-full object-cover [image-rendering:auto]"
+          decoding="async"
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : 'auto'}
+          draggable={false}
+          className={fit === 'contain' ? 'is-contain' : undefined}
           onError={(event) => {
             event.currentTarget.style.display = 'none'
           }}

@@ -4,22 +4,12 @@ import { Navbar } from './Navbar'
 
 export function Layout() {
   const { pathname } = useLocation()
-  const isCaseStudy = /^\/projects\/.+/.test(pathname)
-
-  if (isCaseStudy) {
-    return (
-      <div className="h-screen overflow-hidden bg-[#0a0a0a]">
-        <main>
-          <Outlet />
-        </main>
-      </div>
-    )
-  }
+  const isCaseStudy = /^\/projects\/[^/]+$/.test(pathname)
 
   return (
     <div className="min-h-screen bg-canvas">
       <Navbar />
-      <main>
+      <main key={pathname} className={isCaseStudy ? undefined : 'page-enter'}>
         <Outlet />
       </main>
       <Footer />

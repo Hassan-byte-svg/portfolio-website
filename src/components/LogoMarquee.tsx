@@ -17,12 +17,14 @@ export function LogoMarquee() {
               aria-hidden={copy === 1}
             >
               {strip.map((logo, index) => (
-                <img
-                  key={`${copy}-${logo.alt}-${index}`}
-                  src={logo.src}
-                  alt={copy === 0 ? logo.alt : ''}
-                  className="h-10 w-auto shrink-0 object-contain"
-                />
+                <span key={`${copy}-${logo.alt}-${index}`} className="logo-chip">
+                  <img
+                    src={logo.src}
+                    alt={copy === 0 ? logo.alt : ''}
+                    decoding="async"
+                    draggable={false}
+                  />
+                </span>
               ))}
             </div>
           ))}

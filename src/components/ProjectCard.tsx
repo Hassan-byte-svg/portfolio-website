@@ -16,7 +16,13 @@ const categoryColor = {
   orange: 'text-[#E9A54C]',
 } as const
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({
+  project,
+  priority = false,
+}: {
+  project: Project
+  priority?: boolean
+}) {
   const location = useLocation()
   const prefetch = () => warmupCaseStudy(project.slug)
 
@@ -28,6 +34,7 @@ export function ProjectCard({ project }: { project: Project }) {
       <ImagePlaceholder
         src={project.image}
         alt=""
+        priority={priority}
         className="aspect-[630/465] w-full"
         rounded="rounded-[20px]"
       />

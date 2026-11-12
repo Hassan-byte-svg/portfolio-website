@@ -12,6 +12,7 @@ export function AboutPage() {
         <ImagePlaceholder
           src="/assets/images/about/portrait.jpg"
           alt="Waleed Khan"
+          priority
           className="aspect-[4/5] w-full"
         />
         <div className="heading-sub space-y-5">

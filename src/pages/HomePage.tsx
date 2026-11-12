@@ -6,7 +6,6 @@ import { Reveal } from '../components/Reveal'
 import { Section } from '../components/Section'
 import { SectionHeading } from '../components/SectionHeading'
 import { TestimonialCard } from '../components/TestimonialCard'
-import { WorkMarquee } from '../components/WorkMarquee'
 import {
   aboutCopy,
   fieldExposure,
@@ -147,14 +146,13 @@ export function HomePage() {
         <div className="mt-10 flex flex-col gap-8">
           {projects.map((project, index) => (
             <Reveal key={project.slug} delay={index * 90}>
-              <ProjectCard project={project} />
+              <ProjectCard project={project} priority={index === 0} />
             </Reveal>
           ))}
         </div>
-        <WorkMarquee />
       </Section>
 
-      <Section className="relative z-[1] py-14 sm:py-20">
+      <Section className="relative z-[1] py-14 sm:py-20 [content-visibility:auto] [contain-intrinsic-size:auto_560px]">
         <SectionHeading
           eyebrow="Experience"
           title="Exposure in the Field"
@@ -188,7 +186,10 @@ export function HomePage() {
         </div>
       </Section>
 
-      <Section className="relative z-[1] py-14 sm:py-20">
+      <Section
+        className="relative z-[1] py-14 sm:py-20 [content-visibility:auto] [contain-intrinsic-size:auto_520px]"
+        innerClassName="max-w-none"
+      >
         <SectionHeading
           title="Feedback"
           description="Your feedback matters! Share your thoughts about my portfolio, design work, and overall experience."
@@ -202,7 +203,7 @@ export function HomePage() {
         </div>
       </Section>
 
-      <Section className="relative z-[1] py-14 sm:py-20">
+      <Section className="relative z-[1] py-14 sm:py-20 [content-visibility:auto] [contain-intrinsic-size:auto_480px]">
         <SectionHeading
           eyebrow="About me"
           title="Designing with empathy, building with purpose"

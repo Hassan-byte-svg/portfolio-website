@@ -1,15 +1,19 @@
 import { showcaseStrip } from '../data/content'
 
+const copies = [0, 1, 2, 3]
+
 export function WorkMarquee() {
   return (
-    <div className="logo-marquee mt-12">
+    <div className="logo-marquee work-marquee my-10 sm:my-14">
       <div className="showcase-track">
-        {[0, 1].map((copy) => (
+        {copies.map((copy) => (
           <img
             key={copy}
             src={showcaseStrip}
             alt={copy === 0 ? 'Selected product screens' : ''}
-            className="h-[108px] w-auto shrink-0 sm:h-[128px]"
+            decoding="async"
+            draggable={false}
+            className="work-shot"
           />
         ))}
       </div>
