@@ -286,33 +286,6 @@ video {
   animation: page-in 0.42s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.case-study-slot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 20;
-  width: min(1120px, calc(100vw - 40px));
-  height: min(78vh, 920px);
-  overflow: hidden;
-  border-radius: 20px;
-  background: #0a0a0a;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate3d(-140vw, 0, 0);
-  transition: opacity 0.35s ease;
-}
-
-.case-study-slot[data-active="true"] {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.case-study-slot iframe {
-  display: block;
-  border: 0;
-  background: #0a0a0a;
-}
-
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -337,10 +310,6 @@ video {
   .page-enter {
     opacity: 1;
     transform: none;
-  }
-
-  .case-study-slot {
-    transition: none;
   }
 }
 

@@ -24,7 +24,55 @@
     </script>
   </head>
   <body>
+    <div id="case-study-frames"></div>
     <div id="root"></div>
+    <script>
+      (function () {
+        var host = document.getElementById('case-study-frames')
+        if (!host || host.childElementCount) return
+        var studies = [
+          ['ai-supply-management', '40-376', 'Case study of AI Reply'],
+          ['track-my-time', '40-717', 'ThinkFlow macOS Productivity App'],
+          ['pde-auto-group', '40-3055', 'POS Auto Spare Parts Web Application'],
+        ]
+        var ratio = Math.max(window.devicePixelRatio || 1, 2)
+        var active = location.pathname.indexOf('/projects/') === 0 ? location.pathname.split('/')[2] : ''
+        studies.forEach(function (study) {
+          var on = study[0] === active || (!active && study[0] === studies[0][0])
+          var slot = document.createElement('div')
+          slot.dataset.slug = study[0]
+          slot.setAttribute('aria-hidden', on ? 'false' : 'true')
+          slot.style.cssText =
+            'position:fixed;left:0;top:65px;width:100%;height:calc(100vh - 65px);overflow:hidden;pointer-events:' +
+            (active && on ? 'auto' : 'none') +
+            ';z-index:' +
+            (active && on ? '15' : on ? '4' : '1') +
+            ';background:#0a0a0a;'
+          var backdrop = document.createElement('div')
+          backdrop.style.cssText = 'position:absolute;inset:0;background:#0a0a0a;'
+          slot.appendChild(backdrop)
+          var frame = document.createElement('iframe')
+          frame.title = study[2]
+          frame.src =
+            'https://embed.figma.com/proto/CUlWCD1Ol9KMpnGnjXfHaE/Portfolio-Website?node-id=' +
+            study[1] +
+            '&page-id=1%3A5099&scaling=scale-down-width&content-scaling=fixed&hide-ui=1&footer=false&embed-host=share'
+          frame.setAttribute('allowfullscreen', 'true')
+          frame.loading = 'eager'
+          frame.setAttribute('fetchpriority', 'high')
+          frame.style.cssText =
+            'width:' +
+            ratio * 100 +
+            '%;height:' +
+            ratio * 100 +
+            '%;transform:scale(' +
+            1 / ratio +
+            ');transform-origin:top left;border:0;display:block;background:#0a0a0a;'
+          slot.appendChild(frame)
+          host.appendChild(slot)
+        })
+      })()
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
