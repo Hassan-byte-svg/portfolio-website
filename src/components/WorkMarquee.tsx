@@ -4,7 +4,7 @@ const copies = [0, 1, 2, 3]
 
 export function WorkMarquee() {
   return (
-    <div className="logo-marquee work-marquee my-10 sm:my-14">
+    <div className="logo-marquee work-marquee mt-4 mb-2 sm:mt-6">
       <div className="showcase-track">
         {copies.map((copy) => (
           <img
