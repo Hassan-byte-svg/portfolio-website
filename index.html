@@ -35,7 +35,6 @@
           ['track-my-time', '40-717', 'ThinkFlow macOS Productivity App'],
           ['pde-auto-group', '40-3055', 'POS Auto Spare Parts Web Application'],
         ]
-        var ratio = Math.max(window.devicePixelRatio || 1, 2)
         var active = location.pathname.indexOf('/projects/') === 0 ? location.pathname.split('/')[2] : ''
         studies.forEach(function (study) {
           var on = study[0] === active || (!active && study[0] === studies[0][0])
@@ -56,18 +55,12 @@
           frame.src =
             'https://embed.figma.com/proto/CUlWCD1Ol9KMpnGnjXfHaE/Portfolio-Website?node-id=' +
             study[1] +
-            '&page-id=1%3A5099&scaling=scale-down-width&content-scaling=fixed&hide-ui=1&footer=false&embed-host=share'
+            '&page-id=1%3A5099&scaling=fit-width&content-scaling=responsive&hide-ui=1&footer=false&embed-host=share'
           frame.setAttribute('allowfullscreen', 'true')
           frame.loading = 'eager'
           frame.setAttribute('fetchpriority', 'high')
           frame.style.cssText =
-            'width:' +
-            ratio * 100 +
-            '%;height:' +
-            ratio * 100 +
-            '%;transform:scale(' +
-            1 / ratio +
-            ');transform-origin:top left;border:0;display:block;background:#0a0a0a;'
+            'width:100%;height:100%;border:0;display:block;background:#0a0a0a;'
           slot.appendChild(frame)
           host.appendChild(slot)
         })

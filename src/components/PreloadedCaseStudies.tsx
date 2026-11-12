@@ -11,10 +11,6 @@ export function warmupCaseStudy(slug: string) {
   window.dispatchEvent(new CustomEvent(WARMUP_EVENT, { detail: slug }))
 }
 
-function renderScale() {
-  return Math.max(window.devicePixelRatio || 1, 2)
-}
-
 function ensureFrames() {
   const host = document.getElementById(HOST_ID)
   if (!host) return
@@ -37,12 +33,10 @@ function ensureFrames() {
 }
 
 function applyScale() {
-  const ratio = renderScale()
   document.querySelectorAll<HTMLIFrameElement>(`#${HOST_ID} iframe`).forEach((frame) => {
-    frame.style.width = `${ratio * 100}%`
-    frame.style.height = `${ratio * 100}%`
-    frame.style.transform = `scale(${1 / ratio})`
-    frame.style.transformOrigin = 'top left'
+    frame.style.width = '100%'
+    frame.style.height = '100%'
+    frame.style.transform = 'none'
     frame.style.border = '0'
     frame.style.display = 'block'
     frame.style.background = '#0a0a0a'
