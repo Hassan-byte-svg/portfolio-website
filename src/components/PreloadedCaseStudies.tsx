@@ -20,7 +20,11 @@ function ensureFrames() {
     slot.dataset.slug = project.slug
     slot.setAttribute('aria-hidden', 'true')
     slot.style.cssText =
-      'position:fixed;left:0;top:65px;width:100%;height:calc(100vh - 65px);overflow:hidden;pointer-events:none;z-index:1;background:#0a0a0a;'
+      'position:fixed;left:0;top:65px;width:' +
+      document.documentElement.clientWidth +
+      'px;height:' +
+      (window.innerHeight - 65) +
+      'px;overflow:hidden;pointer-events:none;z-index:1;background:#0a0a0a;'
     const frame = document.createElement('iframe')
     frame.title = project.caseStudyTitle
     frame.src = figmaProtoSrc(project.figmaNodeId)
@@ -32,11 +36,19 @@ function ensureFrames() {
   }
 }
 
-function applyScale() {
+function fitSlots() {
+  const width = document.documentElement.clientWidth
+  const height = window.innerHeight - 65
+  for (const slot of slots()) {
+    const current = slot.getBoundingClientRect()
+    if (Math.abs(current.width - width) < 24 && Math.abs(current.height - height) < 24) continue
+    slot.style.width = `${width}px`
+    slot.style.height = `${height}px`
+  }
   document.querySelectorAll<HTMLIFrameElement>(`#${HOST_ID} iframe`).forEach((frame) => {
     frame.style.width = '100%'
     frame.style.height = '100%'
-    frame.style.transform = 'none'
+    frame.style.transform = 'translate3d(0,0,0)'
     frame.style.border = '0'
     frame.style.display = 'block'
     frame.style.background = '#0a0a0a'
@@ -55,8 +67,8 @@ export function PreloadedCaseStudies() {
 
   useEffect(() => {
     ensureFrames()
-    applyScale()
-    const onResize = () => applyScale()
+    fitSlots()
+    const onResize = () => fitSlots()
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
   }, [])
@@ -77,18 +89,20 @@ export function PreloadedCaseStudies() {
     }
 
     let index = 0
+    let pinned = ''
     const order = projects.filter((project) => project.figmaNodeId).map((project) => project.slug)
     const bringForward = (slug: string) => show(slug, false)
     const cycle = () => {
-      if (!order.length) return
+      if (!order.length || pinned) return
       bringForward(order[index % order.length])
       index += 1
     }
     cycle()
-    const timer = window.setInterval(cycle, 2800)
+    const timer = window.setInterval(cycle, 1600)
     const onWarmup = (event: Event) => {
       const slug = (event as CustomEvent<string>).detail
       if (!slug) return
+      pinned = slug
       bringForward(slug)
     }
     window.addEventListener(WARMUP_EVENT, onWarmup)
