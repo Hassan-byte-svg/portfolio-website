@@ -184,25 +184,30 @@ body {
   animation-play-state: paused;
 }
 
+.work-marquee {
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+}
+
 .work-shot {
   display: block;
-  height: 136px;
+  height: 168px;
   width: auto;
   max-width: none;
   flex-shrink: 0;
   object-fit: contain;
   object-position: center;
+  image-rendering: auto;
 }
 
 @media (min-width: 640px) {
   .work-shot {
-    height: 164px;
+    height: 208px;
   }
 }
 
 @media (min-width: 1024px) {
   .work-shot {
-    height: 188px;
+    height: 240px;
   }
 }
 
@@ -241,6 +246,14 @@ html[data-theme="dark"] .logo-chip {
   isolation: isolate;
 }
 
+.media-frame[data-plate='white'] {
+  background-color: #ffffff;
+}
+
+html[data-theme='dark'] .media-frame[data-plate='white'] {
+  background-color: transparent;
+}
+
 .media-frame > img {
   position: absolute;
   inset: 0;
@@ -259,8 +272,11 @@ html[data-theme="dark"] .logo-chip {
 }
 
 img,
-video {
-  color-scheme: light;
+video,
+#case-study-frames,
+#case-study-frames iframe {
+  color-scheme: only light;
+  forced-color-adjust: none;
 }
 
 @keyframes work-marquee-rtl {

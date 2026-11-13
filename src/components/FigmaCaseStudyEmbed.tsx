@@ -3,7 +3,7 @@ import { BackLink } from './BackLink'
 const FILE_KEY = 'CUlWCD1Ol9KMpnGnjXfHaE'
 
 export function figmaProtoSrc(nodeId: string) {
-  return `https://embed.figma.com/proto/${FILE_KEY}/Portfolio-Website?node-id=${nodeId}&page-id=1%3A5099&scaling=fit-width&content-scaling=responsive&hide-ui=1&footer=false&embed-host=share`
+  return `https://embed.figma.com/proto/${FILE_KEY}/Portfolio-Website?node-id=${nodeId}&page-id=1%3A5099&scaling=scale-down-width&content-scaling=fixed&hide-ui=1&footer=false&embed-host=share`
 }
 
 export function FigmaCaseStudyEmbed({ title }: { title: string }) {

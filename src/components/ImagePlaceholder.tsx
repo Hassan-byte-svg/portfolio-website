@@ -20,7 +20,7 @@ export function ImagePlaceholder({
   return (
     <div
       className={`media-frame ${rounded} ${className}`}
-      style={keepsOwnBackground ? undefined : { backgroundColor: '#ffffff' }}
+      data-plate={keepsOwnBackground ? undefined : 'white'}
     >
       {src ? (
         <img

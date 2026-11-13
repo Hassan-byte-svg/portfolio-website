@@ -45,15 +45,11 @@
           slot.dataset.slug = study[0]
           slot.setAttribute('aria-hidden', on ? 'false' : 'true')
           slot.style.cssText =
-            'position:fixed;left:0;top:65px;width:' +
-            document.documentElement.clientWidth +
-            'px;height:' +
-            (window.innerHeight - 65) +
-            'px;overflow:hidden;pointer-events:' +
+            'position:fixed;left:0;right:0;top:65px;bottom:0;overflow:hidden;pointer-events:' +
             (active && on ? 'auto' : 'none') +
             ';z-index:' +
             (active && on ? '15' : on ? '4' : '1') +
-            ';background:#0a0a0a;'
+            ';background:#0a0a0a;color-scheme:light;'
           var backdrop = document.createElement('div')
           backdrop.style.cssText = 'position:absolute;inset:0;background:#0a0a0a;'
           slot.appendChild(backdrop)
@@ -62,12 +58,12 @@
           frame.src =
             'https://embed.figma.com/proto/CUlWCD1Ol9KMpnGnjXfHaE/Portfolio-Website?node-id=' +
             study[1] +
-            '&page-id=1%3A5099&scaling=fit-width&content-scaling=responsive&hide-ui=1&footer=false&embed-host=share'
+            '&page-id=1%3A5099&scaling=scale-down-width&content-scaling=fixed&hide-ui=1&footer=false&embed-host=share'
           frame.setAttribute('allowfullscreen', 'true')
           frame.loading = 'eager'
           frame.setAttribute('fetchpriority', 'high')
           frame.style.cssText =
-            'width:100%;height:100%;border:0;display:block;background:#0a0a0a;transform:translate3d(0,0,0);'
+            'width:100%;height:100%;border:0;display:block;background:#0a0a0a;color-scheme:light;'
           slot.appendChild(frame)
           host.appendChild(slot)
         })

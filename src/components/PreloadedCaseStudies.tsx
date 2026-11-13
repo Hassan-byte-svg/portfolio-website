@@ -20,11 +20,7 @@ function ensureFrames() {
     slot.dataset.slug = project.slug
     slot.setAttribute('aria-hidden', 'true')
     slot.style.cssText =
-      'position:fixed;left:0;top:65px;width:' +
-      document.documentElement.clientWidth +
-      'px;height:' +
-      (window.innerHeight - 65) +
-      'px;overflow:hidden;pointer-events:none;z-index:1;background:#0a0a0a;'
+      'position:fixed;left:0;right:0;top:65px;bottom:0;overflow:hidden;pointer-events:none;z-index:1;background:#0a0a0a;color-scheme:light;'
     const frame = document.createElement('iframe')
     frame.title = project.caseStudyTitle
     frame.src = figmaProtoSrc(project.figmaNodeId)
@@ -37,18 +33,19 @@ function ensureFrames() {
 }
 
 function fitSlots() {
-  const width = document.documentElement.clientWidth
-  const height = window.innerHeight - 65
   for (const slot of slots()) {
-    const current = slot.getBoundingClientRect()
-    if (Math.abs(current.width - width) < 24 && Math.abs(current.height - height) < 24) continue
-    slot.style.width = `${width}px`
-    slot.style.height = `${height}px`
+    slot.style.left = '0'
+    slot.style.right = '0'
+    slot.style.top = '65px'
+    slot.style.bottom = '0'
+    slot.style.width = 'auto'
+    slot.style.height = 'auto'
   }
   document.querySelectorAll<HTMLIFrameElement>(`#${HOST_ID} iframe`).forEach((frame) => {
     frame.style.width = '100%'
     frame.style.height = '100%'
-    frame.style.transform = 'translate3d(0,0,0)'
+    frame.style.transform = 'none'
+    frame.style.colorScheme = 'only light'
     frame.style.border = '0'
     frame.style.display = 'block'
     frame.style.background = '#0a0a0a'
