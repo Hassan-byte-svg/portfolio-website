@@ -160,7 +160,6 @@ body {
   gap: 2.5rem;
   align-items: center;
   animation: logo-marquee-rtl 28s linear infinite;
-  will-change: transform;
 }
 
 @keyframes logo-marquee-rtl {
@@ -177,7 +176,6 @@ body {
   width: max-content;
   align-items: center;
   animation: work-marquee-rtl 46s linear infinite;
-  will-change: transform;
 }
 
 .work-marquee:hover .showcase-track {
@@ -190,9 +188,10 @@ body {
 
 .work-shot {
   display: block;
-  height: 168px;
+  height: 180px;
   width: auto;
   max-width: none;
+  aspect-ratio: 5800 / 640;
   flex-shrink: 0;
   object-fit: contain;
   object-position: center;
@@ -201,19 +200,19 @@ body {
 
 @media (min-width: 640px) {
   .work-shot {
-    height: 208px;
+    height: 220px;
   }
 }
 
 @media (min-width: 1024px) {
   .work-shot {
-    height: 240px;
+    height: 256px;
   }
 }
 
 .logo-chip {
   display: inline-flex;
-  height: 40px;
+  height: 52px;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
@@ -230,7 +229,10 @@ body {
 }
 
 .logo-chip img {
-  height: 40px;
+  height: 52px;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
 }
 
 html[data-theme="dark"] .logo-chip {
@@ -284,7 +286,7 @@ video,
     transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translate3d(-25%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 

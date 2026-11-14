@@ -1,6 +1,6 @@
 import { showcaseStrip } from '../data/content'
 
-const copies = [0, 1, 2, 3]
+const copies = [0, 1]
 
 export function WorkMarquee() {
   return (
@@ -11,8 +11,9 @@ export function WorkMarquee() {
             key={copy}
             src={showcaseStrip}
             alt={copy === 0 ? 'Selected product screens' : ''}
-            decoding="async"
+            decoding="sync"
             draggable={false}
+            fetchPriority="high"
             className="work-shot"
           />
         ))}

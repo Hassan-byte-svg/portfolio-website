@@ -1,7 +1,7 @@
 import { logos } from '../data/content'
 
 export function LogoMarquee() {
-  const strip = [...logos, ...logos, ...logos, ...logos]
+  const strip = [...logos, ...logos, ...logos]
 
   return (
     <div className="relative mx-auto mt-12 max-w-[1120px] text-center sm:mt-16">
@@ -21,7 +21,7 @@ export function LogoMarquee() {
                   <img
                     src={logo.src}
                     alt={copy === 0 ? logo.alt : ''}
-                    decoding="async"
+                    decoding="sync"
                     draggable={false}
                   />
                 </span>
