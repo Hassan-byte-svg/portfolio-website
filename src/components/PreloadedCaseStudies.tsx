@@ -4,31 +4,97 @@ import { projects } from '../data/content'
 import { figmaProtoSrc } from './FigmaCaseStudyEmbed'
 
 const WARMUP_EVENT = 'warmup-case-study'
+const STATUS_EVENT = 'case-study-status'
 const HOST_ID = 'case-study-frames'
+
+export type CaseStudyStatus = 'loading' | 'ready' | 'error'
 
 export function warmupCaseStudy(slug: string) {
   if (typeof window === 'undefined') return
   window.dispatchEvent(new CustomEvent(WARMUP_EVENT, { detail: slug }))
 }
 
+export function getCaseStudyStatus(slug: string): CaseStudyStatus {
+  const slot = document.querySelector<HTMLElement>(`#${HOST_ID} [data-slug="${slug}"]`)
+  if (!slot) return 'loading'
+  if (slot.dataset.error === 'true') return 'error'
+  if (slot.dataset.ready === 'true') return 'ready'
+  return 'loading'
+}
+
+export function subscribeCaseStudyStatus(
+  slug: string,
+  onStatus: (status: CaseStudyStatus) => void,
+) {
+  const emit = () => onStatus(getCaseStudyStatus(slug))
+  emit()
+  const onEvent = (event: Event) => {
+    const detail = (event as CustomEvent<{ slug: string; status: CaseStudyStatus }>).detail
+    if (!detail || detail.slug !== slug) return
+    onStatus(detail.status)
+  }
+  window.addEventListener(STATUS_EVENT, onEvent)
+  return () => window.removeEventListener(STATUS_EVENT, onEvent)
+}
+
+function publishStatus(slug: string, status: CaseStudyStatus) {
+  window.dispatchEvent(new CustomEvent(STATUS_EVENT, { detail: { slug, status } }))
+}
+
+function wireFrame(slot: HTMLElement, frame: HTMLIFrameElement, slug: string) {
+  if (slot.dataset.wired === 'true') {
+    if (slot.dataset.ready === 'true') publishStatus(slug, 'ready')
+    return
+  }
+  slot.dataset.wired = 'true'
+
+  const markReady = () => {
+    slot.dataset.ready = 'true'
+    slot.dataset.error = 'false'
+    publishStatus(slug, 'ready')
+  }
+
+  if (slot.dataset.ready === 'true') {
+    markReady()
+  } else {
+    frame.addEventListener('load', markReady)
+  }
+
+  window.setTimeout(() => {
+    if (slot.dataset.ready === 'true') return
+    slot.dataset.error = 'true'
+    publishStatus(slug, 'error')
+  }, 12000)
+}
+
 function ensureFrames() {
   const host = document.getElementById(HOST_ID)
   if (!host) return
   for (const project of projects) {
-    if (!project.figmaNodeId || host.querySelector(`[data-slug="${project.slug}"]`)) continue
-    const slot = document.createElement('div')
-    slot.dataset.slug = project.slug
-    slot.setAttribute('aria-hidden', 'true')
-    slot.style.cssText =
-      'position:fixed;left:0;right:0;top:65px;bottom:0;overflow:hidden;pointer-events:none;z-index:1;background:#0a0a0a;color-scheme:light;'
-    const frame = document.createElement('iframe')
-    frame.title = project.caseStudyTitle
-    frame.src = figmaProtoSrc(project.figmaNodeId)
-    frame.setAttribute('allowfullscreen', 'true')
-    frame.loading = 'eager'
-    frame.setAttribute('fetchpriority', 'high')
-    slot.appendChild(frame)
-    host.appendChild(slot)
+    if (!project.figmaNodeId) continue
+    let slot = host.querySelector<HTMLElement>(`[data-slug="${project.slug}"]`)
+    if (!slot) {
+      slot = document.createElement('div')
+      slot.dataset.slug = project.slug
+      slot.setAttribute('aria-hidden', 'true')
+      slot.style.cssText =
+        'position:fixed;left:0;right:0;top:65px;bottom:0;overflow:hidden;pointer-events:none;z-index:1;background:#0a0a0a;color-scheme:light;'
+      const backdrop = document.createElement('div')
+      backdrop.style.cssText = 'position:absolute;inset:0;background:#0a0a0a;'
+      slot.appendChild(backdrop)
+      const frame = document.createElement('iframe')
+      frame.title = project.caseStudyTitle
+      frame.src = figmaProtoSrc(project.figmaNodeId)
+      frame.setAttribute('allowfullscreen', 'true')
+      frame.loading = 'eager'
+      frame.setAttribute('fetchpriority', 'high')
+      frame.style.cssText =
+        'width:100%;height:100%;border:0;display:block;background:#0a0a0a;color-scheme:light;'
+      slot.appendChild(frame)
+      host.appendChild(slot)
+    }
+    const frame = slot.querySelector('iframe')
+    if (frame) wireFrame(slot, frame, project.slug)
   }
 }
 
@@ -49,6 +115,13 @@ function fitSlots() {
     frame.style.border = '0'
     frame.style.display = 'block'
     frame.style.background = '#0a0a0a'
+  })
+}
+
+function prioritize(slug: string | null) {
+  document.querySelectorAll<HTMLIFrameElement>(`#${HOST_ID} iframe`).forEach((frame) => {
+    const on = frame.parentElement?.dataset.slug === slug
+    frame.setAttribute('fetchpriority', on ? 'high' : 'low')
   })
 }
 
@@ -78,10 +151,14 @@ export function PreloadedCaseStudies() {
         slot.style.pointerEvents = opened && on ? 'auto' : 'none'
         slot.setAttribute('aria-hidden', on ? 'false' : 'true')
       }
+      prioritize(slug)
     }
+
+    ensureFrames()
 
     if (activeSlug) {
       show(activeSlug, true)
+      publishStatus(activeSlug, getCaseStudyStatus(activeSlug))
       return
     }
 

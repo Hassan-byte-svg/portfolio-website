@@ -28,14 +28,14 @@ export function ProjectCard({
 
   return (
     <article
-      className={`grid items-center gap-8 rounded-[28px] px-5 py-6 sm:px-8 sm:py-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-14 lg:px-12 lg:py-12 ${cardSurface[project.tagTone]}`}
+      className={`grid items-center gap-8 rounded-[28px] px-5 py-5 sm:px-8 sm:py-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-14 lg:px-12 lg:py-8 ${cardSurface[project.tagTone]}`}
       onPointerEnter={prefetch}
     >
       <ImagePlaceholder
         src={project.image}
         alt=""
         priority={priority}
-        className="aspect-[630/465] w-full"
+        className="aspect-[1400/1030] w-full"
         rounded="rounded-[20px]"
       />
       <div>

@@ -17,7 +17,7 @@ export function Layout() {
   }
 
   return (
-    <div className="relative z-20 min-h-screen bg-canvas">
+    <div className="relative z-20 min-h-screen overflow-x-clip bg-canvas">
       <Navbar />
       <main key={pathname} className="page-enter">
         <Outlet />

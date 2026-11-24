@@ -64,6 +64,15 @@
           frame.setAttribute('fetchpriority', 'high')
           frame.style.cssText =
             'width:100%;height:100%;border:0;display:block;background:#0a0a0a;color-scheme:light;'
+          frame.addEventListener('load', function () {
+            slot.dataset.ready = 'true'
+            slot.dataset.error = 'false'
+            window.dispatchEvent(
+              new CustomEvent('case-study-status', {
+                detail: { slug: study[0], status: 'ready' },
+              }),
+            )
+          })
           slot.appendChild(frame)
           host.appendChild(slot)
         })

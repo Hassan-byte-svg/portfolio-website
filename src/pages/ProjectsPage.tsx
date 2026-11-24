@@ -13,9 +13,9 @@ export function ProjectsPage() {
           title="Featured Case Studies"
           description="I solve complex problems through human centered design combining research, usability principles and design thinking to create experiences that truly matter."
         />
-        <div className="mt-8 flex flex-col gap-5">
+        <div className="mt-8 flex flex-col gap-4">
           {projects.map((project, index) => (
-            <ProjectCard key={project.slug} project={project} priority={index === 0} />
+            <ProjectCard key={project.slug} project={project} priority={index < 2} />
           ))}
         </div>
       </Section>
