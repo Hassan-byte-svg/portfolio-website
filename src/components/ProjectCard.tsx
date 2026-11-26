@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import type { Project } from '../data/content'
 import { ImagePlaceholder } from './ImagePlaceholder'
@@ -24,10 +25,27 @@ export function ProjectCard({
   priority?: boolean
 }) {
   const location = useLocation()
+  const cardRef = useRef<HTMLElement>(null)
   const prefetch = () => warmupCaseStudy(project.slug)
+
+  useEffect(() => {
+    const node = cardRef.current
+    if (!node || typeof IntersectionObserver === 'undefined') return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return
+        prefetch()
+        observer.disconnect()
+      },
+      { rootMargin: '200px 0px', threshold: 0.15 },
+    )
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [project.slug])
 
   return (
     <article
+      ref={cardRef}
       className={`grid items-center gap-8 rounded-[28px] px-5 py-5 sm:px-8 sm:py-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-14 lg:px-12 lg:py-8 ${cardSurface[project.tagTone]}`}
       onPointerEnter={prefetch}
     >

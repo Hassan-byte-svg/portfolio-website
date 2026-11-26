@@ -6,6 +6,7 @@ import { figmaProtoSrc } from './FigmaCaseStudyEmbed'
 const WARMUP_EVENT = 'warmup-case-study'
 const STATUS_EVENT = 'case-study-status'
 const HOST_ID = 'case-study-frames'
+const READY_TIMEOUT_MS = 20000
 
 export type CaseStudyStatus = 'loading' | 'ready' | 'error'
 
@@ -17,8 +18,8 @@ export function warmupCaseStudy(slug: string) {
 export function getCaseStudyStatus(slug: string): CaseStudyStatus {
   const slot = document.querySelector<HTMLElement>(`#${HOST_ID} [data-slug="${slug}"]`)
   if (!slot) return 'loading'
-  if (slot.dataset.error === 'true') return 'error'
   if (slot.dataset.ready === 'true') return 'ready'
+  if (slot.dataset.error === 'true') return 'error'
   return 'loading'
 }
 
@@ -39,6 +40,14 @@ export function subscribeCaseStudyStatus(
 
 function publishStatus(slug: string, status: CaseStudyStatus) {
   window.dispatchEvent(new CustomEvent(STATUS_EVENT, { detail: { slug, status } }))
+}
+
+function slots() {
+  return [...document.querySelectorAll<HTMLElement>(`#${HOST_ID} [data-slug]`)]
+}
+
+function getFrame(slot: HTMLElement) {
+  return slot.querySelector('iframe')
 }
 
 function wireFrame(slot: HTMLElement, frame: HTMLIFrameElement, slug: string) {
@@ -62,40 +71,80 @@ function wireFrame(slot: HTMLElement, frame: HTMLIFrameElement, slug: string) {
 
   window.setTimeout(() => {
     if (slot.dataset.ready === 'true') return
+    // Soft timeout — do not hide the iframe; only surface a fallback hint
     slot.dataset.error = 'true'
     publishStatus(slug, 'error')
-  }, 12000)
+  }, READY_TIMEOUT_MS)
+}
+
+function assignSrc(frame: HTMLIFrameElement, nodeId: string) {
+  const src = figmaProtoSrc(nodeId)
+  const current = frame.getAttribute('src')
+  if (current === src) return
+  // Avoid blank→src flicker if early HTML already set the same URL
+  if (!current || current === 'about:blank') {
+    frame.src = src
+  }
 }
 
 function ensureFrames() {
   const host = document.getElementById(HOST_ID)
   if (!host) return
+
   for (const project of projects) {
     if (!project.figmaNodeId) continue
     let slot = host.querySelector<HTMLElement>(`[data-slug="${project.slug}"]`)
     if (!slot) {
       slot = document.createElement('div')
       slot.dataset.slug = project.slug
+      slot.dataset.nodeId = project.figmaNodeId
       slot.setAttribute('aria-hidden', 'true')
       slot.style.cssText =
-        'position:fixed;left:0;right:0;top:65px;bottom:0;overflow:hidden;pointer-events:none;z-index:1;background:#0a0a0a;color-scheme:light;'
+        'position:fixed;left:0;right:0;top:65px;bottom:0;overflow:hidden;pointer-events:none;z-index:1;opacity:0;background:#0a0a0a;color-scheme:light;'
       const backdrop = document.createElement('div')
       backdrop.style.cssText = 'position:absolute;inset:0;background:#0a0a0a;'
       slot.appendChild(backdrop)
       const frame = document.createElement('iframe')
       frame.title = project.caseStudyTitle
-      frame.src = figmaProtoSrc(project.figmaNodeId)
       frame.setAttribute('allowfullscreen', 'true')
       frame.loading = 'eager'
-      frame.setAttribute('fetchpriority', 'high')
+      frame.setAttribute('fetchpriority', 'low')
       frame.style.cssText =
         'width:100%;height:100%;border:0;display:block;background:#0a0a0a;color-scheme:light;'
+      // Defer src until prioritize/warmup so one study gets bandwidth first
+      frame.dataset.src = figmaProtoSrc(project.figmaNodeId)
       slot.appendChild(frame)
       host.appendChild(slot)
+    } else {
+      slot.dataset.nodeId = project.figmaNodeId
+      const frame = getFrame(slot)
+      if (frame && !frame.dataset.src) {
+        frame.dataset.src = figmaProtoSrc(project.figmaNodeId)
+      }
     }
-    const frame = slot.querySelector('iframe')
+    const frame = getFrame(slot)
     if (frame) wireFrame(slot, frame, project.slug)
   }
+}
+
+function loadFrame(slug: string, priority: 'high' | 'low' = 'high') {
+  const slot = document.querySelector<HTMLElement>(`#${HOST_ID} [data-slug="${slug}"]`)
+  if (!slot) return
+  const frame = getFrame(slot)
+  const nodeId = slot.dataset.nodeId || projects.find((p) => p.slug === slug)?.figmaNodeId
+  if (!frame || !nodeId) return
+
+  const pending = frame.dataset.src
+  const hasSrc = Boolean(frame.getAttribute('src'))
+  if (!hasSrc && pending) {
+    frame.src = pending
+  } else if (!hasSrc) {
+    assignSrc(frame, nodeId)
+  }
+
+  frame.setAttribute('fetchpriority', priority)
+  frame.loading = 'eager'
+  wireFrame(slot, frame, slug)
 }
 
 function fitSlots() {
@@ -118,15 +167,40 @@ function fitSlots() {
   })
 }
 
-function prioritize(slug: string | null) {
-  document.querySelectorAll<HTMLIFrameElement>(`#${HOST_ID} iframe`).forEach((frame) => {
-    const on = frame.parentElement?.dataset.slug === slug
-    frame.setAttribute('fetchpriority', on ? 'high' : 'low')
-  })
+function showSlot(slug: string | null, opened: boolean) {
+  for (const slot of slots()) {
+    const on = slot.dataset.slug === slug
+    slot.style.transition = 'opacity 0.25s ease'
+    slot.style.zIndex = opened && on ? '15' : on ? '4' : '1'
+    slot.style.pointerEvents = opened && on ? 'auto' : 'none'
+    // Keep the warm frame opacity 1 so it can paint before click; hide the rest
+    slot.style.opacity = on ? '1' : '0'
+    slot.setAttribute('aria-hidden', on ? 'false' : 'true')
+    if (on) {
+      loadFrame(slot.dataset.slug!, opened ? 'high' : 'low')
+    } else {
+      const frame = getFrame(slot)
+      frame?.setAttribute('fetchpriority', 'low')
+    }
+  }
 }
 
-function slots() {
-  return [...document.querySelectorAll<HTMLElement>(`#${HOST_ID} [data-slug]`)]
+function scheduleBackgroundLoads(prefer: string | null) {
+  const order = projects
+    .filter((project) => project.figmaNodeId)
+    .map((project) => project.slug)
+    .filter((slug) => slug !== prefer)
+
+  const loadNext = (index: number) => {
+    if (index >= order.length) return
+    loadFrame(order[index], 'low')
+    window.setTimeout(() => loadNext(index + 1), 900)
+  }
+
+  const start = () => loadNext(0)
+  const idle = window.requestIdleCallback?.bind(window)
+  if (idle) idle(start, { timeout: 2500 })
+  else window.setTimeout(start, 1200)
 }
 
 export function PreloadedCaseStudies() {
@@ -144,46 +218,29 @@ export function PreloadedCaseStudies() {
   }, [])
 
   useEffect(() => {
-    const show = (slug: string | null, opened: boolean) => {
-      for (const slot of slots()) {
-        const on = slot.dataset.slug === slug
-        slot.style.zIndex = opened && on ? '15' : on ? '4' : '1'
-        slot.style.pointerEvents = opened && on ? 'auto' : 'none'
-        slot.setAttribute('aria-hidden', on ? 'false' : 'true')
-      }
-      prioritize(slug)
-    }
-
     ensureFrames()
 
     if (activeSlug) {
-      show(activeSlug, true)
+      // Raise immediately — never wait for iframe load to show content
+      showSlot(activeSlug, true)
       publishStatus(activeSlug, getCaseStudyStatus(activeSlug))
+      scheduleBackgroundLoads(activeSlug)
       return
     }
 
-    let index = 0
-    let pinned = ''
-    const order = projects.filter((project) => project.figmaNodeId).map((project) => project.slug)
-    const bringForward = (slug: string) => show(slug, false)
-    const cycle = () => {
-      if (!order.length || pinned) return
-      bringForward(order[index % order.length])
-      index += 1
-    }
-    cycle()
-    const timer = window.setInterval(cycle, 1600)
+    // Off case-study routes: keep one study warm, load others in the background
+    const primary = projects.find((project) => project.figmaNodeId)?.slug ?? null
+    if (primary) showSlot(primary, false)
+    scheduleBackgroundLoads(primary)
+
     const onWarmup = (event: Event) => {
       const slug = (event as CustomEvent<string>).detail
       if (!slug) return
-      pinned = slug
-      bringForward(slug)
+      showSlot(slug, false)
+      loadFrame(slug, 'high')
     }
     window.addEventListener(WARMUP_EVENT, onWarmup)
-    return () => {
-      window.clearInterval(timer)
-      window.removeEventListener(WARMUP_EVENT, onWarmup)
-    }
+    return () => window.removeEventListener(WARMUP_EVENT, onWarmup)
   }, [activeSlug])
 
   return null

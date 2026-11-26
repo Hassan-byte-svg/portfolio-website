@@ -39,32 +39,47 @@
           ['pde-auto-group', '40-3055', 'POS Auto Spare Parts Web Application'],
         ]
         var active = location.pathname.indexOf('/projects/') === 0 ? location.pathname.split('/')[2] : ''
+        var primary = active || studies[0][0]
+        var fileKey = 'CUlWCD1Ol9KMpnGnjXfHaE'
+        var proto = function (nodeId) {
+          return (
+            'https://embed.figma.com/proto/' +
+            fileKey +
+            '/Portfolio-Website?node-id=' +
+            nodeId +
+            '&page-id=1%3A5099&scaling=scale-down-width&content-scaling=fixed&hide-ui=1&footer=false&embed-host=share'
+          )
+        }
         studies.forEach(function (study) {
-          var on = study[0] === active || (!active && study[0] === studies[0][0])
+          var on = study[0] === primary
+          var opened = Boolean(active) && on
           var slot = document.createElement('div')
           slot.dataset.slug = study[0]
+          slot.dataset.nodeId = study[1]
           slot.setAttribute('aria-hidden', on ? 'false' : 'true')
           slot.style.cssText =
             'position:fixed;left:0;right:0;top:65px;bottom:0;overflow:hidden;pointer-events:' +
-            (active && on ? 'auto' : 'none') +
+            (opened ? 'auto' : 'none') +
             ';z-index:' +
-            (active && on ? '15' : on ? '4' : '1') +
+            (opened ? '15' : on ? '4' : '1') +
+            ';opacity:' +
+            (on ? '1' : '0') +
             ';background:#0a0a0a;color-scheme:light;'
           var backdrop = document.createElement('div')
           backdrop.style.cssText = 'position:absolute;inset:0;background:#0a0a0a;'
           slot.appendChild(backdrop)
           var frame = document.createElement('iframe')
           frame.title = study[2]
-          frame.src =
-            'https://embed.figma.com/proto/CUlWCD1Ol9KMpnGnjXfHaE/Portfolio-Website?node-id=' +
-            study[1] +
-            '&page-id=1%3A5099&scaling=scale-down-width&content-scaling=fixed&hide-ui=1&footer=false&embed-host=share'
+          frame.dataset.src = proto(study[1])
+          // Only the primary study gets network bandwidth immediately
+          if (on) frame.src = frame.dataset.src
           frame.setAttribute('allowfullscreen', 'true')
           frame.loading = 'eager'
-          frame.setAttribute('fetchpriority', 'high')
+          frame.setAttribute('fetchpriority', on ? 'high' : 'low')
           frame.style.cssText =
             'width:100%;height:100%;border:0;display:block;background:#0a0a0a;color-scheme:light;'
           frame.addEventListener('load', function () {
+            if (!frame.getAttribute('src')) return
             slot.dataset.ready = 'true'
             slot.dataset.error = 'false'
             window.dispatchEvent(
