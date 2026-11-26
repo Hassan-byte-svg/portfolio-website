@@ -7,9 +7,6 @@
     <title>Portfolio Website</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://embed.figma.com" />
-    <link rel="preconnect" href="https://www.figma.com" crossorigin />
-    <link rel="dns-prefetch" href="https://static.figma.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;1,300&display=swap"
       rel="stylesheet"
@@ -27,72 +24,7 @@
     </script>
   </head>
   <body>
-    <div id="case-study-frames"></div>
     <div id="root"></div>
-    <script>
-      (function () {
-        var host = document.getElementById('case-study-frames')
-        if (!host || host.childElementCount) return
-        var studies = [
-          ['ai-supply-management', '40-376', 'Case study of AI Reply'],
-          ['track-my-time', '40-717', 'ThinkFlow macOS Productivity App'],
-          ['pde-auto-group', '40-3055', 'POS Auto Spare Parts Web Application'],
-        ]
-        var active = location.pathname.indexOf('/projects/') === 0 ? location.pathname.split('/')[2] : ''
-        var primary = active || studies[0][0]
-        var fileKey = 'CUlWCD1Ol9KMpnGnjXfHaE'
-        var proto = function (nodeId) {
-          return (
-            'https://embed.figma.com/proto/' +
-            fileKey +
-            '/Portfolio-Website?node-id=' +
-            nodeId +
-            '&page-id=1%3A5099&scaling=scale-down-width&content-scaling=fixed&hide-ui=1&footer=false&embed-host=share'
-          )
-        }
-        studies.forEach(function (study) {
-          var on = study[0] === primary
-          var opened = Boolean(active) && on
-          var slot = document.createElement('div')
-          slot.dataset.slug = study[0]
-          slot.dataset.nodeId = study[1]
-          slot.setAttribute('aria-hidden', on ? 'false' : 'true')
-          slot.style.cssText =
-            'position:fixed;left:0;right:0;top:65px;bottom:0;overflow:hidden;pointer-events:' +
-            (opened ? 'auto' : 'none') +
-            ';z-index:' +
-            (opened ? '15' : on ? '4' : '1') +
-            ';opacity:' +
-            (on ? '1' : '0') +
-            ';background:#0a0a0a;color-scheme:light;'
-          var backdrop = document.createElement('div')
-          backdrop.style.cssText = 'position:absolute;inset:0;background:#0a0a0a;'
-          slot.appendChild(backdrop)
-          var frame = document.createElement('iframe')
-          frame.title = study[2]
-          frame.dataset.src = proto(study[1])
-          // Only the primary study gets network bandwidth immediately
-          if (on) frame.src = frame.dataset.src
-          frame.setAttribute('allowfullscreen', 'true')
-          frame.loading = 'eager'
-          frame.setAttribute('fetchpriority', on ? 'high' : 'low')
-          frame.style.cssText =
-            'width:100%;height:100%;border:0;display:block;background:#0a0a0a;color-scheme:light;'
-          frame.addEventListener('load', function () {
-            if (!frame.getAttribute('src')) return
-            slot.dataset.ready = 'true'
-            slot.dataset.error = 'false'
-            window.dispatchEvent(
-              new CustomEvent('case-study-status', {
-                detail: { slug: study[0], status: 'ready' },
-              }),
-            )
-          })
-          slot.appendChild(frame)
-          host.appendChild(slot)
-        })
-      })()
-    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

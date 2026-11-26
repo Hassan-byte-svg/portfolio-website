@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Layout } from './components/Layout'
 import { AboutPage } from './pages/AboutPage'
+import { CaseStudyPage } from './pages/CaseStudyPage'
 import { ContactPage } from './pages/ContactPage'
 import { HomePage } from './pages/HomePage'
 import { NotFoundPage } from './pages/NotFoundPage'
@@ -10,7 +11,6 @@ import { ResearchDetailPage } from './pages/ResearchDetailPage'
 import { ResearchPage } from './pages/ResearchPage'
 import { SimplePage } from './pages/SimplePage'
 import { ScrollToTop } from './components/ScrollToTop'
-import { PreloadedCaseStudies } from './components/PreloadedCaseStudies'
 
 export default function App() {
   return (
@@ -24,13 +24,13 @@ export default function App() {
           <Route path="/work" element={<Navigate to="/projects" replace />} />
           <Route path="/simple" element={<SimplePage />} />
           <Route path="/projects/:slug" element={<ProjectDetailPage />} />
+          <Route path="/case-study/:slug" element={<CaseStudyPage />} />
           <Route path="/research" element={<ResearchPage />} />
           <Route path="/research/:slug" element={<ResearchDetailPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
-      <PreloadedCaseStudies />
     </BrowserRouter>
   )
 }

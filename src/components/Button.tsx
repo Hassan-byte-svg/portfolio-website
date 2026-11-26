@@ -40,8 +40,14 @@ export function Button({
   }
 
   if (href) {
+    const external = /^https?:\/\//i.test(href)
     return (
-      <a href={href} className={cls} download={download || undefined}>
+      <a
+        href={href}
+        className={cls}
+        download={download || undefined}
+        {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
+      >
         {children}
       </a>
     )

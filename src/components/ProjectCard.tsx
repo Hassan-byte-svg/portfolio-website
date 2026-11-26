@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import type { Project } from '../data/content'
+import { getCaseStudy } from '../data/caseStudies'
 import { ImagePlaceholder } from './ImagePlaceholder'
-import { warmupCaseStudy } from './PreloadedCaseStudies'
 import { TagList } from './TagList'
 
 const cardSurface = {
@@ -17,6 +17,23 @@ const categoryColor = {
   orange: 'text-[#E9A54C]',
 } as const
 
+function prefetchCaseStudyAssets(slug: string) {
+  const study = getCaseStudy(slug)
+  if (!study || typeof document === 'undefined') return
+  const urls = [
+    study.coverImage,
+    ...study.gallery.map((item) => item.src),
+    ...study.features.map((feature) => feature.image).filter(Boolean),
+  ] as string[]
+  for (const url of [...new Set(urls)]) {
+    const link = document.createElement('link')
+    link.rel = 'prefetch'
+    link.as = 'image'
+    link.href = url
+    document.head.appendChild(link)
+  }
+}
+
 export function ProjectCard({
   project,
   priority = false,
@@ -26,7 +43,8 @@ export function ProjectCard({
 }) {
   const location = useLocation()
   const cardRef = useRef<HTMLElement>(null)
-  const prefetch = () => warmupCaseStudy(project.slug)
+  const href = `/projects/${project.slug}`
+  const prefetch = () => prefetchCaseStudyAssets(project.slug)
 
   useEffect(() => {
     const node = cardRef.current
@@ -68,7 +86,7 @@ export function ProjectCard({
           <TagList tags={project.tags} tone={project.tagTone} />
         </div>
         <Link
-          to={`/projects/${project.slug}`}
+          to={href}
           state={{ from: `${location.pathname}${location.search}` }}
           onPointerDown={prefetch}
           onFocus={prefetch}
