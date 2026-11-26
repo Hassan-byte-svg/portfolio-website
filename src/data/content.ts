@@ -206,7 +206,14 @@ export const logos = [
   { src: "/assets/images/logos/ait.png", alt: "AIT" },
 ]
 
-export const showcaseStrip = "/assets/images/showcase/strip.png"
+export const showcaseShots = [
+  { src: "/assets/images/showcase/shot-01.png", alt: "AI Reply messaging app showcase" },
+  { src: "/assets/images/showcase/shot-02.png", alt: "Translate app showcase" },
+  { src: "/assets/images/showcase/shot-03.png", alt: "BM-EXPERTS website showcase" },
+  { src: "/assets/images/showcase/shot-04.png", alt: "Task manager app showcase" },
+  { src: "/assets/images/showcase/shot-05.png", alt: "Mosiqi music platform showcase" },
+  { src: "/assets/images/showcase/shot-06.png", alt: "FirstBuild marketplace showcase" },
+]
 
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug)

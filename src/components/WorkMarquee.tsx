@@ -1,21 +1,33 @@
-import { showcaseStrip } from '../data/content'
+import { showcaseShots } from '../data/content'
 
 const copies = [0, 1]
 
 export function WorkMarquee() {
   return (
-    <div className="logo-marquee work-marquee mt-4 mb-2 sm:mt-6">
+    <div className="work-marquee">
       <div className="showcase-track">
         {copies.map((copy) => (
-          <img
+          <div
             key={copy}
-            src={showcaseStrip}
-            alt={copy === 0 ? 'Selected product screens' : ''}
-            decoding="sync"
-            draggable={false}
-            fetchPriority="high"
-            className="work-shot"
-          />
+            className="showcase-set"
+            aria-hidden={copy === 1}
+          >
+            {showcaseShots.map((shot, index) => (
+              <article key={`${copy}-${shot.src}`} className="work-card">
+                <img
+                  src={shot.src}
+                  alt={copy === 0 ? shot.alt : ''}
+                  width={1672}
+                  height={941}
+                  decoding="async"
+                  draggable={false}
+                  loading={copy === 0 && index < 2 ? 'eager' : 'lazy'}
+                  fetchPriority={copy === 0 && index < 2 ? 'high' : 'auto'}
+                  className="work-shot"
+                />
+              </article>
+            ))}
+          </div>
         ))}
       </div>
     </div>
