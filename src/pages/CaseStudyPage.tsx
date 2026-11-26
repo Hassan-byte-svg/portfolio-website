@@ -51,9 +51,6 @@ export function CaseStudyPage() {
       title={project.caseStudyTitle}
       nodeId={project.figmaNodeId}
       backTo={backTo}
-      // Design embed avoids proto scale-down blur for AI Reply / ThinkFlow frames
-      mode="design"
-      coverSrc={project.image}
     />
   )
 }
