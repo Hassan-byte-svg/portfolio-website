@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import type { Project } from '../data/content'
-import { getCaseStudy } from '../data/caseStudies'
+import { figmaProtoSrc } from './FigmaCaseStudyView'
 import { ImagePlaceholder } from './ImagePlaceholder'
 import { TagList } from './TagList'
 
@@ -17,21 +17,15 @@ const categoryColor = {
   orange: 'text-[#E9A54C]',
 } as const
 
-function prefetchCaseStudyAssets(slug: string) {
-  const study = getCaseStudy(slug)
-  if (!study || typeof document === 'undefined') return
-  const urls = [
-    study.coverImage,
-    ...study.gallery.map((item) => item.src),
-    ...study.features.map((feature) => feature.image).filter(Boolean),
-  ] as string[]
-  for (const url of [...new Set(urls)]) {
-    const link = document.createElement('link')
-    link.rel = 'prefetch'
-    link.as = 'image'
-    link.href = url
-    document.head.appendChild(link)
-  }
+function warmupFigma(nodeId: string) {
+  if (typeof document === 'undefined' || !nodeId) return
+  const href = figmaProtoSrc(nodeId)
+  if (document.querySelector(`link[data-figma-warmup="${nodeId}"]`)) return
+  const link = document.createElement('link')
+  link.rel = 'prefetch'
+  link.href = href
+  link.dataset.figmaWarmup = nodeId
+  document.head.appendChild(link)
 }
 
 export function ProjectCard({
@@ -44,7 +38,7 @@ export function ProjectCard({
   const location = useLocation()
   const cardRef = useRef<HTMLElement>(null)
   const href = `/projects/${project.slug}`
-  const prefetch = () => prefetchCaseStudyAssets(project.slug)
+  const prefetch = () => warmupFigma(project.figmaNodeId)
 
   useEffect(() => {
     const node = cardRef.current
@@ -59,7 +53,7 @@ export function ProjectCard({
     )
     observer.observe(node)
     return () => observer.disconnect()
-  }, [project.slug])
+  }, [project.figmaNodeId])
 
   return (
     <article
