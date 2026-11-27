@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom'
-import type { Project } from '../data/content'
 import { BackLink } from './BackLink'
-import { CaseStudyFloatControls } from './CaseStudyFloatControls'
 import { ImageLightbox } from './ImageLightbox'
 
 /**
@@ -14,14 +12,12 @@ export function RasterCaseStudyView({
   naturalWidth,
   naturalHeight,
   backTo = '/projects',
-  nextProject,
 }: {
   title: string
   fullSrc: string
   naturalWidth: number
   naturalHeight: number
   backTo?: string
-  nextProject?: Project
 }) {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
@@ -63,8 +59,6 @@ export function RasterCaseStudyView({
           </ImageLightbox>
         </div>
       </div>
-
-      <CaseStudyFloatControls next={nextProject} from={backTo} tone="dark" />
     </div>
   )
 }

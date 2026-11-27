@@ -5,20 +5,17 @@ import type { Project } from '../data/content'
 
 /**
  * Bottom-right floating controls for every case study:
- * - Back to top — appears with animation after scroll; smooth scroll only (no reload)
+ * - Back to top — animates in after scroll; smooth scroll only (no reload)
  * - Next case study icon
  */
 export function CaseStudyFloatControls({
   next,
   from,
   tone = 'dark',
-  /** Scrollable element; defaults to the window. */
-  scrollRoot = null,
 }: {
   next?: Project
   from?: string
   tone?: 'dark' | 'orange'
-  scrollRoot?: HTMLElement | null
 }) {
   const [mounted, setMounted] = useState(false)
   const [showTop, setShowTop] = useState(false)
@@ -29,34 +26,20 @@ export function CaseStudyFloatControls({
   }, [])
 
   useEffect(() => {
-    const readY = () => {
-      if (scrollRoot) return scrollRoot.scrollTop
-      return (
-        window.scrollY ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop ||
-        0
-      )
-    }
+    const readY = () =>
+      window.scrollY ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0
 
     const onScroll = () => setShowTop(readY() > 120)
 
     onScroll()
-
-    if (scrollRoot) {
-      scrollRoot.addEventListener('scroll', onScroll, { passive: true })
-      return () => scrollRoot.removeEventListener('scroll', onScroll)
-    }
-
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [scrollRoot])
+  }, [])
 
   const scrollToTop = () => {
-    if (scrollRoot) {
-      scrollRoot.scrollTo({ top: 0, behavior: 'smooth' })
-      return
-    }
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 

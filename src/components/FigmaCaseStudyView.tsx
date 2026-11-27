@@ -22,8 +22,8 @@ export function figmaOpenUrl(nodeId: string, mode: 'proto' | 'design' = 'proto')
 }
 
 /**
- * Full-viewport Figma case study fallback.
- * Prefer RasterCaseStudyView when a PNG export exists so back-to-top can track real page scroll.
+ * Full-viewport Figma case study (AI Reply / ThinkFlow) — same embed as before.
+ * Floating next + back-to-top controls only; study content unchanged.
  */
 export function FigmaCaseStudyView({
   title,
