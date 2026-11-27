@@ -25,7 +25,7 @@ export function figmaOpenUrl(nodeId: string, mode: 'proto' | 'design' = 'proto')
 
 /**
  * Full-viewport Figma case study (AI Reply / ThinkFlow).
- * Scroll past the embed to the themed Next Project card at the end.
+ * Next project thumbnail sits under the embed (replaces the old → arrow).
  */
 export function FigmaCaseStudyView({
   title,
@@ -44,22 +44,19 @@ export function FigmaCaseStudyView({
 }) {
   const src = mode === 'design' ? figmaDesignSrc(nodeId) : figmaProtoSrc(nodeId)
   const isOrange = chrome === 'orange'
-  const scrollerRef = useRef<HTMLDivElement>(null)
   const iframeRef = useRef<HTMLIFrameElement>(null)
 
   const backToTop = () => {
-    scrollerRef.current?.scrollTo({ top: 0, behavior: 'smooth' })
     const frame = iframeRef.current
     if (frame) frame.src = src
   }
 
   return (
     <div
-      ref={scrollerRef}
-      className={`fixed inset-0 z-50 overflow-y-auto ${isOrange ? 'bg-[#fffaf4]' : 'bg-[#0a0a0a]'}`}
+      className={`fixed inset-0 z-50 flex flex-col ${isOrange ? 'bg-[#fffaf4]' : 'bg-[#0a0a0a]'}`}
     >
       <div
-        className={`sticky top-0 z-10 flex h-[65px] items-center gap-3 border-b px-4 ${
+        className={`flex h-[65px] shrink-0 items-center gap-3 border-b px-4 ${
           isOrange
             ? 'border-black/5 bg-[#fffaf4] text-[#0F172B]'
             : 'border-white/10 bg-[#0a0a0a]'
@@ -90,15 +87,15 @@ export function FigmaCaseStudyView({
         title={title}
         src={src}
         allowFullScreen
-        className={`block w-full border-0 ${isOrange ? 'bg-[#fffaf4]' : 'bg-[#0a0a0a]'}`}
-        style={{ height: 'calc(100dvh - 65px)', colorScheme: 'only light' }}
+        className={`min-h-0 w-full flex-1 border-0 ${isOrange ? 'bg-[#fffaf4]' : 'bg-[#0a0a0a]'}`}
+        style={{ colorScheme: 'only light' }}
       />
 
-      {nextProject ? <NextProjectCard project={nextProject} from={backTo} /> : null}
+      {nextProject ? (
+        <NextProjectCard project={nextProject} from={backTo} compact />
+      ) : null}
 
       <CaseStudyFloatControls
-        next={nextProject}
-        from={backTo}
         tone={isOrange ? 'orange' : 'dark'}
         alwaysShowTop
         onBackToTop={backToTop}

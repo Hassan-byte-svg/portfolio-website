@@ -797,7 +797,7 @@ export function PosCaseStudy({
 
       {nextProject ? <NextProjectCard project={nextProject} from={backTo} /> : null}
 
-      <CaseStudyFloatControls next={nextProject} from={backTo} tone="orange" />
+      <CaseStudyFloatControls tone="orange" />
     </div>
   )
 }

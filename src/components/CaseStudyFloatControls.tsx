@@ -1,26 +1,18 @@
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { Link } from 'react-router-dom'
-import type { Project } from '../data/content'
 
 /**
- * Bottom-right floating controls for every case study:
- * - Back to top — animates in after scroll; smooth scroll only (no reload)
- * - Next case study icon
+ * Bottom-right floating control: page-up only (next case study uses NextProjectCard).
  */
 export function CaseStudyFloatControls({
-  next,
-  from,
   tone = 'dark',
   alwaysShowTop = false,
   onBackToTop,
 }: {
-  next?: Project
-  from?: string
   tone?: 'dark' | 'orange'
-  /** Figma embeds have no page scroll — keep page-up visible above next. */
+  /** Figma embeds have no page scroll — keep page-up visible. */
   alwaysShowTop?: boolean
-  /** Optional override (e.g. reset Figma iframe to the start). */
+  /** Optional override (e.g. reset Figma iframe / scroller to the start). */
   onBackToTop?: () => void
 }) {
   const [mounted, setMounted] = useState(false)
@@ -73,7 +65,7 @@ export function CaseStudyFloatControls({
   if (!mounted) return null
 
   return createPortal(
-    <div className="pointer-events-none fixed bottom-5 right-4 z-[80] flex flex-col items-end gap-3 sm:bottom-8 sm:right-6">
+    <div className="pointer-events-none fixed bottom-5 right-4 z-[80] sm:bottom-8 sm:right-6">
       <button
         type="button"
         onClick={scrollToTop}
@@ -97,26 +89,6 @@ export function CaseStudyFloatControls({
           />
         </svg>
       </button>
-
-      {next ? (
-        <Link
-          to={`/projects/${next.slug}`}
-          state={from ? { from } : undefined}
-          className={`pointer-events-auto ${btnBase} ${btnTone}`}
-          aria-label={`Next case study: ${next.title}`}
-          title={`Next: ${next.title}`}
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path
-              d="M5 12h14M13 6l6 6-6 6"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </Link>
-      ) : null}
     </div>,
     document.body,
   )
