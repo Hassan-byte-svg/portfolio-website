@@ -1,7 +1,8 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { Project } from '../data/content'
 import { BackLink } from './BackLink'
-import { NextCaseStudyLink } from './NextCaseStudyLink'
+import { CaseStudyFloatControls } from './CaseStudyFloatControls'
 
 const FILE_KEY = 'CUlWCD1Ol9KMpnGnjXfHaE'
 
@@ -23,7 +24,7 @@ export function figmaOpenUrl(nodeId: string, mode: 'proto' | 'design' = 'proto')
 
 /**
  * Full-viewport Figma case study (AI Reply / ThinkFlow).
- * Open in Figma CTA removed per product request.
+ * Floating next + back-to-top controls sit bottom-right.
  */
 export function FigmaCaseStudyView({
   title,
@@ -40,7 +41,8 @@ export function FigmaCaseStudyView({
   chrome?: 'dark' | 'orange'
   nextProject?: Project
 }) {
-  const src = mode === 'design' ? figmaDesignSrc(nodeId) : figmaProtoSrc(nodeId)
+  const baseSrc = mode === 'design' ? figmaDesignSrc(nodeId) : figmaProtoSrc(nodeId)
+  const [frameKey, setFrameKey] = useState(0)
   const isOrange = chrome === 'orange'
 
   return (
@@ -75,26 +77,21 @@ export function FigmaCaseStudyView({
       </div>
 
       <iframe
+        key={frameKey}
         title={title}
-        src={src}
+        src={baseSrc}
         allowFullScreen
         className={`h-full w-full flex-1 border-0 ${isOrange ? 'bg-[#fffaf4]' : 'bg-[#0a0a0a]'}`}
         style={{ colorScheme: 'only light' }}
       />
 
-      {nextProject ? (
-        <div
-          className={`flex shrink-0 items-center justify-center border-t px-4 py-4 ${
-            isOrange ? 'border-black/5 bg-[#fffaf4]' : 'border-white/10 bg-[#0a0a0a]'
-          }`}
-        >
-          <NextCaseStudyLink
-            next={nextProject}
-            from={backTo}
-            tone={isOrange ? 'orange' : 'dark'}
-          />
-        </div>
-      ) : null}
+      <CaseStudyFloatControls
+        next={nextProject}
+        from={backTo}
+        tone={isOrange ? 'orange' : 'dark'}
+        alwaysShowTop
+        onScrollTop={() => setFrameKey((value) => value + 1)}
+      />
     </div>
   )
 }

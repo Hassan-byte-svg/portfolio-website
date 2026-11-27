@@ -1,0 +1,114 @@
+import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
+import { Link } from 'react-router-dom'
+import type { Project } from '../data/content'
+
+/**
+ * Bottom-right floating controls for every case study:
+ * - Scroll to top
+ * - Next case study (icon)
+ */
+export function CaseStudyFloatControls({
+  next,
+  from,
+  tone = 'dark',
+  /** Always show back-to-top (e.g. Figma embeds where scroll is inside the iframe). */
+  alwaysShowTop = false,
+  /** Optional hook for embed views that cannot use window scroll. */
+  onScrollTop,
+}: {
+  next?: Project
+  from?: string
+  tone?: 'dark' | 'orange'
+  alwaysShowTop?: boolean
+  onScrollTop?: () => void
+}) {
+  const [mounted, setMounted] = useState(false)
+  const [showTop, setShowTop] = useState(alwaysShowTop)
+  const isOrange = tone === 'orange'
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (alwaysShowTop) {
+      setShowTop(true)
+      return
+    }
+    const onScroll = () => {
+      const y =
+        window.scrollY ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        0
+      setShowTop(y > 240)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [alwaysShowTop])
+
+  const scrollToTop = () => {
+    if (onScrollTop) {
+      onScrollTop()
+      return
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    document.documentElement.scrollTo({ top: 0, behavior: 'smooth' })
+    document.body.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const btnBase =
+    'flex h-11 w-11 items-center justify-center rounded-full shadow-lg transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'
+  const btnTone = isOrange
+    ? 'bg-[#F5A623] text-white focus-visible:outline-[#F5A623]'
+    : 'bg-white text-[#0a0a0a] focus-visible:outline-white'
+
+  if (!mounted) return null
+
+  return createPortal(
+    <div className="pointer-events-none fixed bottom-5 right-4 z-[80] flex flex-col items-end gap-3 sm:bottom-8 sm:right-6">
+      {showTop ? (
+        <button
+          type="button"
+          onClick={scrollToTop}
+          className={`pointer-events-auto ${btnBase} ${btnTone}`}
+          aria-label="Back to top"
+          title="Back to top"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M12 19V5M12 5l-6 6M12 5l6 6"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      ) : null}
+
+      {next ? (
+        <Link
+          to={`/projects/${next.slug}`}
+          state={from ? { from } : undefined}
+          className={`pointer-events-auto ${btnBase} ${btnTone}`}
+          aria-label={`Next case study: ${next.title}`}
+          title={`Next: ${next.title}`}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M5 12h14M13 6l6 6-6 6"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </Link>
+      ) : null}
+    </div>,
+    document.body,
+  )
+}

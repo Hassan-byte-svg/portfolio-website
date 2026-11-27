@@ -2,8 +2,8 @@ import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import type { Project } from '../data/content'
 import { BackLink } from './BackLink'
+import { CaseStudyFloatControls } from './CaseStudyFloatControls'
 import { ImageLightbox } from './ImageLightbox'
-import { NextCaseStudyLink } from './NextCaseStudyLink'
 import { UserJourneyMap } from './UserJourneyMap'
 
 const accent = '#F5A623'
@@ -872,11 +872,7 @@ export function PosCaseStudy({
         </div>
       </section>
 
-      {nextProject ? (
-        <div className="mx-auto flex max-w-[920px] justify-center px-5 py-12 sm:justify-end sm:px-8">
-          <NextCaseStudyLink next={nextProject} from={backTo} tone="orange" />
-        </div>
-      ) : null}
+      <CaseStudyFloatControls next={nextProject} from={backTo} tone="orange" />
     </div>
   )
 }
