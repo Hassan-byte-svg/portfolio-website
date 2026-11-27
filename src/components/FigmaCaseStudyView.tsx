@@ -4,8 +4,7 @@ import { BackLink } from './BackLink'
 const FILE_KEY = 'CUlWCD1Ol9KMpnGnjXfHaE'
 
 export function figmaProtoSrc(nodeId: string) {
-  // min-zoom avoids scale-down-width soft text/logos when an embed is still used
-  return `https://embed.figma.com/proto/${FILE_KEY}/Portfolio-Website?node-id=${nodeId}&page-id=1%3A5099&scaling=min-zoom&content-scaling=fixed&hide-ui=1&footer=false&embed-host=share&hotspot-hints=0`
+  return `https://embed.figma.com/proto/${FILE_KEY}/Portfolio-Website?node-id=${nodeId}&page-id=1%3A5099&scaling=scale-down-width&content-scaling=fixed&hide-ui=1&footer=false&embed-host=share`
 }
 
 /** Design-file embed — shows the full designed case study frames (not the interactive proto flow). */
@@ -21,9 +20,8 @@ export function figmaOpenUrl(nodeId: string, mode: 'proto' | 'design' = 'proto')
 }
 
 /**
- * Full-viewport Figma case study.
- * - proto: interactive prototype (AI Reply / ThinkFlow)
- * - design: full designed frames as drawn in Figma (POS orange case study)
+ * Full-viewport Figma case study (AI Reply / ThinkFlow).
+ * Open in Figma CTA removed per product request.
  */
 export function FigmaCaseStudyView({
   title,
@@ -39,7 +37,6 @@ export function FigmaCaseStudyView({
   chrome?: 'dark' | 'orange'
 }) {
   const src = mode === 'design' ? figmaDesignSrc(nodeId) : figmaProtoSrc(nodeId)
-  const openUrl = figmaOpenUrl(nodeId, mode)
   const isOrange = chrome === 'orange'
 
   return (
@@ -63,19 +60,9 @@ export function FigmaCaseStudyView({
         >
           {title}
         </p>
-        <a
-          href={openUrl}
-          target="_blank"
-          rel="noreferrer"
-          className={`shrink-0 text-[13px] font-normal transition-opacity hover:opacity-80 ${
-            isOrange ? 'text-[#e3941a]' : 'text-white/70 hover:text-white'
-          }`}
-        >
-          Open in Figma ↗
-        </a>
         <Link
           to={backTo}
-          className={`hidden shrink-0 text-[13px] font-normal transition-opacity sm:inline ${
+          className={`shrink-0 text-[13px] font-normal transition-opacity sm:inline ${
             isOrange ? 'text-[#0F172B]/45 hover:text-[#0F172B]' : 'text-white/50 hover:text-white'
           }`}
         >

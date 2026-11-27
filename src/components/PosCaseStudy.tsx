@@ -9,9 +9,36 @@ const accent = '#F5A623'
 const peach = '#FFF3E0'
 const ink = '#0F172B'
 const muted = '#555555'
+const soft = '#FFF8F0'
 
 function Em({ children }: { children: ReactNode }) {
-  return <span className="font-medium" style={{ color: accent }}>{children}</span>
+  return (
+    <span className="font-medium" style={{ color: accent }}>
+      {children}
+    </span>
+  )
+}
+
+function PillTitle({ before, highlight }: { before: string; highlight: string }) {
+  return (
+    <h2 className="text-center text-[36px] font-light tracking-[-0.02em] sm:text-[44px]">
+      {before}{' '}
+      <span
+        className="rounded-full px-5 py-1 font-normal"
+        style={{ background: peach, color: accent }}
+      >
+        {highlight}
+      </span>
+    </h2>
+  )
+}
+
+function AccentHeading({ children }: { children: ReactNode }) {
+  return (
+    <h2 className="text-center text-[32px] font-medium sm:text-[40px]" style={{ color: accent }}>
+      {children}
+    </h2>
+  )
 }
 
 function FlagIcon() {
@@ -73,12 +100,6 @@ const processSteps = [
           d="M8 34c2-8 7-12 12-12s10 4 12 12"
           stroke={accent}
           strokeWidth="2"
-          strokeLinecap="round"
-        />
-        <path
-          d="M17 14c1 2 2.5 3 3 3s2-1 3-3"
-          stroke={accent}
-          strokeWidth="1.6"
           strokeLinecap="round"
         />
       </svg>
@@ -143,11 +164,231 @@ const interviewQs = [
     quote:
       'New vehicle models keep arriving, so the parts list never sits still. We adapt by updating inventory constantly and relying on regular suppliers — but without a clear system it is easy to fall behind.',
   },
+  {
+    question:
+      'Have you considered adopting a point of sale (POS) software for your business? If so, what features would be most important to you?',
+    quote:
+      'Yes, we have looked at POS tools. The features that matter most are simple inventory tracking, fast billing, and a price we can actually afford — anything too complex will not get used.',
+  },
 ] as const
 
+const findings = [
+  {
+    title: 'Overall Business Performance',
+    body: 'Most shop owners described a challenging performance climate — thin margins, uneven demand, and pressure to stay competitive day to day.',
+  },
+  {
+    title: 'Primary Concerns for Auto Spare Part Shop Owners',
+    body: 'Competition from online sellers and larger chains, plus difficulty managing inventory accurately, came up repeatedly as top concerns.',
+  },
+  {
+    title: 'Readiness for Technological Adoption',
+    body: 'About 80% of respondents were open to adopting POS software, but many saw complexity as the main barrier to switching.',
+  },
+  {
+    title: 'Device Preferences',
+    body: 'Most preferred desktop computers for day-to-day operations, while a smaller group favored tablets or mobile for flexibility on the floor.',
+  },
+] as const
+
+const personas = [
+  {
+    name: 'Sara Ahmed',
+    quote:
+      'I strive for excellence in every repair, but sourcing specific parts promptly is crucial; delays in availability hinder my efficiency.',
+    meta: [
+      ['Age', '28'],
+      ['Education', 'B.E Engineer'],
+      ['Status', 'Single'],
+      ['Occupation', 'Service Technician'],
+      ['Location', 'Dubai'],
+    ],
+    traits: ['Calm', 'Thinker', 'Creative'],
+    background:
+      'Sara is a seasoned service technician who balances precision repairs with the daily pressure of finding the right parts quickly for her workshop.',
+    panels: [
+      {
+        title: 'Goals',
+        items: ['Professional excellence', 'Efficient workshop workflow', 'Continuous learning'],
+      },
+      {
+        title: 'Frustrations',
+        items: [
+          'Parts availability delays',
+          'Inventory management challenges',
+          'Tools that feel too complex',
+        ],
+      },
+      {
+        title: 'Needs',
+        items: [
+          'Reliable parts supply',
+          'Clear stock visibility',
+          'Fast, dependable POS workflows',
+        ],
+      },
+      {
+        title: 'Motivation',
+        items: ['Delivering excellent service', 'Growing as a technician'],
+      },
+    ],
+  },
+  {
+    name: 'Ahmed',
+    quote: 'I want performance and convenience — without wasting time chasing unclear quotes.',
+    meta: [
+      ['Age', '40'],
+      ['Education', 'BA Business'],
+      ['Status', 'Married'],
+      ['Occupation', 'Busy Professional'],
+      ['Location', 'Dubai'],
+      ['Vehicle', 'High-performance sports car'],
+    ],
+    traits: ['Passionate', 'Discerning', 'Driven'],
+    background:
+      'Ahmed is a busy professional and car enthusiast who expects transparent communication and dependable service when maintaining his vehicle.',
+    panels: [
+      {
+        title: 'Goals',
+        items: ['Keep the car performing at its best', 'Convenient, trusted service'],
+      },
+      {
+        title: 'Frustrations',
+        items: ['Lack of transparency', 'Time wasted on unclear timelines'],
+      },
+      {
+        title: 'Needs',
+        items: ['Dependable service', 'Clear communication and pricing'],
+      },
+      {
+        title: 'Motivation',
+        items: ['Passion for sports cars', 'Confidence in every service visit'],
+      },
+    ],
+  },
+] as const
+
+const iaBranches = [
+  {
+    title: 'Billing',
+    nodes: ['New Bill', 'Bills', 'List', 'Current Bill'],
+  },
+  {
+    title: 'Catalog',
+    nodes: ['Items', 'Items Category', 'Add Item', 'Item List', 'Update Stock'],
+  },
+  {
+    title: 'People',
+    nodes: ['Customers', 'Sales', 'Messages', 'Live Chat', 'Emails', 'Leads'],
+  },
+  {
+    title: 'Account',
+    nodes: ['Settings', 'Profile', 'Appearance', 'Notification'],
+  },
+] as const
+
+const flowSteps = [
+  'Start',
+  'Search for auto spare parts',
+  'Part available?',
+  'Add parts to cart',
+  'Cart complete?',
+  'Checkout & details',
+  'Pay bill',
+  'Print receipt',
+  'Order complete',
+] as const
+
+const colors = [
+  { name: 'Black 1', hex: '#030202' },
+  { name: 'Black 2', hex: '#1D1D1D' },
+  { name: 'Gray 1', hex: '#333333' },
+  { name: 'Gray 5', hex: '#E0E0E0' },
+  { name: 'White', hex: '#FFFFFF' },
+  { name: 'Accent', hex: '#F5A623' },
+  { name: 'Info', hex: '#2F80ED' },
+  { name: 'Success', hex: '#27AE60' },
+  { name: 'Warning', hex: '#E2B93B' },
+  { name: 'Error', hex: '#EB5757' },
+] as const
+
+const typeScale = [
+  { name: 'Heading 1', size: '56px', lh: '61.6px' },
+  { name: 'Heading 2', size: '48px', lh: '52.8px' },
+  { name: 'Heading 3', size: '40px', lh: '44px' },
+  { name: 'Heading 4', size: '32px', lh: '35.2px' },
+  { name: 'Body Large', size: '20px', lh: '28px' },
+  { name: 'Body', size: '16px', lh: '22.4px' },
+  { name: 'Small', size: '14px', lh: '19.6px' },
+] as const
+
+const visualSections = [
+  {
+    title: 'Components, wireframes & high-fidelity screens',
+    caption: 'UI kit, low-fi wireframes, login and dashboard — shown at native 1200px width.',
+    src: '/assets/images/projects/pde-auto-group/sections/hifi-overview.png',
+    width: 1200,
+    height: 3200,
+  },
+  {
+    title: 'Inventory & sales',
+    caption: 'Manage inventory categories, item lists, and sales overview.',
+    src: '/assets/images/projects/pde-auto-group/sections/hifi-inventory-sales.png',
+    width: 1200,
+    height: 2800,
+  },
+  {
+    title: 'Billing & settings',
+    caption: 'New bill payment flow, profile, and appearance preferences.',
+    src: '/assets/images/projects/pde-auto-group/sections/hifi-billing-settings.png',
+    width: 1200,
+    height: 2800,
+  },
+] as const
+
+function SectionImage({
+  title,
+  caption,
+  src,
+  width,
+  height,
+}: {
+  title: string
+  caption: string
+  src: string
+  width: number
+  height: number
+}) {
+  return (
+    <section className="mx-auto max-w-[1200px] px-5 py-12 sm:px-8">
+      <h3 className="text-center text-[24px] font-medium sm:text-[28px]" style={{ color: accent }}>
+        {title}
+      </h3>
+      <p className="mx-auto mt-2 max-w-[640px] text-center text-[14px] font-light text-[#6B6B6B]">
+        {caption}
+      </p>
+      <div className="mx-auto mt-8" style={{ maxWidth: width }}>
+        <ImageLightbox src={src} alt={title}>
+          <img
+            src={src}
+            alt=""
+            width={width}
+            height={height}
+            decoding="async"
+            loading="lazy"
+            draggable={false}
+            className="block h-auto w-full bg-white"
+            style={{ maxWidth: width, imageRendering: 'auto' }}
+          />
+        </ImageLightbox>
+      </div>
+    </section>
+  )
+}
+
 /**
- * Native HTML POS case study — sharp text/icons, Figma-aligned layout.
- * No Full Figma export raster; no Open in Figma CTA.
+ * Full POS case study in HTML (+ native-width screen exports).
+ * No Open in Figma CTA. No single “Full Figma export” dump.
  */
 export function PosCaseStudy({
   project,
@@ -170,14 +411,13 @@ export function PosCaseStudy({
           </p>
           <Link
             to={backTo}
-            className="hidden shrink-0 text-[13px] font-normal text-[#0F172B]/45 transition-opacity hover:text-[#0F172B] sm:inline"
+            className="shrink-0 text-[13px] font-normal text-[#0F172B]/45 transition-opacity hover:text-[#0F172B]"
           >
             Work
           </Link>
         </div>
       </div>
 
-      {/* Title */}
       <header className="mx-auto max-w-[920px] px-5 pb-4 pt-14 text-center sm:px-8">
         <h1 className="text-[42px] font-light tracking-[-0.03em] sm:text-[56px]">
           UX UI{' '}
@@ -190,7 +430,7 @@ export function PosCaseStudy({
         </h1>
       </header>
 
-      {/* Aim / Problem / Scope — alternating alignment */}
+      {/* Aim / Problem / Scope */}
       <section className="mx-auto max-w-[920px] space-y-14 px-5 py-10 sm:px-8">
         <div className="flex max-w-[540px] gap-4">
           <FlagIcon />
@@ -205,7 +445,7 @@ export function PosCaseStudy({
           </div>
         </div>
 
-        <div className="ml-auto flex max-w-[560px] gap-4 sm:text-left">
+        <div className="ml-auto flex max-w-[560px] gap-4">
           <ProblemIcon />
           <div>
             <h2 className="text-[22px] font-medium" style={{ color: accent }}>
@@ -243,12 +483,10 @@ export function PosCaseStudy({
 
       {/* Design Process */}
       <section className="mx-auto max-w-[920px] px-5 py-14 text-center sm:px-8">
-        <h2 className="text-[32px] font-medium sm:text-[40px]" style={{ color: accent }}>
-          Design Process
-        </h2>
+        <AccentHeading>Design Process</AccentHeading>
         <div
           className="mt-8 rounded-[28px] border-2 px-4 py-10 sm:px-10"
-          style={{ borderColor: accent, background: '#FFF8F0' }}
+          style={{ borderColor: accent, background: soft }}
         >
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-5 sm:gap-4">
             {processSteps.map((step) => (
@@ -270,15 +508,7 @@ export function PosCaseStudy({
 
       {/* Primary Research */}
       <section className="mx-auto max-w-[920px] px-5 py-12 sm:px-8">
-        <h2 className="text-center text-[36px] font-light tracking-[-0.02em] sm:text-[44px]">
-          Primary{' '}
-          <span
-            className="rounded-full px-5 py-1 font-normal"
-            style={{ background: peach, color: accent }}
-          >
-            Research
-          </span>
-        </h2>
+        <PillTitle before="Primary" highlight="Research" />
         <p
           className="mx-auto mt-6 max-w-[720px] text-center text-[16px] font-light leading-[1.75]"
           style={{ color: muted }}
@@ -290,8 +520,7 @@ export function PosCaseStudy({
           needs.
         </p>
 
-        {/* Q&A */}
-        <div className="relative mx-auto mt-14 max-w-[820px]">
+        <div className="relative mx-auto mt-14 max-w-[900px]">
           <div className="mb-10 flex justify-center">
             <div
               className="relative flex h-24 w-24 items-center justify-center rounded-full border-2 bg-white"
@@ -300,26 +529,14 @@ export function PosCaseStudy({
               <span className="text-[22px] font-medium" style={{ color: accent }}>
                 Q&amp;A
               </span>
-              <span
-                className="absolute -right-2 -top-1 text-[28px] font-light"
-                style={{ color: accent }}
-                aria-hidden="true"
-              >
-                ?
-              </span>
-              <span
-                className="absolute -bottom-1 -left-3 text-[20px] font-light opacity-70"
-                style={{ color: accent }}
-                aria-hidden="true"
-              >
-                ?
-              </span>
             </div>
           </div>
-
           <div className="grid gap-10 sm:grid-cols-2 sm:gap-12">
-            {interviewQs.map((item) => (
-              <article key={item.question} className="text-left">
+            {interviewQs.map((item, index) => (
+              <article
+                key={item.question}
+                className={`text-left ${index === 2 ? 'sm:col-span-2 sm:mx-auto sm:max-w-[480px]' : ''}`}
+              >
                 <p className="text-[15px] font-medium leading-[1.55]" style={{ color: accent }}>
                   {item.question}
                 </p>
@@ -335,16 +552,304 @@ export function PosCaseStudy({
         </div>
       </section>
 
+      {/* Findings */}
+      <section className="mx-auto max-w-[920px] px-5 py-14 sm:px-8">
+        <AccentHeading>Findings</AccentHeading>
+        <p
+          className="mx-auto mt-5 max-w-[720px] text-center text-[16px] font-light leading-[1.75]"
+          style={{ color: muted }}
+        >
+          Based on the interviews conducted with auto spare part shop owners and employees, several
+          key findings and outcomes emerged:
+        </p>
+        <div className="mt-10 grid gap-6 sm:grid-cols-2">
+          {findings.map((item) => (
+            <article
+              key={item.title}
+              className="rounded-[20px] border border-[#f0e0c8] px-5 py-5"
+              style={{ background: soft }}
+            >
+              <h3 className="text-[17px] font-medium" style={{ color: accent }}>
+                {item.title}
+              </h3>
+              <p className="mt-3 text-[15px] font-light leading-[1.7]" style={{ color: muted }}>
+                {item.body}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* Personas */}
+      <section className="mx-auto max-w-[1000px] px-5 py-14 sm:px-8">
+        <PillTitle before="User" highlight="Personas" />
+        <p
+          className="mx-auto mt-5 max-w-[680px] text-center text-[15px] font-light leading-[1.7]"
+          style={{ color: muted }}
+        >
+          Personas capture the needs, frustrations, and motivations of the people this POS is built
+          for — workshop staff and the customers they serve.
+        </p>
+
+        <div className="mt-12 space-y-16">
+          {personas.map((persona) => (
+            <div
+              key={persona.name}
+              className="grid gap-6 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:items-start"
+            >
+              <article className="rounded-[24px] border border-black/5 bg-white p-6 shadow-sm">
+                <div
+                  className="mx-auto flex h-28 w-28 items-center justify-center rounded-full text-[28px] font-medium text-white"
+                  style={{ background: accent }}
+                  aria-hidden="true"
+                >
+                  {persona.name
+                    .split(' ')
+                    .map((w) => w[0])
+                    .join('')
+                    .slice(0, 2)}
+                </div>
+                <h3 className="mt-5 text-center text-[22px] font-medium" style={{ color: accent }}>
+                  {persona.name}
+                </h3>
+                <p
+                  className="mt-3 text-center text-[14px] font-light italic leading-[1.6]"
+                  style={{ color: accent }}
+                >
+                  “{persona.quote}”
+                </p>
+                <dl className="mt-5 space-y-2 text-[14px]">
+                  {persona.meta.map(([label, value]) => (
+                    <div key={label} className="flex justify-between gap-3 border-b border-black/5 pb-2">
+                      <dt className="font-medium text-[#888]">{label}</dt>
+                      <dd className="text-right font-light">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <div className="mt-4 flex flex-wrap justify-center gap-2">
+                  {persona.traits.map((trait) => (
+                    <span
+                      key={trait}
+                      className="rounded-full border px-3 py-1 text-[13px] font-medium"
+                      style={{ borderColor: accent, color: accent }}
+                    >
+                      {trait}
+                    </span>
+                  ))}
+                </div>
+                <p className="mt-5 text-[14px] font-light leading-[1.65]" style={{ color: muted }}>
+                  {persona.background}
+                </p>
+              </article>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                {persona.panels.map((panel) => (
+                  <div
+                    key={panel.title}
+                    className="rounded-[20px] px-5 py-4"
+                    style={{ background: soft }}
+                  >
+                    <h4 className="text-[16px] font-medium" style={{ color: accent }}>
+                      {panel.title}
+                    </h4>
+                    <ul className="mt-3 space-y-2 text-[14px] font-light leading-[1.55]" style={{ color: muted }}>
+                      {panel.items.map((item) => (
+                        <li key={item} className="flex gap-2">
+                          <span style={{ color: accent }}>•</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <UserJourneyMap />
 
-      {/* Point of Sale product shot — sharp cover, no full Figma raster */}
-      <section className="mx-auto max-w-[920px] px-5 py-14 sm:px-8">
-        <h2
-          className="text-center text-[28px] font-medium sm:text-[34px]"
-          style={{ color: accent }}
+      {/* Information Architecture */}
+      <section className="mx-auto max-w-[1000px] px-5 py-14 sm:px-8">
+        <PillTitle before="Information" highlight="Architecture" />
+        <p
+          className="mx-auto mt-5 max-w-[640px] text-center text-[15px] font-light leading-[1.7]"
+          style={{ color: muted }}
         >
-          Point of Sale
-        </h2>
+          A clear hierarchy from onboarding and dashboard into billing, catalog, customers, messaging,
+          and account settings.
+        </p>
+
+        <div className="mx-auto mt-10 max-w-[720px] text-center">
+          <div
+            className="inline-flex rounded-[14px] px-5 py-3 text-[15px] font-medium text-white"
+            style={{ background: accent }}
+          >
+            Onboarding → Dashboard
+          </div>
+        </div>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {iaBranches.map((branch) => (
+            <div
+              key={branch.title}
+              className="rounded-[20px] border border-[#f0e0c8] p-4"
+              style={{ background: soft }}
+            >
+              <p className="text-[15px] font-medium" style={{ color: accent }}>
+                {branch.title}
+              </p>
+              <ul className="mt-3 space-y-2">
+                {branch.nodes.map((node) => (
+                  <li
+                    key={node}
+                    className="rounded-[10px] border border-[#f0e0c8] bg-white px-3 py-2 text-[13px] font-light"
+                  >
+                    {node}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* User Flow */}
+      <section className="mx-auto max-w-[920px] px-5 py-14 sm:px-8">
+        <PillTitle before="User" highlight="Flow" />
+        <p className="mt-3 text-center text-[15px] font-medium" style={{ color: accent }}>
+          Customer&apos;s Flow
+        </p>
+        <p
+          className="mx-auto mt-3 max-w-[560px] text-center text-[15px] font-light leading-[1.7]"
+          style={{ color: muted }}
+        >
+          To find desired parts and complete a purchase on the platform, hassle-free.
+        </p>
+
+        <ol className="mx-auto mt-10 flex max-w-[420px] flex-col items-center gap-0">
+          {flowSteps.map((step, index) => (
+            <li key={step} className="flex w-full flex-col items-center">
+              <div
+                className={`w-full max-w-[320px] rounded-[14px] border-2 px-4 py-3 text-center text-[14px] font-medium ${
+                  index === 0 || index === flowSteps.length - 1 ? 'text-white' : ''
+                }`}
+                style={
+                  index === 0 || index === flowSteps.length - 1
+                    ? { background: accent, borderColor: accent }
+                    : { borderColor: accent, color: ink, background: 'white' }
+                }
+              >
+                {step}
+              </div>
+              {index < flowSteps.length - 1 ? (
+                <span className="my-1 text-[18px]" style={{ color: accent }} aria-hidden="true">
+                  ↓
+                </span>
+              ) : null}
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* Design system */}
+      <section className="mx-auto max-w-[1000px] px-5 py-14 sm:px-8">
+        <AccentHeading>Design System</AccentHeading>
+        <p
+          className="mx-auto mt-4 max-w-[640px] text-center text-[15px] font-light leading-[1.7]"
+          style={{ color: muted }}
+        >
+          Poppins type scale, core palette, and layout rules used across the POS product screens.
+        </p>
+
+        <div className="mt-10 grid gap-8 lg:grid-cols-2">
+          <div className="rounded-[24px] border border-black/5 bg-white p-6 shadow-sm">
+            <p className="text-[15px] font-medium" style={{ color: accent }}>
+              01. Color
+            </p>
+            <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-5">
+              {colors.map((swatch) => (
+                <div key={swatch.hex} className="text-center">
+                  <div
+                    className="mx-auto h-12 w-12 rounded-[12px] border border-black/10"
+                    style={{ background: swatch.hex }}
+                  />
+                  <p className="mt-2 text-[11px] font-medium">{swatch.name}</p>
+                  <p className="text-[10px] font-light text-[#888]">{swatch.hex}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-[24px] border border-black/5 bg-white p-6 shadow-sm">
+            <p className="text-[15px] font-medium" style={{ color: accent }}>
+              02. Typography — Poppins
+            </p>
+            <div className="mt-5 overflow-x-auto">
+              <table className="w-full min-w-[320px] text-left text-[13px]">
+                <thead>
+                  <tr className="border-b border-black/10 text-[#888]">
+                    <th className="py-2 font-medium">Name</th>
+                    <th className="py-2 font-medium">Size</th>
+                    <th className="py-2 font-medium">Line height</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {typeScale.map((row) => (
+                    <tr key={row.name} className="border-b border-black/5">
+                      <td className="py-2 font-medium">{row.name}</td>
+                      <td className="py-2 font-light">{row.size}</td>
+                      <td className="py-2 font-light">{row.lh}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          <div className="rounded-[20px] border border-[#f0e0c8] p-5" style={{ background: soft }}>
+            <p className="text-[15px] font-medium" style={{ color: accent }}>
+              Desktop 1440
+            </p>
+            <p className="mt-2 text-[14px] font-light" style={{ color: muted }}>
+              12 columns · 65px column · 30px gutter
+            </p>
+          </div>
+          <div className="rounded-[20px] border border-[#f0e0c8] p-5" style={{ background: soft }}>
+            <p className="text-[15px] font-medium" style={{ color: accent }}>
+              Desktop 1024
+            </p>
+            <p className="mt-2 text-[14px] font-light" style={{ color: muted }}>
+              12 columns · 50px column · 30px gutter
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* High-fidelity screen exports — native width, no upscale */}
+      <div className="border-t border-[#eee] bg-[#fafafa]">
+        <div className="mx-auto max-w-[920px] px-5 pt-14 text-center sm:px-8">
+          <PillTitle before="High-Fidelity" highlight="Design" />
+          <p
+            className="mx-auto mt-4 max-w-[640px] text-[15px] font-light leading-[1.7]"
+            style={{ color: muted }}
+          >
+            Based on research findings, the product targets computer and tablet. Screens below are
+            tablet designs, shown at native export size for clarity.
+          </p>
+        </div>
+
+        {visualSections.map((section) => (
+          <SectionImage key={section.src} {...section} />
+        ))}
+      </div>
+
+      {/* Point of Sale cover */}
+      <section className="mx-auto max-w-[920px] px-5 py-14 sm:px-8">
+        <AccentHeading>Point of Sale</AccentHeading>
         <p className="mt-2 text-center text-[14px] font-light text-[#6B6B6B]">
           Click the screen to zoom
         </p>
