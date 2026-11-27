@@ -1,12 +1,14 @@
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
 import { FigmaCaseStudyView } from '../components/FigmaCaseStudyView'
+import { PosCaseStudy } from '../components/PosCaseStudy'
 import { RasterCaseStudyView } from '../components/RasterCaseStudyView'
 import { Section } from '../components/Section'
 import { getProject, projectRedirects } from '../data/content'
 
 /**
  * View Case Study:
- * - Projects with a Figma PNG export → sharp raster view (ThinkFlow / AI / POS)
+ * - POS → native HTML orange case study (sharp text/icons, no Figma raster)
+ * - AI Reply / ThinkFlow → sharp PNG export
  * - Fallback → Figma prototype embed
  */
 export function CaseStudyPage() {
@@ -31,10 +33,11 @@ export function CaseStudyPage() {
     )
   }
 
-  if (project.caseStudyFull) {
-    const isPos =
-      project.layout === 'pde' || project.slug === 'pde-auto-group'
+  if (project.layout === 'pde' || project.slug === 'pde-auto-group') {
+    return <PosCaseStudy project={project} backTo={backTo} />
+  }
 
+  if (project.caseStudyFull) {
     return (
       <RasterCaseStudyView
         title={project.caseStudyTitle}
@@ -43,7 +46,6 @@ export function CaseStudyPage() {
         naturalWidth={project.caseStudyFull.width}
         naturalHeight={project.caseStudyFull.height}
         backTo={backTo}
-        showFigmaLink={!isPos}
       />
     )
   }
