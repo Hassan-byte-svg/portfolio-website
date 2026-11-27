@@ -4,7 +4,8 @@ import { BackLink } from './BackLink'
 const FILE_KEY = 'CUlWCD1Ol9KMpnGnjXfHaE'
 
 export function figmaProtoSrc(nodeId: string) {
-  return `https://embed.figma.com/proto/${FILE_KEY}/Portfolio-Website?node-id=${nodeId}&page-id=1%3A5099&scaling=scale-down-width&content-scaling=fixed&hide-ui=1&footer=false&embed-host=share`
+  // min-zoom avoids scale-down-width soft text/logos when an embed is still used
+  return `https://embed.figma.com/proto/${FILE_KEY}/Portfolio-Website?node-id=${nodeId}&page-id=1%3A5099&scaling=min-zoom&content-scaling=fixed&hide-ui=1&footer=false&embed-host=share&hotspot-hints=0`
 }
 
 /** Design-file embed — shows the full designed case study frames (not the interactive proto flow). */

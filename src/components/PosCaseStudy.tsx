@@ -30,10 +30,14 @@ export function PosCaseStudy({
 }) {
   const openUrl = figmaOpenUrl(project.figmaNodeId, 'design')
   const cover = project.image
-  const fullSrc = '/assets/images/projects/pde-auto-group/case-study-full.png'
+  const fullSrc =
+    project.caseStudyFull?.src ??
+    '/assets/images/projects/pde-auto-group/case-study-full.png'
+  const fullW = project.caseStudyFull?.width ?? 1200
+  const fullH = project.caseStudyFull?.height ?? 24454
 
   return (
-    <div className="min-h-screen overflow-y-auto bg-white text-[#0F172B]">
+    <div className="min-h-screen bg-white text-[#0F172B] antialiased">
       <div className="sticky top-0 z-30 border-b border-black/5 bg-white px-4 py-3 sm:px-8">
         <div className="mx-auto flex max-w-[1120px] items-center gap-3">
           <div className="rounded-full border border-black/5 bg-white px-4 py-2 shadow-sm">
@@ -173,19 +177,20 @@ export function PosCaseStudy({
           Full Figma export
         </h2>
         <p className="mx-auto mt-2 max-w-[640px] text-center text-[14px] font-light text-[#6B6B6B]">
-          Complete frame from Figma (1200px wide). Shown at or below natural size — click to zoom.
+          Complete frame from Figma ({fullW}px wide). Shown at or below natural size — click to
+          zoom.
         </p>
-        <div className="mx-auto mt-8 flex justify-center">
+        <div className="mx-auto mt-8 flex justify-center" style={{ maxWidth: fullW }}>
           <ImageLightbox src={fullSrc} alt="Full POS case study from Figma">
             <img
               src={fullSrc}
               alt=""
-              width={1200}
-              height={24454}
+              width={fullW}
+              height={fullH}
               decoding="async"
               loading="lazy"
-              className="block h-auto w-full max-w-[min(100%,1200px)] bg-white"
-              style={{ imageRendering: 'auto' }}
+              className="block h-auto w-full bg-white"
+              style={{ maxWidth: fullW, imageRendering: 'auto' }}
             />
           </ImageLightbox>
         </div>

@@ -41,6 +41,8 @@ export type Project = {
   layout: ProjectLayout
   tags: string[]
   figmaNodeId: string
+  /** Full Figma PNG export for sharp in-site case study (width × height). */
+  caseStudyFull?: { src: string; width: number; height: number }
 }
 
 export const projects: Project[] = [
@@ -64,6 +66,11 @@ export const projects: Project[] = [
     ],
     layout: "ai-reply",
     figmaNodeId: "40-376",
+    caseStudyFull: {
+      src: "/assets/images/projects/ai-supply-management/case-study-full.png",
+      width: 1200,
+      height: 14216,
+    },
     tags: [
       "Human-AI Interaction",
       "Product Design",
@@ -92,6 +99,11 @@ export const projects: Project[] = [
     ],
     layout: "desktop",
     figmaNodeId: "40-717",
+    caseStudyFull: {
+      src: "/assets/images/projects/track-my-time/case-study-full.png",
+      width: 1200,
+      height: 19070,
+    },
     tags: [
       "macOS",
       "Productivity",
@@ -120,6 +132,11 @@ export const projects: Project[] = [
     ],
     layout: "pde",
     figmaNodeId: "40-3055",
+    caseStudyFull: {
+      src: "/assets/images/projects/pde-auto-group/case-study-full.png",
+      width: 1200,
+      height: 24454,
+    },
     tags: [
       "macOS",
       "Productivity",

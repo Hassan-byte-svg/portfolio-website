@@ -8,8 +8,10 @@ export function Layout() {
     /^\/projects\/.+/.test(pathname) || /^\/case-study\/.+/.test(pathname)
 
   if (isCaseStudy) {
+    // No overflow-x-clip / nested overflow-y — those promote compositing layers
+    // that make text, logos, and signs look soft while scrolling.
     return (
-      <div className="min-h-screen overflow-x-clip overflow-y-auto bg-[#0a0a0a]">
+      <div className="min-h-screen bg-[#0a0a0a]">
         <main>
           <Outlet />
         </main>
