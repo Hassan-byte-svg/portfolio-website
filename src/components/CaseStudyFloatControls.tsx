@@ -5,26 +5,20 @@ import type { Project } from '../data/content'
 
 /**
  * Bottom-right floating controls for every case study:
- * - Scroll to top
- * - Next case study (icon)
+ * - Back to top — only after scroll; smooth page scroll (never reloads)
+ * - Next case study icon
  */
 export function CaseStudyFloatControls({
   next,
   from,
   tone = 'dark',
-  /** Always show back-to-top (e.g. Figma embeds where scroll is inside the iframe). */
-  alwaysShowTop = false,
-  /** Optional hook for embed views that cannot use window scroll. */
-  onScrollTop,
 }: {
   next?: Project
   from?: string
   tone?: 'dark' | 'orange'
-  alwaysShowTop?: boolean
-  onScrollTop?: () => void
 }) {
   const [mounted, setMounted] = useState(false)
-  const [showTop, setShowTop] = useState(alwaysShowTop)
+  const [showTop, setShowTop] = useState(false)
   const isOrange = tone === 'orange'
 
   useEffect(() => {
@@ -32,31 +26,21 @@ export function CaseStudyFloatControls({
   }, [])
 
   useEffect(() => {
-    if (alwaysShowTop) {
-      setShowTop(true)
-      return
-    }
-    const onScroll = () => {
-      const y =
-        window.scrollY ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop ||
-        0
-      setShowTop(y > 240)
-    }
+    const readY = () =>
+      window.scrollY ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0
+
+    const onScroll = () => setShowTop(readY() > 240)
+
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [alwaysShowTop])
+  }, [])
 
   const scrollToTop = () => {
-    if (onScrollTop) {
-      onScrollTop()
-      return
-    }
     window.scrollTo({ top: 0, behavior: 'smooth' })
-    document.documentElement.scrollTo({ top: 0, behavior: 'smooth' })
-    document.body.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const btnBase =
