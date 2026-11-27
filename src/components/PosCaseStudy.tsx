@@ -4,6 +4,7 @@ import type { Project } from '../data/content'
 import { BackLink } from './BackLink'
 import { CaseStudyFloatControls } from './CaseStudyFloatControls'
 import { ImageLightbox } from './ImageLightbox'
+import { PosHifiDesign } from './PosHifiDesign'
 import { UserJourneyMap } from './UserJourneyMap'
 
 const accent = '#F5A623'
@@ -322,70 +323,6 @@ const typeScale = [
   { name: 'Body', size: '16px', lh: '22.4px' },
   { name: 'Small', size: '14px', lh: '19.6px' },
 ] as const
-
-const visualSections = [
-  {
-    title: 'Components, wireframes & high-fidelity screens',
-    caption: 'UI kit, low-fi wireframes, login and dashboard — shown at native 1200px width.',
-    src: '/assets/images/projects/pde-auto-group/sections/hifi-overview.png',
-    width: 1200,
-    height: 3200,
-  },
-  {
-    title: 'Inventory & sales',
-    caption: 'Manage inventory categories, item lists, and sales overview.',
-    src: '/assets/images/projects/pde-auto-group/sections/hifi-inventory-sales.png',
-    width: 1200,
-    height: 2800,
-  },
-  {
-    title: 'Billing & settings',
-    caption: 'New bill payment flow, profile, and appearance preferences.',
-    src: '/assets/images/projects/pde-auto-group/sections/hifi-billing-settings.png',
-    width: 1200,
-    height: 2800,
-  },
-] as const
-
-function SectionImage({
-  title,
-  caption,
-  src,
-  width,
-  height,
-}: {
-  title: string
-  caption: string
-  src: string
-  width: number
-  height: number
-}) {
-  return (
-    <section className="mx-auto max-w-[1200px] px-5 py-12 sm:px-8">
-      <h3 className="text-center text-[24px] font-medium sm:text-[28px]" style={{ color: accent }}>
-        {title}
-      </h3>
-      <p className="mx-auto mt-2 max-w-[640px] text-center text-[14px] font-light text-[#6B6B6B]">
-        {caption}
-      </p>
-      <div className="mx-auto mt-8" style={{ maxWidth: width }}>
-        <ImageLightbox src={src} alt={title}>
-          <img
-            src={src}
-            alt=""
-            width={width}
-            height={height}
-            decoding="async"
-            loading="lazy"
-            draggable={false}
-            className="block h-auto w-full bg-white"
-            style={{ maxWidth: width, imageRendering: 'auto' }}
-          />
-        </ImageLightbox>
-      </div>
-    </section>
-  )
-}
 
 /**
  * Full POS case study in HTML (+ native-width screen exports).
@@ -832,23 +769,8 @@ export function PosCaseStudy({
         </div>
       </section>
 
-      {/* High-fidelity screen exports — native width, no upscale */}
-      <div className="border-t border-[#eee] bg-[#fafafa]">
-        <div className="mx-auto max-w-[920px] px-5 pt-14 text-center sm:px-8">
-          <PillTitle before="High-Fidelity" highlight="Design" />
-          <p
-            className="mx-auto mt-4 max-w-[640px] text-[15px] font-light leading-[1.7]"
-            style={{ color: muted }}
-          >
-            Based on research findings, the product targets computer and tablet. Screens below are
-            tablet designs, shown at native export size for clarity.
-          </p>
-        </div>
-
-        {visualSections.map((section) => (
-          <SectionImage key={section.src} {...section} />
-        ))}
-      </div>
+      {/* High-fidelity — real HTML components & screens (selectable text) */}
+      <PosHifiDesign />
 
       {/* Point of Sale cover */}
       <section className="mx-auto max-w-[920px] px-5 py-14 sm:px-8">
