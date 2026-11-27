@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import type { Project } from '../data/content'
 import { BackLink } from './BackLink'
 import { CaseStudyFloatControls } from './CaseStudyFloatControls'
+import { NextProjectCard } from './NextProjectCard'
 
 const FILE_KEY = 'CUlWCD1Ol9KMpnGnjXfHaE'
 
@@ -24,6 +25,7 @@ export function figmaOpenUrl(nodeId: string, mode: 'proto' | 'design' = 'proto')
 
 /**
  * Full-viewport Figma case study (AI Reply / ThinkFlow).
+ * Scroll past the embed to the themed Next Project card at the end.
  */
 export function FigmaCaseStudyView({
   title,
@@ -42,21 +44,22 @@ export function FigmaCaseStudyView({
 }) {
   const src = mode === 'design' ? figmaDesignSrc(nodeId) : figmaProtoSrc(nodeId)
   const isOrange = chrome === 'orange'
+  const scrollerRef = useRef<HTMLDivElement>(null)
   const iframeRef = useRef<HTMLIFrameElement>(null)
 
-  // Cross-origin Figma iframe cannot be scrolled from the parent — reset to start.
   const backToTop = () => {
+    scrollerRef.current?.scrollTo({ top: 0, behavior: 'smooth' })
     const frame = iframeRef.current
-    if (!frame) return
-    frame.src = src
+    if (frame) frame.src = src
   }
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex flex-col ${isOrange ? 'bg-[#fffaf4]' : 'bg-[#0a0a0a]'}`}
+      ref={scrollerRef}
+      className={`fixed inset-0 z-50 overflow-y-auto ${isOrange ? 'bg-[#fffaf4]' : 'bg-[#0a0a0a]'}`}
     >
       <div
-        className={`flex h-[65px] shrink-0 items-center gap-3 border-b px-4 ${
+        className={`sticky top-0 z-10 flex h-[65px] items-center gap-3 border-b px-4 ${
           isOrange
             ? 'border-black/5 bg-[#fffaf4] text-[#0F172B]'
             : 'border-white/10 bg-[#0a0a0a]'
@@ -87,9 +90,11 @@ export function FigmaCaseStudyView({
         title={title}
         src={src}
         allowFullScreen
-        className={`h-full w-full flex-1 border-0 ${isOrange ? 'bg-[#fffaf4]' : 'bg-[#0a0a0a]'}`}
-        style={{ colorScheme: 'only light' }}
+        className={`block w-full border-0 ${isOrange ? 'bg-[#fffaf4]' : 'bg-[#0a0a0a]'}`}
+        style={{ height: 'calc(100dvh - 65px)', colorScheme: 'only light' }}
       />
+
+      {nextProject ? <NextProjectCard project={nextProject} from={backTo} /> : null}
 
       <CaseStudyFloatControls
         next={nextProject}

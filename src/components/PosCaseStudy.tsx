@@ -4,6 +4,7 @@ import type { Project } from '../data/content'
 import { BackLink } from './BackLink'
 import { CaseStudyFloatControls } from './CaseStudyFloatControls'
 import { ImageLightbox } from './ImageLightbox'
+import { NextProjectCard } from './NextProjectCard'
 import { PosHifiDesign } from './PosHifiDesign'
 import { UserJourneyMap } from './UserJourneyMap'
 
@@ -793,6 +794,8 @@ export function PosCaseStudy({
           </ImageLightbox>
         </div>
       </section>
+
+      {nextProject ? <NextProjectCard project={nextProject} from={backTo} /> : null}
 
       <CaseStudyFloatControls next={nextProject} from={backTo} tone="orange" />
     </div>
