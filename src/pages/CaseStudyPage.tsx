@@ -1,15 +1,15 @@
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
-import { FigmaCaseStudyView } from '../components/FigmaCaseStudyView'
+import { AiReplyCaseStudy } from '../components/AiReplyCaseStudy'
 import { PosCaseStudy } from '../components/PosCaseStudy'
-import { RasterCaseStudyView } from '../components/RasterCaseStudyView'
+import { ThinkFlowCaseStudy } from '../components/ThinkFlowCaseStudy'
 import { Section } from '../components/Section'
 import { getNextProject, getProject, projectRedirects } from '../data/content'
 
 /**
- * View Case Study:
- * - POS → native HTML
- * - AI Reply / ThinkFlow → scrollable study + in-flow Next Project footer
- * - Fallback → Figma embed (+ footer after scroll)
+ * View Case Study — all three as real HTML (not PNG / zoom pictures):
+ * - POS → PosCaseStudy
+ * - AI Reply → AiReplyCaseStudy
+ * - ThinkFlow → ThinkFlowCaseStudy
  */
 export function CaseStudyPage() {
   const { slug } = useParams()
@@ -38,38 +38,20 @@ export function CaseStudyPage() {
     return <PosCaseStudy project={project} backTo={backTo} nextProject={nextProject} />
   }
 
-  // Scrollable export so the Next Project thumbnail is a real page footer
-  // (directly under the last frame — not docked/fixed on the viewport).
-  if (project.caseStudyFull) {
-    return (
-      <RasterCaseStudyView
-        title={project.caseStudyTitle}
-        fullSrc={project.caseStudyFull.src}
-        naturalWidth={project.caseStudyFull.width}
-        naturalHeight={project.caseStudyFull.height}
-        backTo={backTo}
-        nextProject={nextProject}
-      />
-    )
+  if (project.layout === 'ai-reply' || project.slug === 'ai-supply-management') {
+    return <AiReplyCaseStudy project={project} backTo={backTo} nextProject={nextProject} />
   }
 
-  if (!project.figmaNodeId) {
-    return (
-      <Section className="py-24 text-center">
-        <h1 className="heading-section">Case study not found</h1>
-        <Link to="/projects" className="label-nav mt-6 inline-block hover:text-ink">
-          ← Back to Work
-        </Link>
-      </Section>
-    )
+  if (project.layout === 'desktop' || project.slug === 'track-my-time') {
+    return <ThinkFlowCaseStudy project={project} backTo={backTo} nextProject={nextProject} />
   }
 
   return (
-    <FigmaCaseStudyView
-      title={project.caseStudyTitle}
-      nodeId={project.figmaNodeId}
-      backTo={backTo}
-      nextProject={nextProject}
-    />
+    <Section className="py-24 text-center">
+      <h1 className="heading-section">Case study not found</h1>
+      <Link to="/projects" className="label-nav mt-6 inline-block hover:text-ink">
+        ← Back to Work
+      </Link>
+    </Section>
   )
 }
