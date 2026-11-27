@@ -68,7 +68,7 @@ export const caseStudies: CaseStudy[] = [
     timeline: '3.5 Mon',
     platform: 'Android Mobile',
     tools: [],
-    coverImage: '/assets/images/projects/ai-supply-management/cover.png',
+    coverImage: '/assets/images/projects/ai-supply-management/cover.jpg',
     figmaUrl: figmaUrl('40-376'),
     overview:
       'AI Reply explores how an assistant can draft routine replies while keeping the user’s tone and intent intact — so speed does not replace personal voice.',
@@ -109,7 +109,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     gallery: [
       {
-        src: '/assets/images/projects/ai-supply-management/cover.png',
+        src: '/assets/images/projects/ai-supply-management/cover.jpg',
         alt: 'AI Reply Messaging App cover',
       },
       {
@@ -141,7 +141,7 @@ export const caseStudies: CaseStudy[] = [
     timeline: '2024',
     platform: 'macOS',
     tools: [],
-    coverImage: '/assets/images/projects/track-my-time/cover.png',
+    coverImage: '/assets/images/projects/track-my-time/cover.jpg',
     figmaUrl: figmaUrl('40-717'),
     overview:
       'ThinkFlow was envisioned as a productivity platform that helps users stay focused by organizing their tools, tasks, and workflows into dedicated workspaces, reducing the friction caused by constant context switching.',
@@ -171,7 +171,7 @@ export const caseStudies: CaseStudy[] = [
         title: 'Dedicated workspaces',
         description:
           'Organize tools, tasks, and workflows into workspaces (for example Product Design, Frontend, Research, Marketing) so context stays local.',
-        image: '/assets/images/projects/track-my-time/cover.png',
+        image: '/assets/images/projects/track-my-time/cover.jpg',
       },
       {
         title: 'Application grid',
@@ -182,7 +182,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     gallery: [
       {
-        src: '/assets/images/projects/track-my-time/cover.png',
+        src: '/assets/images/projects/track-my-time/cover.jpg',
         alt: 'ThinkFlow macOS productivity app cover',
       },
     ],
@@ -210,7 +210,7 @@ export const caseStudies: CaseStudy[] = [
     timeline: '2023',
     platform: 'Web',
     tools: [],
-    coverImage: '/assets/images/projects/pde-auto-group/cover.png',
+    coverImage: '/assets/images/projects/pde-auto-group/cover.jpg',
     figmaUrl: figmaUrl('40-3055'),
     overview:
       'Develop a customer-focused POS system to improve efficiency and competitiveness of offline auto parts stores.',
@@ -240,7 +240,7 @@ export const caseStudies: CaseStudy[] = [
       {
         title: 'Point of Sale',
         description: 'A customer-focused POS experience tailored to offline auto parts retail workflows.',
-        image: '/assets/images/projects/pde-auto-group/cover.png',
+        image: '/assets/images/projects/pde-auto-group/cover.jpg',
       },
       {
         title: 'Inventory & transactions',
@@ -251,7 +251,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     gallery: [
       {
-        src: '/assets/images/projects/pde-auto-group/cover.png',
+        src: '/assets/images/projects/pde-auto-group/cover.jpg',
         alt: 'POS Auto Spare Parts cover',
       },
     ],

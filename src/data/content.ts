@@ -58,7 +58,7 @@ export const projects: Project[] = [
     role: "Product Designer (UI/UX)",
     platform: "Android Mobile",
     duration: "3.5 Mon",
-    image: "/assets/images/projects/ai-supply-management/cover.png",
+    image: "/assets/images/projects/ai-supply-management/cover.jpg",
     video: "/assets/videos/projects/ai-supply-management.mp4",
     gallery: [
       "/assets/images/projects/ai-supply-management/01.jpg",
@@ -91,7 +91,7 @@ export const projects: Project[] = [
     role: "UX Design",
     platform: "macOS",
     duration: "2024",
-    image: "/assets/images/projects/track-my-time/cover.png",
+    image: "/assets/images/projects/track-my-time/cover.jpg",
     video: "/assets/videos/projects/track-my-time.mp4",
     gallery: [
       "/assets/images/projects/track-my-time/desktop-01.jpg",
@@ -124,7 +124,7 @@ export const projects: Project[] = [
     role: "UX UI",
     platform: "Web",
     duration: "2023",
-    image: "/assets/images/projects/pde-auto-group/cover.png",
+    image: "/assets/images/projects/pde-auto-group/cover.jpg",
     video: "/assets/videos/projects/pde-auto-group.mp4",
     gallery: [
       "/assets/images/projects/pde-auto-group/thumbnail.jpg",

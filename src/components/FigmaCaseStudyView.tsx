@@ -85,6 +85,7 @@ export function FigmaCaseStudyView({
         next={nextProject}
         from={backTo}
         tone={isOrange ? 'orange' : 'dark'}
+        alwaysShowTop
       />
     </div>
   )

@@ -12,13 +12,16 @@ export function CaseStudyFloatControls({
   next,
   from,
   tone = 'dark',
+  alwaysShowTop = false,
 }: {
   next?: Project
   from?: string
   tone?: 'dark' | 'orange'
+  /** Figma embeds have no page scroll — keep page-up visible above next. */
+  alwaysShowTop?: boolean
 }) {
   const [mounted, setMounted] = useState(false)
-  const [showTop, setShowTop] = useState(false)
+  const [showTop, setShowTop] = useState(alwaysShowTop)
   const isOrange = tone === 'orange'
 
   useEffect(() => {
@@ -26,6 +29,11 @@ export function CaseStudyFloatControls({
   }, [])
 
   useEffect(() => {
+    if (alwaysShowTop) {
+      setShowTop(true)
+      return
+    }
+
     const readY = () =>
       window.scrollY ||
       document.documentElement.scrollTop ||
@@ -37,7 +45,7 @@ export function CaseStudyFloatControls({
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [alwaysShowTop])
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
