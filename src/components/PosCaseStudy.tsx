@@ -773,12 +773,9 @@ export function PosCaseStudy({
       {/* High-fidelity — real HTML components & screens (selectable text) */}
       <PosHifiDesign />
 
-      {/* Point of Sale cover */}
-      <section className="mx-auto max-w-[920px] px-5 py-14 sm:px-8">
+      {/* Point of Sale cover — flush into Next Project footer */}
+      <section className="mx-auto max-w-[920px] px-5 pb-0 pt-14 sm:px-8">
         <AccentHeading>Point of Sale</AccentHeading>
-        <p className="mt-2 text-center text-[14px] font-light text-[#6B6B6B]">
-          Click the screen to zoom
-        </p>
         <div className="mx-auto mt-8 max-w-[min(100%,1400px)]">
           <ImageLightbox src={cover} alt="POS Auto Spare Parts dashboard">
             <img

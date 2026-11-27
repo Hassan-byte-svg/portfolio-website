@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import type { Project, TagTone } from '../data/content'
 
 const themeBg: Record<TagTone, string> = {
-  blue: '#00A0C2',
+  blue: '#00A8C5',
   green: '#75B798',
   orange: '#F39243',
 }

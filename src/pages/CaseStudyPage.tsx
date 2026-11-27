@@ -1,13 +1,13 @@
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
-import { FigmaCaseStudyView } from '../components/FigmaCaseStudyView'
 import { PosCaseStudy } from '../components/PosCaseStudy'
+import { RasterCaseStudyView } from '../components/RasterCaseStudyView'
 import { Section } from '../components/Section'
 import { getNextProject, getProject, projectRedirects } from '../data/content'
 
 /**
  * View Case Study:
- * - POS → native HTML
- * - AI Reply / ThinkFlow → original Figma prototype embeds
+ * - POS → native HTML + Next Project footer
+ * - AI Reply / ThinkFlow → designed study scroll + same Next Project footer
  */
 export function CaseStudyPage() {
   const { slug } = useParams()
@@ -36,23 +36,25 @@ export function CaseStudyPage() {
     return <PosCaseStudy project={project} backTo={backTo} nextProject={nextProject} />
   }
 
-  if (!project.figmaNodeId) {
+  if (project.caseStudyFull) {
     return (
-      <Section className="py-24 text-center">
-        <h1 className="heading-section">Case study not found</h1>
-        <Link to="/projects" className="label-nav mt-6 inline-block hover:text-ink">
-          ← Back to Work
-        </Link>
-      </Section>
+      <RasterCaseStudyView
+        title={project.caseStudyTitle}
+        fullSrc={project.caseStudyFull.src}
+        naturalWidth={project.caseStudyFull.width}
+        naturalHeight={project.caseStudyFull.height}
+        backTo={backTo}
+        nextProject={nextProject}
+      />
     )
   }
 
   return (
-    <FigmaCaseStudyView
-      title={project.caseStudyTitle}
-      nodeId={project.figmaNodeId}
-      backTo={backTo}
-      nextProject={nextProject}
-    />
+    <Section className="py-24 text-center">
+      <h1 className="heading-section">Case study not found</h1>
+      <Link to="/projects" className="label-nav mt-6 inline-block hover:text-ink">
+        ← Back to Work
+      </Link>
+    </Section>
   )
 }

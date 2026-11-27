@@ -2,12 +2,11 @@ import { Link } from 'react-router-dom'
 import type { Project } from '../data/content'
 import { BackLink } from './BackLink'
 import { CaseStudyFloatControls } from './CaseStudyFloatControls'
-import { ImageLightbox } from './ImageLightbox'
 import { NextProjectCard } from './NextProjectCard'
 
 /**
- * Sharp scrollable case study from a Figma PNG export.
- * Next Project card is an in-flow footer after the study (not fixed).
+ * Scrollable designed case study (Figma export) + in-flow Next Project footer.
+ * No lightbox / zoom — reads as the study, not a clickable picture.
  */
 export function RasterCaseStudyView({
   title,
@@ -41,25 +40,19 @@ export function RasterCaseStudyView({
         </div>
       </div>
 
-      <div className="mx-auto px-4 py-6 sm:px-8">
-        <div className="mx-auto" style={{ maxWidth: naturalWidth }}>
-          <ImageLightbox src={fullSrc} alt={title}>
-            <img
-              src={fullSrc}
-              alt=""
-              width={naturalWidth}
-              height={naturalHeight}
-              decoding="async"
-              fetchPriority="high"
-              draggable={false}
-              className="block h-auto w-full bg-white"
-              style={{
-                maxWidth: naturalWidth,
-                imageRendering: 'auto',
-              }}
-            />
-          </ImageLightbox>
-        </div>
+      {/* Flush to footer — no bottom padding / gap */}
+      <div className="mx-auto w-full" style={{ maxWidth: naturalWidth }}>
+        <img
+          src={fullSrc}
+          alt=""
+          width={naturalWidth}
+          height={naturalHeight}
+          decoding="async"
+          fetchPriority="high"
+          draggable={false}
+          className="block h-auto w-full bg-[#0a0a0a]"
+          style={{ maxWidth: naturalWidth, imageRendering: 'auto' }}
+        />
       </div>
 
       {nextProject ? <NextProjectCard project={nextProject} from={backTo} /> : null}
