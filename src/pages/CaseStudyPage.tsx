@@ -2,7 +2,7 @@ import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
 import { FigmaCaseStudyView } from '../components/FigmaCaseStudyView'
 import { PosCaseStudy } from '../components/PosCaseStudy'
 import { Section } from '../components/Section'
-import { getProject, projectRedirects } from '../data/content'
+import { getNextProject, getProject, projectRedirects } from '../data/content'
 
 /**
  * View Case Study:
@@ -14,6 +14,7 @@ export function CaseStudyPage() {
   const location = useLocation()
   const redirectTo = slug ? projectRedirects[slug] : undefined
   const project = !redirectTo && slug ? getProject(slug) : undefined
+  const nextProject = project ? getNextProject(project.slug) : undefined
   const backTo = (location.state as { from?: string } | null)?.from || '/projects'
 
   if (redirectTo) {
@@ -32,7 +33,7 @@ export function CaseStudyPage() {
   }
 
   if (project.layout === 'pde' || project.slug === 'pde-auto-group') {
-    return <PosCaseStudy project={project} backTo={backTo} />
+    return <PosCaseStudy project={project} backTo={backTo} nextProject={nextProject} />
   }
 
   if (!project.figmaNodeId) {
@@ -51,6 +52,7 @@ export function CaseStudyPage() {
       title={project.caseStudyTitle}
       nodeId={project.figmaNodeId}
       backTo={backTo}
+      nextProject={nextProject}
     />
   )
 }

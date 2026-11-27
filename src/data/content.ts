@@ -236,6 +236,13 @@ export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug)
 }
 
+/** Next project in the Work list (wraps around). */
+export function getNextProject(slug: string) {
+  const index = projects.findIndex((project) => project.slug === slug)
+  if (index < 0) return undefined
+  return projects[(index + 1) % projects.length]
+}
+
 export function getResearch(slug: string) {
   return research.find((item) => item.slug === slug)
 }

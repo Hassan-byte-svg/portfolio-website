@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import type { Project } from '../data/content'
 import { BackLink } from './BackLink'
 import { ImageLightbox } from './ImageLightbox'
+import { NextCaseStudyLink } from './NextCaseStudyLink'
 import { UserJourneyMap } from './UserJourneyMap'
 
 const accent = '#F5A623'
@@ -393,9 +394,11 @@ function SectionImage({
 export function PosCaseStudy({
   project,
   backTo = '/projects',
+  nextProject,
 }: {
   project: Project
   backTo?: string
+  nextProject?: Project
 }) {
   const cover = project.image
 
@@ -869,7 +872,7 @@ export function PosCaseStudy({
         </div>
       </section>
 
-      <div className="mx-auto flex max-w-[920px] justify-start px-5 py-12 sm:px-8">
+      <div className="mx-auto flex max-w-[920px] flex-col items-stretch justify-between gap-6 px-5 py-12 sm:flex-row sm:items-center sm:px-8">
         <Link
           to={backTo}
           className="text-[16px] font-normal transition-opacity hover:opacity-60"
@@ -877,6 +880,9 @@ export function PosCaseStudy({
         >
           ← Back to Work
         </Link>
+        {nextProject ? (
+          <NextCaseStudyLink next={nextProject} from={backTo} tone="orange" />
+        ) : null}
       </div>
     </div>
   )

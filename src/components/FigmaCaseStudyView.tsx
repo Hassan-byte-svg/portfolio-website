@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
+import type { Project } from '../data/content'
 import { BackLink } from './BackLink'
+import { NextCaseStudyLink } from './NextCaseStudyLink'
 
 const FILE_KEY = 'CUlWCD1Ol9KMpnGnjXfHaE'
 
@@ -29,12 +31,14 @@ export function FigmaCaseStudyView({
   backTo = '/projects',
   mode = 'proto',
   chrome = 'dark',
+  nextProject,
 }: {
   title: string
   nodeId: string
   backTo?: string
   mode?: 'proto' | 'design'
   chrome?: 'dark' | 'orange'
+  nextProject?: Project
 }) {
   const src = mode === 'design' ? figmaDesignSrc(nodeId) : figmaProtoSrc(nodeId)
   const isOrange = chrome === 'orange'
@@ -77,6 +81,20 @@ export function FigmaCaseStudyView({
         className={`h-full w-full flex-1 border-0 ${isOrange ? 'bg-[#fffaf4]' : 'bg-[#0a0a0a]'}`}
         style={{ colorScheme: 'only light' }}
       />
+
+      {nextProject ? (
+        <div
+          className={`flex shrink-0 items-center justify-center border-t px-4 py-4 ${
+            isOrange ? 'border-black/5 bg-[#fffaf4]' : 'border-white/10 bg-[#0a0a0a]'
+          }`}
+        >
+          <NextCaseStudyLink
+            next={nextProject}
+            from={backTo}
+            tone={isOrange ? 'orange' : 'dark'}
+          />
+        </div>
+      ) : null}
     </div>
   )
 }
