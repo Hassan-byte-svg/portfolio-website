@@ -1,13 +1,15 @@
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
 import { FigmaCaseStudyView } from '../components/FigmaCaseStudyView'
 import { PosCaseStudy } from '../components/PosCaseStudy'
+import { RasterCaseStudyView } from '../components/RasterCaseStudyView'
 import { Section } from '../components/Section'
 import { getNextProject, getProject, projectRedirects } from '../data/content'
 
 /**
  * View Case Study:
- * - POS → native HTML orange case study
- * - AI Reply / ThinkFlow → Figma prototype embed (unchanged frame)
+ * - POS → native HTML
+ * - AI Reply / ThinkFlow → scrollable study + in-flow Next Project footer
+ * - Fallback → Figma embed (+ footer after scroll)
  */
 export function CaseStudyPage() {
   const { slug } = useParams()
@@ -34,6 +36,21 @@ export function CaseStudyPage() {
 
   if (project.layout === 'pde' || project.slug === 'pde-auto-group') {
     return <PosCaseStudy project={project} backTo={backTo} nextProject={nextProject} />
+  }
+
+  // Scrollable export so the Next Project thumbnail is a real page footer
+  // (directly under the last frame — not docked/fixed on the viewport).
+  if (project.caseStudyFull) {
+    return (
+      <RasterCaseStudyView
+        title={project.caseStudyTitle}
+        fullSrc={project.caseStudyFull.src}
+        naturalWidth={project.caseStudyFull.width}
+        naturalHeight={project.caseStudyFull.height}
+        backTo={backTo}
+        nextProject={nextProject}
+      />
+    )
   }
 
   if (!project.figmaNodeId) {

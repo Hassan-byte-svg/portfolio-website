@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom'
+import type { Project } from '../data/content'
 import { BackLink } from './BackLink'
+import { CaseStudyFloatControls } from './CaseStudyFloatControls'
 import { ImageLightbox } from './ImageLightbox'
+import { NextProjectCard } from './NextProjectCard'
 
 /**
  * Sharp scrollable case study from a Figma PNG export.
- * Never CSS-upscales past the export’s natural width.
+ * Next Project card is an in-flow footer after the study (not fixed).
  */
 export function RasterCaseStudyView({
   title,
@@ -12,20 +15,19 @@ export function RasterCaseStudyView({
   naturalWidth,
   naturalHeight,
   backTo = '/projects',
+  nextProject,
 }: {
   title: string
   fullSrc: string
   naturalWidth: number
   naturalHeight: number
   backTo?: string
+  nextProject?: Project
 }) {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
       <div className="sticky top-0 z-30 border-b border-white/10 bg-[#0a0a0a] px-4 py-3 sm:px-8">
-        <div
-          className="mx-auto flex items-center gap-3"
-          style={{ maxWidth: naturalWidth }}
-        >
+        <div className="mx-auto flex items-center gap-3" style={{ maxWidth: naturalWidth }}>
           <div className="rounded-full bg-white px-4 py-2 shadow-sm">
             <BackLink fallback={backTo} />
           </div>
@@ -59,6 +61,10 @@ export function RasterCaseStudyView({
           </ImageLightbox>
         </div>
       </div>
+
+      {nextProject ? <NextProjectCard project={nextProject} from={backTo} /> : null}
+
+      <CaseStudyFloatControls tone="dark" />
     </div>
   )
 }
