@@ -12,7 +12,6 @@ const accentSoft = '#FFF3E0'
 const grayBtn = '#D1D1D1'
 const ink = '#0F172B'
 const muted = '#555555'
-const soft = '#FFF8F0'
 const dash = '#E8D4FF'
 
 function PillLabel({ children }: { children: string }) {
