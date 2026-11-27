@@ -872,18 +872,11 @@ export function PosCaseStudy({
         </div>
       </section>
 
-      <div className="mx-auto flex max-w-[920px] flex-col items-stretch justify-between gap-6 px-5 py-12 sm:flex-row sm:items-center sm:px-8">
-        <Link
-          to={backTo}
-          className="text-[16px] font-normal transition-opacity hover:opacity-60"
-          style={{ color: ink }}
-        >
-          ← Back to Work
-        </Link>
-        {nextProject ? (
+      {nextProject ? (
+        <div className="mx-auto flex max-w-[920px] justify-center px-5 py-12 sm:justify-end sm:px-8">
           <NextCaseStudyLink next={nextProject} from={backTo} tone="orange" />
-        ) : null}
-      </div>
+        </div>
+      ) : null}
     </div>
   )
 }
