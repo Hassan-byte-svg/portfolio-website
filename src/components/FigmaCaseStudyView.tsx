@@ -22,8 +22,7 @@ export function figmaOpenUrl(nodeId: string, mode: 'proto' | 'design' = 'proto')
 }
 
 /**
- * Full-viewport Figma case study (AI Reply / ThinkFlow) — same embed as before.
- * Floating next + back-to-top controls only; study content unchanged.
+ * Full-viewport Figma case study (AI Reply / ThinkFlow).
  */
 export function FigmaCaseStudyView({
   title,

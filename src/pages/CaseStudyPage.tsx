@@ -1,13 +1,15 @@
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
 import { FigmaCaseStudyView } from '../components/FigmaCaseStudyView'
 import { PosCaseStudy } from '../components/PosCaseStudy'
+import { RasterCaseStudyView } from '../components/RasterCaseStudyView'
 import { Section } from '../components/Section'
 import { getNextProject, getProject, projectRedirects } from '../data/content'
 
 /**
  * View Case Study:
- * - POS → native HTML orange case study
- * - AI Reply / ThinkFlow → Figma prototype embed
+ * - POS → native HTML
+ * - AI Reply / ThinkFlow → scrollable Figma PNG (page scroll powers back-to-top)
+ * - Fallback → Figma embed
  */
 export function CaseStudyPage() {
   const { slug } = useParams()
@@ -34,6 +36,20 @@ export function CaseStudyPage() {
 
   if (project.layout === 'pde' || project.slug === 'pde-auto-group') {
     return <PosCaseStudy project={project} backTo={backTo} nextProject={nextProject} />
+  }
+
+  // Scrollable PNG so back-to-top can detect page scroll (Figma iframe cannot).
+  if (project.caseStudyFull) {
+    return (
+      <RasterCaseStudyView
+        title={project.caseStudyTitle}
+        fullSrc={project.caseStudyFull.src}
+        naturalWidth={project.caseStudyFull.width}
+        naturalHeight={project.caseStudyFull.height}
+        backTo={backTo}
+        nextProject={nextProject}
+      />
+    )
   }
 
   if (!project.figmaNodeId) {
