@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import type { Project } from '../data/content'
 import { BackLink } from './BackLink'
@@ -41,6 +42,14 @@ export function FigmaCaseStudyView({
 }) {
   const src = mode === 'design' ? figmaDesignSrc(nodeId) : figmaProtoSrc(nodeId)
   const isOrange = chrome === 'orange'
+  const iframeRef = useRef<HTMLIFrameElement>(null)
+
+  // Cross-origin Figma iframe cannot be scrolled from the parent — reset to start.
+  const backToTop = () => {
+    const frame = iframeRef.current
+    if (!frame) return
+    frame.src = src
+  }
 
   return (
     <div
@@ -74,6 +83,7 @@ export function FigmaCaseStudyView({
       </div>
 
       <iframe
+        ref={iframeRef}
         title={title}
         src={src}
         allowFullScreen
@@ -86,6 +96,7 @@ export function FigmaCaseStudyView({
         from={backTo}
         tone={isOrange ? 'orange' : 'dark'}
         alwaysShowTop
+        onBackToTop={backToTop}
       />
     </div>
   )

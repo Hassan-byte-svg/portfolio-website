@@ -13,12 +13,15 @@ export function CaseStudyFloatControls({
   from,
   tone = 'dark',
   alwaysShowTop = false,
+  onBackToTop,
 }: {
   next?: Project
   from?: string
   tone?: 'dark' | 'orange'
   /** Figma embeds have no page scroll — keep page-up visible above next. */
   alwaysShowTop?: boolean
+  /** Optional override (e.g. reset Figma iframe to the start). */
+  onBackToTop?: () => void
 }) {
   const [mounted, setMounted] = useState(false)
   const [showTop, setShowTop] = useState(alwaysShowTop)
@@ -44,11 +47,21 @@ export function CaseStudyFloatControls({
 
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    document.addEventListener('scroll', onScroll, { passive: true, capture: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      document.removeEventListener('scroll', onScroll, true)
+    }
   }, [alwaysShowTop])
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    if (onBackToTop) {
+      onBackToTop()
+      return
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+    document.documentElement.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+    document.body.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }
 
   const btnBase =
