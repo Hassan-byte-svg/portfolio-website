@@ -24,8 +24,8 @@ export function figmaOpenUrl(nodeId: string, mode: 'proto' | 'design' = 'proto')
 }
 
 /**
- * Figma case study (AI Reply / ThinkFlow).
- * Next Project card is a normal footer after the embed — not docked/fixed to the viewport.
+ * Original Figma prototype case study (AI Reply / ThinkFlow).
+ * Full-viewport embed; Next Project footer after scrolling past the study.
  */
 export function FigmaCaseStudyView({
   title,
@@ -94,7 +94,6 @@ export function FigmaCaseStudyView({
         style={{ height: 'calc(100dvh - 65px)', colorScheme: 'only light' }}
       />
 
-      {/* In-flow footer — appears after scrolling past the case study */}
       {nextProject ? <NextProjectCard project={nextProject} from={backTo} /> : null}
 
       <CaseStudyFloatControls

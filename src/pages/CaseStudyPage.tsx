@@ -1,15 +1,13 @@
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
-import { AiReplyCaseStudy } from '../components/AiReplyCaseStudy'
+import { FigmaCaseStudyView } from '../components/FigmaCaseStudyView'
 import { PosCaseStudy } from '../components/PosCaseStudy'
-import { ThinkFlowCaseStudy } from '../components/ThinkFlowCaseStudy'
 import { Section } from '../components/Section'
 import { getNextProject, getProject, projectRedirects } from '../data/content'
 
 /**
- * View Case Study — all three as real HTML (not PNG / zoom pictures):
- * - POS → PosCaseStudy
- * - AI Reply → AiReplyCaseStudy
- * - ThinkFlow → ThinkFlowCaseStudy
+ * View Case Study:
+ * - POS → native HTML
+ * - AI Reply / ThinkFlow → original Figma prototype embeds
  */
 export function CaseStudyPage() {
   const { slug } = useParams()
@@ -38,20 +36,23 @@ export function CaseStudyPage() {
     return <PosCaseStudy project={project} backTo={backTo} nextProject={nextProject} />
   }
 
-  if (project.layout === 'ai-reply' || project.slug === 'ai-supply-management') {
-    return <AiReplyCaseStudy project={project} backTo={backTo} nextProject={nextProject} />
-  }
-
-  if (project.layout === 'desktop' || project.slug === 'track-my-time') {
-    return <ThinkFlowCaseStudy project={project} backTo={backTo} nextProject={nextProject} />
+  if (!project.figmaNodeId) {
+    return (
+      <Section className="py-24 text-center">
+        <h1 className="heading-section">Case study not found</h1>
+        <Link to="/projects" className="label-nav mt-6 inline-block hover:text-ink">
+          ← Back to Work
+        </Link>
+      </Section>
+    )
   }
 
   return (
-    <Section className="py-24 text-center">
-      <h1 className="heading-section">Case study not found</h1>
-      <Link to="/projects" className="label-nav mt-6 inline-block hover:text-ink">
-        ← Back to Work
-      </Link>
-    </Section>
+    <FigmaCaseStudyView
+      title={project.caseStudyTitle}
+      nodeId={project.figmaNodeId}
+      backTo={backTo}
+      nextProject={nextProject}
+    />
   )
 }
