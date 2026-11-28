@@ -695,6 +695,7 @@ export function PosCaseStudy({
       {/* Light study inverts cleanly to black bg + white type in dark mode */}
       <div
         className="transition-[filter] duration-200"
+        data-case-invert={isDark ? '1' : '0'}
         style={{
           background: '#ffffff',
           color: ink,
@@ -1074,7 +1075,7 @@ export function PosCaseStudy({
               height={1030}
               decoding="async"
               loading="lazy"
-              className="mx-auto block h-auto w-full max-w-[1400px] rounded-[20px] object-contain"
+              className="case-study-screen mx-auto block h-auto w-full max-w-[1400px] rounded-[20px] object-contain"
               style={{ imageRendering: 'auto' }}
             />
           </ImageLightbox>

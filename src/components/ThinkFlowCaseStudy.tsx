@@ -253,6 +253,7 @@ export function ThinkFlowCaseStudy({
       {/* Native light study → invert for dark mode; copy stays selectable HTML */}
       <div
         className="select-text transition-[filter] duration-200"
+        data-case-invert={isDark ? '1' : '0'}
         style={{
           background: '#ffffff',
           color: ink,
@@ -260,7 +261,7 @@ export function ThinkFlowCaseStudy({
         }}
       >
       {/* 2. Hero — the Mac mockup on mint, full-bleed */}
-      <header className="w-full" style={{ background: heroMint }}>
+      <header className="case-study-screen w-full" style={{ background: heroMint }}>
         <img
           src={`${img}/hero.png`}
           alt="ThinkFlow workspace dashboard shown on an iMac"
@@ -548,7 +549,7 @@ export function ThinkFlowCaseStudy({
               loading="lazy"
               decoding="async"
               draggable={false}
-              className="block h-auto w-full"
+              className="case-study-screen block h-auto w-full"
             />
           </section>
 
@@ -562,7 +563,7 @@ export function ThinkFlowCaseStudy({
               loading="lazy"
               decoding="async"
               draggable={false}
-              className="block h-auto w-full"
+              className="case-study-screen block h-auto w-full"
             />
           </section>
 
@@ -686,7 +687,7 @@ export function ThinkFlowCaseStudy({
               loading="lazy"
               decoding="async"
               draggable={false}
-              className="block h-auto w-full"
+              className="case-study-screen block h-auto w-full"
             />
           </section>
 
@@ -711,7 +712,7 @@ export function ThinkFlowCaseStudy({
               loading="lazy"
               decoding="async"
               draggable={false}
-              className="block h-auto w-full"
+              className="case-study-screen block h-auto w-full"
             />
             <div className="mt-[clamp(3rem,7vw,6rem)] grid items-center gap-8 md:grid-cols-[53%_minmax(0,1fr)]">
               <img
@@ -722,7 +723,7 @@ export function ThinkFlowCaseStudy({
                 loading="lazy"
                 decoding="async"
                 draggable={false}
-                className="block h-auto w-full max-w-[498px]"
+                className="case-study-screen block h-auto w-full max-w-[498px]"
               />
               <div>
                 <CalloutTitle>App Switcher</CalloutTitle>
@@ -745,7 +746,7 @@ export function ThinkFlowCaseStudy({
               loading="lazy"
               decoding="async"
               draggable={false}
-              className="block h-auto w-full"
+              className="case-study-screen block h-auto w-full"
             />
             <div className="mt-[clamp(3rem,7vw,6rem)] grid items-center gap-8 md:grid-cols-[54%_minmax(0,1fr)]">
               <img
@@ -756,7 +757,7 @@ export function ThinkFlowCaseStudy({
                 loading="lazy"
                 decoding="async"
                 draggable={false}
-                className="block h-auto w-full max-w-[502px]"
+                className="case-study-screen block h-auto w-full max-w-[502px]"
               />
               <div>
                 <CalloutTitle>Workspace Switcher</CalloutTitle>
@@ -773,33 +774,35 @@ export function ThinkFlowCaseStudy({
           <section className="pt-[clamp(3rem,7vw,6rem)]">
             <div className="grid items-start gap-10 md:grid-cols-[38%_minmax(0,1fr)] md:gap-6">
               <div className="space-y-6">
-                <div className="rounded-[10px] p-4" style={{ background: cardBg }}>
+                <div className="case-study-screen space-y-6">
+                  <div className="rounded-[10px] p-4" style={{ background: cardBg }}>
+                    <div
+                      className="flex items-center gap-3 rounded-[8px] border bg-white px-4 py-3 text-[16px]"
+                      style={{ borderColor: line, color: muted }}
+                    >
+                      <SearchIcon />
+                      <span>Search apps</span>
+                    </div>
+                  </div>
                   <div
-                    className="flex items-center gap-3 rounded-[8px] border bg-white px-4 py-3 text-[16px]"
-                    style={{ borderColor: line, color: muted }}
+                    className="flex flex-col items-center rounded-[10px] px-4 py-8 text-center"
+                    style={{ background: cardBg }}
                   >
-                    <SearchIcon />
-                    <span>Search apps</span>
+                    <span style={{ color: muted }}>
+                      <SearchIcon size={34} />
+                    </span>
+                    <p className="mt-3 text-[18px] font-medium" style={{ color: '#4F4F4F' }}>
+                      No App Found
+                    </p>
+                    <p className="mt-1 text-[14px]" style={{ color: muted }}>
+                      Try adjusting your search or filters
+                    </p>
                   </div>
                 </div>
                 <p className="max-w-[300px] text-[14px] leading-[1.65] sm:text-[15px]" style={{ color: muted }}>
                   The search feature allows users to quickly locate and access applications, reducing
                   navigation time and enabling a faster, more efficient workflow.
                 </p>
-                <div
-                  className="flex flex-col items-center rounded-[10px] px-4 py-8 text-center"
-                  style={{ background: cardBg }}
-                >
-                  <span style={{ color: muted }}>
-                    <SearchIcon size={34} />
-                  </span>
-                  <p className="mt-3 text-[18px] font-medium" style={{ color: '#4F4F4F' }}>
-                    No App Found
-                  </p>
-                  <p className="mt-1 text-[14px]" style={{ color: muted }}>
-                    Try adjusting your search or filters
-                  </p>
-                </div>
                 <p className="max-w-[300px] text-[14px] leading-[1.65] sm:text-[15px]" style={{ color: muted }}>
                   No applications match the current search criteria. Try adjusting your search terms or explore
                   available applications from the workspace directory.
@@ -813,7 +816,7 @@ export function ThinkFlowCaseStudy({
                 loading="lazy"
                 decoding="async"
                 draggable={false}
-                className="ml-auto block h-auto w-full max-w-[665px]"
+                className="case-study-screen ml-auto block h-auto w-full max-w-[665px]"
               />
             </div>
           </section>
@@ -828,7 +831,7 @@ export function ThinkFlowCaseStudy({
               loading="lazy"
               decoding="async"
               draggable={false}
-              className="block h-auto w-full"
+              className="case-study-screen block h-auto w-full"
             />
             <div className="mt-[clamp(3rem,7vw,6rem)] grid items-center gap-8 md:grid-cols-[62%_minmax(0,1fr)]">
               <img
@@ -839,7 +842,7 @@ export function ThinkFlowCaseStudy({
                 loading="lazy"
                 decoding="async"
                 draggable={false}
-                className="-ml-2 block h-auto w-full max-w-[628px]"
+                className="case-study-screen -ml-2 block h-auto w-full max-w-[628px]"
               />
               <div>
                 <CalloutTitle>All Applications Selected</CalloutTitle>
@@ -889,7 +892,7 @@ export function ThinkFlowCaseStudy({
                 loading="lazy"
                 decoding="async"
                 draggable={false}
-                className="ml-auto block h-auto w-full max-w-[665px]"
+                className="case-study-screen ml-auto block h-auto w-full max-w-[665px]"
               />
             </div>
           </section>
@@ -904,7 +907,7 @@ export function ThinkFlowCaseStudy({
               loading="lazy"
               decoding="async"
               draggable={false}
-              className="block h-auto w-full"
+              className="case-study-screen block h-auto w-full"
             />
 
             <div className="relative mt-[clamp(3rem,7vw,6rem)] space-y-12 pb-[clamp(4rem,9vw,8rem)] md:h-[400px] md:space-y-0 md:pb-0">
@@ -942,7 +945,7 @@ export function ThinkFlowCaseStudy({
                   loading="lazy"
                   decoding="async"
                   draggable={false}
-                  className="block h-auto w-full max-w-[483px]"
+                  className="case-study-screen block h-auto w-full max-w-[483px]"
                 />
                 <div className="md:pt-3">
                   <CalloutTitle>Dual Display Layout</CalloutTitle>
@@ -969,7 +972,7 @@ export function ThinkFlowCaseStudy({
                   loading="lazy"
                   decoding="async"
                   draggable={false}
-                  className="block h-auto w-full max-w-[482px]"
+                  className="case-study-screen block h-auto w-full max-w-[482px]"
                 />
               </div>
             </div>

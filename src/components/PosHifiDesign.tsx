@@ -139,7 +139,7 @@ function ComponentsKit() {
     <section className="mx-auto max-w-[1100px] px-5 py-12 sm:px-8">
       <PillLabel>Components</PillLabel>
 
-      <div className="mt-10 grid gap-4 lg:grid-cols-[1fr_1fr_1.1fr_auto_1.15fr]">
+      <div className="case-study-screen mt-10 grid gap-4 lg:grid-cols-[1fr_1fr_1.1fr_auto_1.15fr]">
         <DashedBox>
           <div className="flex flex-col items-center gap-3">
             {solids.map((bg) => (
@@ -259,7 +259,7 @@ function ComponentsKit() {
 
 function TabletShell({ children }: { children: ReactNode }) {
   return (
-    <div className="mx-auto w-full max-w-[520px]">
+    <div className="case-study-screen mx-auto w-full max-w-[520px]">
       <div className="rounded-[28px] border-[10px] border-[#1a1a1a] bg-[#1a1a1a] shadow-xl">
         <div className="overflow-hidden rounded-[18px] bg-[#f7f7f8]">{children}</div>
       </div>

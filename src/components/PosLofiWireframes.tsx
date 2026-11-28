@@ -436,7 +436,7 @@ export function PosLofiWireframes() {
       <PillTitle />
 
       {/* Mobile / tablet: readable 2-col stack */}
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:hidden">
+      <div className="case-study-screen mt-10 grid gap-4 sm:grid-cols-2 lg:hidden">
         <div className="aspect-[4/3]">
           <DashWire />
         </div>
@@ -458,7 +458,7 @@ export function PosLofiWireframes() {
       </div>
 
       {/* Desktop: overlapping collage like the Figma board */}
-      <div className="relative mx-auto mt-10 hidden min-h-[720px] w-full max-w-[980px] lg:block">
+      <div className="case-study-screen relative mx-auto mt-10 hidden min-h-[720px] w-full max-w-[980px] lg:block">
         <div className="absolute left-[2%] top-[8%] z-[2] h-[210px] w-[300px] -rotate-2">
           <ItemsWire />
         </div>

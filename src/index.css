@@ -422,3 +422,16 @@ footer .heading-section {
 footer .heading-sub {
   color: rgba(255, 255, 255, 0.7);
 }
+
+/*
+ * Case study body uses invert(1) hue-rotate(180deg) to flip page chrome with theme.
+ * Product screens tagged .case-study-screen get the same filter again so they keep
+ * their designed (original) colors while surrounding copy still toggles.
+ */
+.case-study-screen {
+  transition: filter 200ms ease;
+}
+
+[data-case-invert='1'] .case-study-screen {
+  filter: invert(1) hue-rotate(180deg);
+}

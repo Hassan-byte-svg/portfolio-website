@@ -325,7 +325,7 @@ function PhoneIconSvg() {
 function ControlPhone() {
   return (
     <div
-      className="relative mx-auto w-[240px] shrink-0 rounded-[34px] border-[3px] p-[3px]"
+      className="case-study-screen relative mx-auto w-[240px] shrink-0 rounded-[34px] border-[3px] p-[3px]"
       style={{ borderColor: '#3b3d44', background: '#0b0c0e' }}
     >
       <div className="flex h-[480px] flex-col overflow-hidden rounded-[30px]" style={{ background: '#15161a' }}>
@@ -533,6 +533,7 @@ export function AiReplyCaseStudy({
       {/* Native dark study → invert for light mode so copy stays real selectable HTML */}
       <div
         className="select-text transition-[filter] duration-200"
+        data-case-invert={isLight ? '1' : '0'}
         style={{
           background: bgBlack,
           color: textMain,
@@ -955,7 +956,7 @@ export function AiReplyCaseStudy({
             width={295}
             height={580}
             loading="lazy"
-            className="mx-auto h-auto w-[295px] max-w-full md:mx-0"
+            className="case-study-screen mx-auto h-auto w-[295px] max-w-full md:mx-0"
           />
         </div>
       </section>
@@ -985,7 +986,7 @@ export function AiReplyCaseStudy({
                 width={285}
                 height={570}
                 loading="lazy"
-                className="h-auto w-[285px] max-w-full"
+                className="case-study-screen h-auto w-[285px] max-w-full"
               />
               <figcaption
                 className="mt-5 max-w-[270px] text-center text-[13px] font-light leading-[1.45] tracking-[0.05em]"
@@ -1088,7 +1089,7 @@ export function AiReplyCaseStudy({
             width={600}
             height={585}
             loading="lazy"
-            className="mx-auto h-auto w-full max-w-[600px]"
+            className="case-study-screen mx-auto h-auto w-full max-w-[600px]"
           />
           <div className="max-w-[330px]">
             <h3 className="text-[22px] font-medium leading-tight text-white">Activate and Send</h3>
