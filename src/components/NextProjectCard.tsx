@@ -26,7 +26,7 @@ export function NextProjectCard({
       style={{ background: themeBg[project.tagTone] }}
       aria-label={`Next project: ${project.nextCard.heading}`}
     >
-      <div className="mx-auto flex min-h-[220px] max-w-[920px] flex-col items-center justify-center px-6 py-16 sm:min-h-[280px] sm:py-20">
+      <div className="mx-auto flex min-h-[220px] w-full max-w-[1680px] flex-col items-center justify-center px-[clamp(1.25rem,3.5vw,4.5rem)] py-16 sm:min-h-[280px] sm:py-20">
         <p className="text-[14px] font-semibold tracking-[0.02em] sm:text-[15px]">Next Project</p>
         <h2 className="mt-4 text-[36px] font-semibold leading-[1.15] tracking-[-0.02em] sm:text-[48px] lg:text-[56px]">
           {project.nextCard.heading}

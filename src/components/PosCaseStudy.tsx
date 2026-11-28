@@ -1,11 +1,12 @@
 import type { ReactNode } from 'react'
-import { Link } from 'react-router-dom'
 import type { Project } from '../data/content'
+import { useTheme } from '../theme/ThemeProvider'
 import { BackLink } from './BackLink'
 import { CaseStudyFloatControls } from './CaseStudyFloatControls'
 import { ImageLightbox } from './ImageLightbox'
 import { NextProjectCard } from './NextProjectCard'
 import { PosHifiDesign } from './PosHifiDesign'
+import { ThemeToggle } from './ThemeToggle'
 import { UserJourneyMap } from './UserJourneyMap'
 
 const accent = '#F5A623'
@@ -339,25 +340,43 @@ export function PosCaseStudy({
   nextProject?: Project
 }) {
   const cover = project.image
+  const { theme } = useTheme()
+  const isDark = theme === 'dark'
+  const pageBg = isDark ? '#0a0a0a' : '#ffffff'
+  const titleColor = isDark ? 'rgba(255,255,255,0.75)' : 'rgba(15,23,43,0.8)'
+  const border = isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.05)'
 
   return (
-    <div className="min-h-screen bg-white antialiased" style={{ color: ink }}>
-      <div className="sticky top-0 z-30 border-b border-black/5 bg-white px-4 py-3 sm:px-8">
-        <div className="mx-auto flex max-w-[1000px] items-center gap-3">
-          <div className="rounded-full border border-black/5 bg-white px-4 py-2 shadow-sm">
+    <div
+      className="min-h-screen w-full antialiased transition-colors duration-200"
+      style={{ background: pageBg, color: isDark ? '#ffffff' : ink }}
+    >
+      <div
+        className="sticky top-0 z-30 w-full border-b py-3 transition-colors duration-200"
+        style={{ borderColor: border, background: pageBg }}
+      >
+        <div className="mx-auto flex w-full max-w-[1680px] items-center gap-3 px-[clamp(1.25rem,3.5vw,4.5rem)]">
+          <div className="rounded-full bg-white px-4 py-2 shadow-sm">
             <BackLink fallback={backTo} />
           </div>
-          <p className="min-w-0 flex-1 truncate text-[14px] font-normal text-[#0F172B]/80">
+          <p className="min-w-0 flex-1 truncate text-[14px] font-normal" style={{ color: titleColor }}>
             {project.caseStudyTitle}
           </p>
-          <Link
-            to={backTo}
-            className="shrink-0 text-[13px] font-normal text-[#0F172B]/45 transition-opacity hover:text-[#0F172B]"
-          >
-            Work
-          </Link>
+          <div className="rounded-full bg-white shadow-sm">
+            <ThemeToggle compact />
+          </div>
         </div>
       </div>
+
+      {/* Light study inverts cleanly to black bg + white type in dark mode */}
+      <div
+        className="transition-[filter] duration-200"
+        style={{
+          background: '#ffffff',
+          color: ink,
+          filter: isDark ? 'invert(1) hue-rotate(180deg)' : 'none',
+        }}
+      >
 
       <header className="mx-auto max-w-[920px] px-5 pb-4 pt-14 text-center sm:px-8">
         <h1 className="text-[42px] font-light tracking-[-0.03em] sm:text-[56px]">
@@ -791,10 +810,11 @@ export function PosCaseStudy({
           </ImageLightbox>
         </div>
       </section>
+      </div>
 
       {nextProject ? <NextProjectCard project={nextProject} from={backTo} /> : null}
 
-      <CaseStudyFloatControls tone="orange" />
+      <CaseStudyFloatControls tone={isDark ? 'dark' : 'orange'} />
     </div>
   )
 }

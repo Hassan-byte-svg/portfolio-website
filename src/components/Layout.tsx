@@ -8,11 +8,10 @@ export function Layout() {
     /^\/projects\/.+/.test(pathname) || /^\/case-study\/.+/.test(pathname)
 
   if (isCaseStudy) {
-    // No overflow-x-clip / nested overflow-y — those promote compositing layers
-    // that make text, logos, and signs look soft while scrolling.
+    // Full-bleed shell — case study owns bg; follows site theme via canvas.
     return (
-      <div className="min-h-screen bg-[#0a0a0a]">
-        <main>
+      <div className="min-h-screen w-full bg-canvas">
+        <main className="w-full">
           <Outlet />
         </main>
       </div>

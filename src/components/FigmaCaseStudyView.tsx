@@ -1,9 +1,9 @@
 import { useRef } from 'react'
-import { Link } from 'react-router-dom'
 import type { Project } from '../data/content'
 import { BackLink } from './BackLink'
 import { CaseStudyFloatControls } from './CaseStudyFloatControls'
 import { NextProjectCard } from './NextProjectCard'
+import { ThemeToggle } from './ThemeToggle'
 
 const FILE_KEY = 'CUlWCD1Ol9KMpnGnjXfHaE'
 
@@ -24,8 +24,7 @@ export function figmaOpenUrl(nodeId: string, mode: 'proto' | 'design' = 'proto')
 }
 
 /**
- * Original Figma prototype case study (AI Reply / ThinkFlow).
- * Full-viewport embed; Next Project footer after scrolling past the study.
+ * Figma prototype case study — keeps designed motion (e.g. AI assistant antenna).
  */
 export function FigmaCaseStudyView({
   title,
@@ -75,14 +74,9 @@ export function FigmaCaseStudyView({
         >
           {title}
         </p>
-        <Link
-          to={backTo}
-          className={`shrink-0 text-[13px] font-normal transition-opacity sm:inline ${
-            isOrange ? 'text-[#0F172B]/45 hover:text-[#0F172B]' : 'text-white/50 hover:text-white'
-          }`}
-        >
-          Work
-        </Link>
+        <div className="rounded-full bg-white shadow-sm">
+          <ThemeToggle compact />
+        </div>
       </div>
 
       <iframe

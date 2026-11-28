@@ -5,9 +5,10 @@ import { Section } from '../components/Section'
 import { getNextProject, getProject, projectRedirects } from '../data/content'
 
 /**
- * View Case Study:
- * - POS → native HTML + Next Project footer
- * - AI Reply / ThinkFlow → designed study scroll + same Next Project footer
+ * View Case Study (matches Vercel deploy):
+ * - POS → native HTML
+ * - AI Reply / ThinkFlow → Figma PNG export scroll
+ * Theme toggle stays on every study and inverts black ↔ white.
  */
 export function CaseStudyPage() {
   const { slug } = useParams()
@@ -37,6 +38,9 @@ export function CaseStudyPage() {
   }
 
   if (project.caseStudyFull) {
+    const nativeTheme =
+      project.layout === 'ai-reply' || project.slug === 'ai-supply-management' ? 'dark' : 'light'
+
     return (
       <RasterCaseStudyView
         title={project.caseStudyTitle}
@@ -45,6 +49,7 @@ export function CaseStudyPage() {
         naturalHeight={project.caseStudyFull.height}
         backTo={backTo}
         nextProject={nextProject}
+        nativeTheme={nativeTheme}
       />
     )
   }

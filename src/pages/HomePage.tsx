@@ -186,22 +186,19 @@ export function HomePage() {
         </div>
       </Section>
 
-      <Section
-        className="relative z-[1] py-14 sm:py-20 [content-visibility:auto] [contain-intrinsic-size:auto_520px]"
-        innerClassName="max-w-none"
-      >
-        <SectionHeading
-          title="Feedback"
-          description="Your feedback matters! Share your thoughts about my portfolio, design work, and overall experience."
-        />
-        <div className="mt-8 rounded-[28px] bg-soft p-4 sm:p-6">
-          <div className="grid gap-4 md:grid-cols-3">
+      <section className="relative z-[1] w-full bg-soft py-14 sm:py-20 [content-visibility:auto] [contain-intrinsic-size:auto_520px]">
+        <div className="mx-auto w-full max-w-[1120px] px-5 sm:px-8">
+          <SectionHeading
+            title="Feedback"
+            description="Your feedback matters! Share your thoughts about my portfolio, design work, and overall experience."
+          />
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
             {testimonials.map((item, index) => (
               <TestimonialCard key={item.avatar || index} {...item} />
             ))}
           </div>
         </div>
-      </Section>
+      </section>
 
       <Section className="relative z-[1] py-14 sm:py-20 [content-visibility:auto] [contain-intrinsic-size:auto_480px]">
         <SectionHeading
