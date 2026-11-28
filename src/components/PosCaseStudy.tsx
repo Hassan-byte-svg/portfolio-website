@@ -45,6 +45,165 @@ function AccentHeading({ children }: { children: ReactNode }) {
   )
 }
 
+function IaNode({
+  label,
+  solid = false,
+  className = '',
+}: {
+  label: string
+  solid?: boolean
+  className?: string
+}) {
+  return (
+    <div
+      className={`inline-flex min-w-[108px] items-center justify-center rounded-[4px] border px-3 py-2 text-center text-[12px] font-medium leading-tight sm:min-w-[120px] sm:text-[13px] ${className}`}
+      style={
+        solid
+          ? { background: accent, borderColor: accent, color: '#fff' }
+          : { background: peach, borderColor: accent, color: ink }
+      }
+    >
+      {label}
+    </div>
+  )
+}
+
+function IaArrowDown({ className = '' }: { className?: string }) {
+  return (
+    <div className={`flex flex-col items-center ${className}`} aria-hidden="true">
+      <span className="h-4 w-px" style={{ background: '#C9C9C9' }} />
+      <span className="text-[10px] leading-none" style={{ color: '#C9C9C9' }}>
+        ▼
+      </span>
+    </div>
+  )
+}
+
+function IaArrowRight() {
+  return (
+    <span className="px-1 text-[11px]" style={{ color: '#C9C9C9' }} aria-hidden="true">
+      ▶
+    </span>
+  )
+}
+
+/** Figma-style IA tree — On-boarding → Dashboard → three branches. */
+function InformationArchitectureMap() {
+  return (
+    <div className="mx-auto mt-10 w-full max-w-[980px] overflow-x-auto pb-2">
+      <div className="mx-auto flex min-w-[720px] flex-col items-center">
+        <IaNode label="On-boarding" solid />
+        <IaArrowDown />
+        <IaNode label="Dashboard" solid />
+
+        {/* Trunk split */}
+        <div className="relative mt-1 flex w-full max-w-[860px] flex-col items-center" aria-hidden="true">
+          <span className="h-5 w-px" style={{ background: '#C9C9C9' }} />
+          <span className="h-px w-[78%]" style={{ background: '#C9C9C9' }} />
+          <div className="flex w-[78%] justify-between">
+            <span className="h-5 w-px" style={{ background: '#C9C9C9' }} />
+            <span className="h-5 w-px" style={{ background: '#C9C9C9' }} />
+            <span className="h-5 w-px" style={{ background: '#C9C9C9' }} />
+          </div>
+        </div>
+
+        <div className="grid w-full max-w-[860px] grid-cols-3 gap-4 sm:gap-6">
+          {/* Left — New Bill / Settings */}
+          <div className="flex flex-col items-center">
+            <IaNode label="New Bill" />
+            <IaArrowDown />
+            <div className="flex items-start justify-center gap-1">
+              <div className="mt-7 flex flex-col items-end gap-2">
+                <div className="flex items-center">
+                  <IaNode label="Profile" />
+                  <span className="px-1 text-[11px]" style={{ color: '#C9C9C9' }} aria-hidden="true">
+                    ◀
+                  </span>
+                </div>
+                <div className="flex items-center">
+                  <IaNode label="Appearance" />
+                  <span className="px-1 text-[11px]" style={{ color: '#C9C9C9' }} aria-hidden="true">
+                    ◀
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-col items-center">
+                <IaNode label="Settings" />
+                <IaArrowDown />
+                <IaNode label="Notification" />
+                <IaArrowDown />
+                <IaNode label="Profile" />
+              </div>
+            </div>
+          </div>
+
+          {/* Center — Messages / Leads */}
+          <div className="flex flex-col items-center">
+            <div className="flex items-start gap-1">
+              <div className="flex flex-col items-center">
+                <IaNode label="Messages" />
+                <IaArrowDown />
+                <IaNode label="Leads" />
+              </div>
+              <div className="mt-1 flex flex-col gap-2">
+                <div className="flex items-center">
+                  <IaArrowRight />
+                  <IaNode label="Live Chat" />
+                </div>
+                <div className="flex items-center">
+                  <IaArrowRight />
+                  <IaNode label="Emails" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right — Bills / Items / Customers / Sales */}
+          <div className="flex flex-col items-start">
+            <div className="flex items-start gap-1">
+              <div className="flex flex-col items-center">
+                <IaNode label="Bills" />
+                <IaArrowDown />
+                <IaNode label="Items" />
+                <IaArrowDown />
+                <IaNode label="Customers" />
+                <IaArrowDown />
+                <IaNode label="Sales" />
+              </div>
+              <div className="mt-1 flex flex-col gap-2">
+                <div className="flex items-center">
+                  <IaArrowRight />
+                  <IaNode label="List" />
+                </div>
+                <div className="flex items-center">
+                  <IaArrowRight />
+                  <IaNode label="Current Bill" />
+                </div>
+                <div className="mt-5 flex items-center">
+                  <IaArrowRight />
+                  <IaNode label="Items Category" />
+                </div>
+                <div className="flex flex-wrap items-center gap-1">
+                  <IaArrowRight />
+                  <IaNode label="Add Item" />
+                  <IaArrowRight />
+                  <IaNode label="New Category" />
+                </div>
+                <div className="flex flex-wrap items-center gap-1">
+                  <IaArrowRight />
+                  <IaNode label="Item List" />
+                  <IaArrowRight />
+                  <IaNode label="Update Stock" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function FlagIcon() {
   return (
     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
@@ -264,25 +423,6 @@ const personas = [
         body: "Ahmed's motivation stems from his passion for his sports car and the need for a trustworthy service that understands the unique requirements of high-performance vehicles. He seeks peace of mind knowing that his car is in capable hands.",
       },
     ],
-  },
-] as const
-
-const iaBranches = [
-  {
-    title: 'Billing',
-    nodes: ['New Bill', 'Bills', 'List', 'Current Bill'],
-  },
-  {
-    title: 'Catalog',
-    nodes: ['Items', 'Items Category', 'Add Item', 'Item List', 'Update Stock'],
-  },
-  {
-    title: 'People',
-    nodes: ['Customers', 'Sales', 'Messages', 'Live Chat', 'Emails', 'Leads'],
-  },
-  {
-    title: 'Account',
-    nodes: ['Settings', 'Profile', 'Appearance', 'Notification'],
   },
 ] as const
 
@@ -626,49 +766,13 @@ export function PosCaseStudy({
 
       <UserJourneyMap />
 
-      {/* Information Architecture */}
-      <section className="mx-auto max-w-[1000px] px-5 py-14 sm:px-8">
+      {/* Information Architecture — flowchart matching the designed study */}
+      <section className="mx-auto max-w-[1100px] px-5 py-14 sm:px-8">
         <PillTitle before="Information" highlight="Architecture" />
-        <p
-          className="mx-auto mt-5 max-w-[640px] text-center text-[15px] font-light leading-[1.7]"
-          style={{ color: muted }}
-        >
-          A clear hierarchy from onboarding and dashboard into billing, catalog, customers, messaging,
-          and account settings.
+        <p className="mt-4 text-center text-[15px] font-medium" style={{ color: accent }}>
+          Information Architecture
         </p>
-
-        <div className="mx-auto mt-10 max-w-[720px] text-center">
-          <div
-            className="inline-flex rounded-[14px] px-5 py-3 text-[15px] font-medium text-white"
-            style={{ background: accent }}
-          >
-            Onboarding → Dashboard
-          </div>
-        </div>
-
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {iaBranches.map((branch) => (
-            <div
-              key={branch.title}
-              className="rounded-[20px] border border-[#f0e0c8] p-4"
-              style={{ background: soft }}
-            >
-              <p className="text-[15px] font-medium" style={{ color: accent }}>
-                {branch.title}
-              </p>
-              <ul className="mt-3 space-y-2">
-                {branch.nodes.map((node) => (
-                  <li
-                    key={node}
-                    className="rounded-[10px] border border-[#f0e0c8] bg-white px-3 py-2 text-[13px] font-light"
-                  >
-                    {node}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+        <InformationArchitectureMap />
       </section>
 
       {/* User Flow */}
