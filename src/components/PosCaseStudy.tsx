@@ -1,14 +1,13 @@
 import type { ReactNode } from 'react'
 import type { Project } from '../data/content'
 import { useTheme } from '../theme/ThemeProvider'
-import { BackLink } from './BackLink'
 import { CaseStudyFloatControls } from './CaseStudyFloatControls'
+import { CaseStudyScreen } from './CaseStudyScreen'
+import { CaseStudyTopBar } from './CaseStudyTopBar'
 import { ImageLightbox } from './ImageLightbox'
 import { NextProjectCard } from './NextProjectCard'
-import { CaseStudyScreen } from './CaseStudyScreen'
 import { PosHifiDesign } from './PosHifiDesign'
 import { PosLofiWireframes } from './PosLofiWireframes'
-import { ThemeToggle } from './ThemeToggle'
 import { UserJourneyMap } from './UserJourneyMap'
 
 const accent = '#F5A623'
@@ -676,22 +675,13 @@ export function PosCaseStudy({
       className="min-h-screen w-full antialiased transition-colors duration-200"
       style={{ background: pageBg, color: isDark ? '#ffffff' : ink }}
     >
-      <div
-        className="sticky top-0 z-30 w-full border-b py-3 transition-colors duration-200"
-        style={{ borderColor: border, background: pageBg }}
-      >
-        <div className="mx-auto flex w-full max-w-[1680px] items-center gap-3 px-[clamp(1.25rem,3.5vw,4.5rem)]">
-          <div className="rounded-full bg-white px-4 py-2 shadow-sm">
-            <BackLink fallback={backTo} />
-          </div>
-          <p className="min-w-0 flex-1 truncate text-[14px] font-normal" style={{ color: titleColor }}>
-            {project.caseStudyTitle}
-          </p>
-          <div className="rounded-full bg-white shadow-sm">
-            <ThemeToggle compact />
-          </div>
-        </div>
-      </div>
+      <CaseStudyTopBar
+        title={project.caseStudyTitle}
+        backTo={backTo}
+        titleColor={titleColor}
+        border={border}
+        background={pageBg}
+      />
 
       {/* Light study inverts cleanly to black bg + white type in dark mode */}
       <div

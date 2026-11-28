@@ -2,11 +2,10 @@ import type { CSSProperties, ReactNode } from 'react'
 import type { Project } from '../data/content'
 import { useTheme } from '../theme/ThemeProvider'
 import { AiAssistantBot } from './AiAssistantBot'
-import { BackLink } from './BackLink'
 import { CaseStudyFloatControls } from './CaseStudyFloatControls'
 import { CaseStudyScreen } from './CaseStudyScreen'
+import { CaseStudyTopBar } from './CaseStudyTopBar'
 import { NextProjectCard } from './NextProjectCard'
-import { ThemeToggle } from './ThemeToggle'
 
 /** Figma frame is 1200 wide — backgrounds run full-bleed, content sits in this shell. */
 const shell = 'mx-auto w-full max-w-[1200px] px-[clamp(1.25rem,3vw,3rem)]'
@@ -513,23 +512,14 @@ export function AiReplyCaseStudy({
       className="min-h-screen w-full overflow-x-hidden antialiased transition-colors duration-200"
       style={{ background: pageBg, color: isLight ? '#0f172b' : textMain }}
     >
-      {/* 1. Sticky header */}
-      <div
-        className="sticky top-0 z-30 w-full border-b py-3 transition-colors duration-200"
-        style={{ borderColor: border, background: pageBg }}
-      >
-        <div className={`${shell} flex items-center gap-3`}>
-          <div className="rounded-full bg-white px-4 py-2 shadow-sm">
-            <BackLink fallback={backTo} />
-          </div>
-          <p className="min-w-0 flex-1 truncate text-[14px] font-normal" style={{ color: titleColor }}>
-            {project.caseStudyTitle}
-          </p>
-          <div className="rounded-full bg-white shadow-sm">
-            <ThemeToggle compact />
-          </div>
-        </div>
-      </div>
+      <CaseStudyTopBar
+        title={project.caseStudyTitle}
+        backTo={backTo}
+        titleColor={titleColor}
+        border={border}
+        background={pageBg}
+        shellClassName={`${shell} flex items-center gap-3`}
+      />
 
       {/* Native dark study → invert for light mode so copy stays real selectable HTML */}
       <div

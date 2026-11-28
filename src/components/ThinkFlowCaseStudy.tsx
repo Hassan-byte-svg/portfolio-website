@@ -1,11 +1,10 @@
 import type { ReactNode } from 'react'
 import type { Project } from '../data/content'
 import { useTheme } from '../theme/ThemeProvider'
-import { BackLink } from './BackLink'
 import { CaseStudyFloatControls } from './CaseStudyFloatControls'
 import { CaseStudyScreen } from './CaseStudyScreen'
+import { CaseStudyTopBar } from './CaseStudyTopBar'
 import { NextProjectCard } from './NextProjectCard'
-import { ThemeToggle } from './ThemeToggle'
 
 /** Matches the 1200 px Figma frame; section backgrounds stay full-bleed. */
 const shell = 'mx-auto w-full max-w-[1200px] px-[clamp(1.25rem,3vw,3rem)]'
@@ -233,23 +232,14 @@ export function ThinkFlowCaseStudy({
       className="min-h-screen w-full overflow-x-hidden antialiased transition-colors duration-200"
       style={{ background: pageBg, color: isDark ? '#ffffff' : ink }}
     >
-      {/* 1. Sticky header */}
-      <div
-        className="sticky top-0 z-30 w-full border-b py-3 backdrop-blur transition-colors duration-200"
-        style={{ borderColor: border, background: isDark ? 'rgba(10,10,10,0.95)' : 'rgba(255,255,255,0.95)' }}
-      >
-        <div className={`${shell} flex items-center gap-3`}>
-          <div className="rounded-full border bg-white px-4 py-2 shadow-sm" style={{ borderColor: border }}>
-            <BackLink fallback={backTo} />
-          </div>
-          <p className="min-w-0 flex-1 truncate text-[14px] font-normal" style={{ color: titleColor }}>
-            {project.caseStudyTitle}
-          </p>
-          <div className="rounded-full bg-white shadow-sm">
-            <ThemeToggle compact />
-          </div>
-        </div>
-      </div>
+      <CaseStudyTopBar
+        title={project.caseStudyTitle}
+        backTo={backTo}
+        titleColor={titleColor}
+        border={border}
+        background={isDark ? 'rgba(10,10,10,0.95)' : 'rgba(255,255,255,0.95)'}
+        shellClassName={`${shell} flex items-center gap-3`}
+      />
 
       {/* Native light study → invert for dark mode; copy stays selectable HTML */}
       <div
