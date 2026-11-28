@@ -87,6 +87,206 @@ function IaArrowRight() {
   )
 }
 
+function FlowCircle({ label }: { label: ReactNode }) {
+  return (
+    <div
+      className="flex h-[72px] w-[72px] items-center justify-center rounded-full text-center text-[12px] font-semibold leading-tight text-white sm:h-[84px] sm:w-[84px] sm:text-[13px]"
+      style={{ background: accent }}
+    >
+      {label}
+    </div>
+  )
+}
+
+function FlowRect({ label, className = '' }: { label: string; className?: string }) {
+  return (
+    <div
+      className={`inline-flex min-w-[160px] max-w-[220px] items-center justify-center rounded-[6px] border-2 bg-white px-3 py-2.5 text-center text-[12px] font-medium leading-snug sm:min-w-[190px] sm:text-[13px] ${className}`}
+      style={{ borderColor: accent, color: ink }}
+    >
+      {label}
+    </div>
+  )
+}
+
+function FlowDiamond({ label }: { label: string }) {
+  return (
+    <div className="relative flex h-[108px] w-[108px] items-center justify-center sm:h-[120px] sm:w-[120px]">
+      <div
+        className="absolute inset-[14px] rotate-45 rounded-[4px] border-2 bg-white"
+        style={{ borderColor: accent }}
+        aria-hidden="true"
+      />
+      <p
+        className="relative z-[1] max-w-[84px] text-center text-[11px] font-medium leading-tight sm:max-w-[90px] sm:text-[12px]"
+        style={{ color: ink }}
+      >
+        {label}
+      </p>
+    </div>
+  )
+}
+
+function FlowDown() {
+  return (
+    <div className="flex flex-col items-center py-0.5" aria-hidden="true">
+      <span className="h-3 w-px" style={{ background: '#C9C9C9' }} />
+      <span className="text-[9px] leading-none" style={{ color: '#C9C9C9' }}>
+        ▼
+      </span>
+    </div>
+  )
+}
+
+function FlowYesDown() {
+  return (
+    <span
+      className="absolute left-1/2 top-full -translate-x-1/2 pt-0.5 text-[11px] font-semibold"
+      style={{ color: '#27AE60' }}
+    >
+      Yes
+    </span>
+  )
+}
+
+function FlowNo({ side = 'right' }: { side?: 'left' | 'right' }) {
+  return (
+    <span
+      className={`absolute top-1/2 -translate-y-1/2 text-[11px] font-semibold ${
+        side === 'right' ? 'left-full ml-1.5' : 'right-full mr-1.5'
+      }`}
+      style={{ color: '#EB5757' }}
+    >
+      No
+    </span>
+  )
+}
+
+/** Customer purchase flow — Start → search → cart → checkout → pay → End. */
+function CustomerFlowMap() {
+  return (
+    <div className="mx-auto mt-10 w-full max-w-[720px] overflow-x-auto pb-2">
+      <div className="mx-auto flex min-w-[560px] flex-col items-center">
+        <FlowCircle label="Start" />
+        <FlowDown />
+        <FlowRect label="Search for Auto Spare Parts" />
+        <FlowDown />
+
+        {/* Part available? */}
+        <div className="relative mb-4 flex w-full items-center justify-center">
+          <div className="relative">
+            <FlowDiamond label="Is the desired part available?" />
+            <FlowYesDown />
+            <FlowNo side="right" />
+          </div>
+          <div className="absolute left-[calc(50%+78px)] top-1/2 flex -translate-y-1/2 items-center gap-1">
+            <span className="h-px w-5" style={{ background: '#C9C9C9' }} aria-hidden="true" />
+            <FlowRect label="Search for Alternative part" className="min-w-[140px] max-w-[160px]" />
+          </div>
+        </div>
+        <FlowDown />
+
+        <FlowRect label="Add parts to cart" />
+        <FlowDown />
+
+        {/* Cart complete? */}
+        <div className="relative mb-4 flex w-full items-center justify-center">
+          <div className="absolute right-[calc(50%+78px)] top-1/2 flex -translate-y-1/2 items-center gap-1">
+            <FlowRect label="Continue Shopping" className="min-w-[140px] max-w-[160px]" />
+            <span className="h-px w-5" style={{ background: '#C9C9C9' }} aria-hidden="true" />
+          </div>
+          <div className="relative">
+            <FlowDiamond label="Is the cart complete?" />
+            <FlowNo side="left" />
+            <FlowYesDown />
+          </div>
+        </div>
+        <FlowDown />
+
+        <FlowRect label="Proceed to checkout" />
+        <FlowDown />
+        <FlowRect label="Enter your personal details" />
+        <FlowDown />
+
+        {/* Details correct? */}
+        <div className="relative mb-4 flex w-full items-center justify-center">
+          <div className="absolute right-[calc(50%+78px)] top-1/2 flex -translate-y-1/2 items-center gap-1">
+            <FlowRect label="Re-enter your details" className="min-w-[140px] max-w-[160px]" />
+            <span className="h-px w-5" style={{ background: '#C9C9C9' }} aria-hidden="true" />
+          </div>
+          <div className="relative">
+            <FlowDiamond label="Are the details correct?" />
+            <FlowNo side="left" />
+            <FlowYesDown />
+          </div>
+        </div>
+        <FlowDown />
+
+        <FlowRect label="Pay the bill" />
+        <FlowDown />
+
+        {/* Payment method */}
+        <div className="relative w-full max-w-[520px]">
+          <div className="flex justify-center">
+            <div className="relative">
+              <FlowDiamond label="Payment Method?" />
+              <span
+                className="absolute right-full top-1/2 mr-1 -translate-y-1/2 text-[11px] font-semibold"
+                style={{ color: accent }}
+              >
+                Cash
+              </span>
+              <span
+                className="absolute left-full top-1/2 ml-1 -translate-y-1/2 text-[11px] font-semibold"
+                style={{ color: accent }}
+              >
+                Online
+              </span>
+            </div>
+          </div>
+
+          <div className="mt-2 grid grid-cols-2 gap-6 px-2">
+            <div className="flex flex-col items-center">
+              <span className="h-3 w-px" style={{ background: '#C9C9C9' }} aria-hidden="true" />
+              <FlowRect label="Pay the bill" className="min-w-[130px]" />
+            </div>
+            <div className="flex flex-col items-center gap-1">
+              <span className="h-3 w-px" style={{ background: '#C9C9C9' }} aria-hidden="true" />
+              <FlowRect label="Fill in Card Details" className="min-w-[130px]" />
+              <FlowDown />
+              <FlowRect label="Pay the bill" className="min-w-[130px]" />
+            </div>
+          </div>
+
+          <div className="mt-2 flex flex-col items-center" aria-hidden="true">
+            <div className="flex w-[55%] justify-between">
+              <span className="h-4 w-px" style={{ background: '#C9C9C9' }} />
+              <span className="h-4 w-px" style={{ background: '#C9C9C9' }} />
+            </div>
+            <span className="h-px w-[55%]" style={{ background: '#C9C9C9' }} />
+            <span className="h-3 w-px" style={{ background: '#C9C9C9' }} />
+            <span className="text-[9px] leading-none" style={{ color: '#C9C9C9' }}>
+              ▼
+            </span>
+          </div>
+        </div>
+
+        <FlowCircle
+          label={
+            <>
+              Order
+              <br />
+              Complete
+            </>
+          }
+        />
+        <FlowDown />
+        <FlowCircle label="End" />
+      </div>
+    </div>
+  )
+}
+
 /** Figma-style IA tree — On-boarding → Dashboard → three branches. */
 function InformationArchitectureMap() {
   return (
@@ -426,18 +626,6 @@ const personas = [
   },
 ] as const
 
-const flowSteps = [
-  'Start',
-  'Search for auto spare parts',
-  'Part available?',
-  'Add parts to cart',
-  'Cart complete?',
-  'Checkout & details',
-  'Pay bill',
-  'Print receipt',
-  'Order complete',
-] as const
-
 const colors = [
   { name: 'Black 1', hex: '#030202' },
   { name: 'Black 2', hex: '#1D1D1D' },
@@ -775,7 +963,7 @@ export function PosCaseStudy({
         <InformationArchitectureMap />
       </section>
 
-      {/* User Flow */}
+      {/* User Flow — designed customer purchase flowchart */}
       <section className="mx-auto max-w-[920px] px-5 py-14 sm:px-8">
         <PillTitle before="User" highlight="Flow" />
         <p className="mt-3 text-center text-[15px] font-medium" style={{ color: accent }}>
@@ -785,32 +973,10 @@ export function PosCaseStudy({
           className="mx-auto mt-3 max-w-[560px] text-center text-[15px] font-light leading-[1.7]"
           style={{ color: muted }}
         >
-          To find desired parts and complete a purchase on the platform, hassle-free.
+          Its final desired objects and seamlessly make purchases using this platform&apos;s
+          marketplace.
         </p>
-
-        <ol className="mx-auto mt-10 flex max-w-[420px] flex-col items-center gap-0">
-          {flowSteps.map((step, index) => (
-            <li key={step} className="flex w-full flex-col items-center">
-              <div
-                className={`w-full max-w-[320px] rounded-[14px] border-2 px-4 py-3 text-center text-[14px] font-medium ${
-                  index === 0 || index === flowSteps.length - 1 ? 'text-white' : ''
-                }`}
-                style={
-                  index === 0 || index === flowSteps.length - 1
-                    ? { background: accent, borderColor: accent }
-                    : { borderColor: accent, color: ink, background: 'white' }
-                }
-              >
-                {step}
-              </div>
-              {index < flowSteps.length - 1 ? (
-                <span className="my-1 text-[18px]" style={{ color: accent }} aria-hidden="true">
-                  ↓
-                </span>
-              ) : null}
-            </li>
-          ))}
-        </ol>
+        <CustomerFlowMap />
       </section>
 
       {/* Design system */}
