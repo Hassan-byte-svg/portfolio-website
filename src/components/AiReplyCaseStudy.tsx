@@ -1,5 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 import type { Project } from '../data/content'
+import { useTheme } from '../theme/ThemeProvider'
 import { AiAssistantBot } from './AiAssistantBot'
 import { BackLink } from './BackLink'
 import { CaseStudyFloatControls } from './CaseStudyFloatControls'
@@ -500,18 +501,27 @@ export function AiReplyCaseStudy({
   backTo?: string
   nextProject?: Project
 }) {
+  const { theme } = useTheme()
+  const isLight = theme === 'light'
+  const pageBg = isLight ? '#ffffff' : bgBlack
+  const titleColor = isLight ? 'rgba(15,23,43,0.75)' : 'rgba(255,255,255,0.8)'
+  const border = isLight ? 'rgba(15,23,43,0.08)' : lineSoft
+
   return (
-    <div className="min-h-screen w-full overflow-x-hidden antialiased" style={{ background: bgBlack, color: textMain }}>
+    <div
+      className="min-h-screen w-full overflow-x-hidden antialiased transition-colors duration-200"
+      style={{ background: pageBg, color: isLight ? '#0f172b' : textMain }}
+    >
       {/* 1. Sticky header */}
       <div
-        className="sticky top-0 z-30 w-full border-b py-3"
-        style={{ borderColor: lineSoft, background: '#0a0a0a' }}
+        className="sticky top-0 z-30 w-full border-b py-3 transition-colors duration-200"
+        style={{ borderColor: border, background: pageBg }}
       >
         <div className={`${shell} flex items-center gap-3`}>
           <div className="rounded-full bg-white px-4 py-2 shadow-sm">
             <BackLink fallback={backTo} />
           </div>
-          <p className="min-w-0 flex-1 truncate text-[14px] font-normal text-white/80">
+          <p className="min-w-0 flex-1 truncate text-[14px] font-normal" style={{ color: titleColor }}>
             {project.caseStudyTitle}
           </p>
           <div className="rounded-full bg-white shadow-sm">
@@ -520,6 +530,15 @@ export function AiReplyCaseStudy({
         </div>
       </div>
 
+      {/* Native dark study → invert for light mode so copy stays real selectable HTML */}
+      <div
+        className="select-text transition-[filter] duration-200"
+        style={{
+          background: bgBlack,
+          color: textMain,
+          filter: isLight ? 'invert(1) hue-rotate(180deg)' : 'none',
+        }}
+      >
       {/* 2. Hero */}
       <header className={`${shell} pb-16 pt-14 sm:pb-20 sm:pt-20`}>
         <div className="grid items-start gap-14 lg:grid-cols-[1.08fr_0.92fr] lg:gap-10">
@@ -1173,10 +1192,11 @@ export function AiReplyCaseStudy({
           </p>
         </div>
       </section>
+      </div>
 
       {/* 22. Next project + float controls */}
       {nextProject ? <NextProjectCard project={nextProject} from={backTo} /> : null}
-      <CaseStudyFloatControls tone="dark" />
+      <CaseStudyFloatControls tone={isLight ? 'orange' : 'dark'} />
     </div>
   )
 }

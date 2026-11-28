@@ -1,14 +1,13 @@
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
+import { AiReplyCaseStudy } from '../components/AiReplyCaseStudy'
 import { PosCaseStudy } from '../components/PosCaseStudy'
-import { RasterCaseStudyView } from '../components/RasterCaseStudyView'
 import { Section } from '../components/Section'
+import { ThinkFlowCaseStudy } from '../components/ThinkFlowCaseStudy'
 import { getNextProject, getProject, projectRedirects } from '../data/content'
 
 /**
- * View Case Study (matches Vercel deploy):
- * - POS → native HTML
- * - AI Reply / ThinkFlow → Figma PNG export scroll
- * Theme toggle stays on every study and inverts black ↔ white.
+ * View Case Study — selectable HTML for all three.
+ * Theme toggle on each study inverts black ↔ white.
  */
 export function CaseStudyPage() {
   const { slug } = useParams()
@@ -37,21 +36,12 @@ export function CaseStudyPage() {
     return <PosCaseStudy project={project} backTo={backTo} nextProject={nextProject} />
   }
 
-  if (project.caseStudyFull) {
-    const nativeTheme =
-      project.layout === 'ai-reply' || project.slug === 'ai-supply-management' ? 'dark' : 'light'
+  if (project.layout === 'ai-reply' || project.slug === 'ai-supply-management') {
+    return <AiReplyCaseStudy project={project} backTo={backTo} nextProject={nextProject} />
+  }
 
-    return (
-      <RasterCaseStudyView
-        title={project.caseStudyTitle}
-        fullSrc={project.caseStudyFull.src}
-        naturalWidth={project.caseStudyFull.width}
-        naturalHeight={project.caseStudyFull.height}
-        backTo={backTo}
-        nextProject={nextProject}
-        nativeTheme={nativeTheme}
-      />
-    )
+  if (project.layout === 'desktop' || project.slug === 'track-my-time') {
+    return <ThinkFlowCaseStudy project={project} backTo={backTo} nextProject={nextProject} />
   }
 
   return (

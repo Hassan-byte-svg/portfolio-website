@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import type { Project } from '../data/content'
+import { useTheme } from '../theme/ThemeProvider'
 import { BackLink } from './BackLink'
 import { CaseStudyFloatControls } from './CaseStudyFloatControls'
 import { NextProjectCard } from './NextProjectCard'
@@ -220,27 +221,44 @@ export function ThinkFlowCaseStudy({
   backTo?: string
   nextProject?: Project
 }) {
+  const { theme } = useTheme()
+  const isDark = theme === 'dark'
+  const pageBg = isDark ? '#0a0a0a' : '#ffffff'
+  const titleColor = isDark ? 'rgba(255,255,255,0.75)' : 'rgba(17, 17, 17, 0.8)'
+  const border = isDark ? 'rgba(255,255,255,0.12)' : 'rgba(17, 17, 17, 0.08)'
+
   return (
-    <div className="min-h-screen w-full overflow-x-hidden bg-white antialiased" style={{ color: ink }}>
+    <div
+      className="min-h-screen w-full overflow-x-hidden antialiased transition-colors duration-200"
+      style={{ background: pageBg, color: isDark ? '#ffffff' : ink }}
+    >
       {/* 1. Sticky header */}
       <div
-        className="sticky top-0 z-30 w-full border-b bg-white/95 py-3 backdrop-blur"
-        style={{ borderColor: 'rgba(17, 17, 17, 0.08)' }}
+        className="sticky top-0 z-30 w-full border-b py-3 backdrop-blur transition-colors duration-200"
+        style={{ borderColor: border, background: isDark ? 'rgba(10,10,10,0.95)' : 'rgba(255,255,255,0.95)' }}
       >
         <div className={`${shell} flex items-center gap-3`}>
-          <div
-            className="rounded-full border bg-white px-4 py-2 shadow-sm"
-            style={{ borderColor: 'rgba(17, 17, 17, 0.08)' }}
-          >
+          <div className="rounded-full border bg-white px-4 py-2 shadow-sm" style={{ borderColor: border }}>
             <BackLink fallback={backTo} />
           </div>
-          <p className="min-w-0 flex-1 truncate text-[14px] font-normal" style={{ color: 'rgba(17, 17, 17, 0.8)' }}>
+          <p className="min-w-0 flex-1 truncate text-[14px] font-normal" style={{ color: titleColor }}>
             {project.caseStudyTitle}
           </p>
-          <ThemeToggle compact />
+          <div className="rounded-full bg-white shadow-sm">
+            <ThemeToggle compact />
+          </div>
         </div>
       </div>
 
+      {/* Native light study → invert for dark mode; copy stays selectable HTML */}
+      <div
+        className="select-text transition-[filter] duration-200"
+        style={{
+          background: '#ffffff',
+          color: ink,
+          filter: isDark ? 'invert(1) hue-rotate(180deg)' : 'none',
+        }}
+      >
       {/* 2. Hero — the Mac mockup on mint, full-bleed */}
       <header className="w-full" style={{ background: heroMint }}>
         <img
@@ -958,11 +976,12 @@ export function ThinkFlowCaseStudy({
           </section>
         </div>
       </main>
+      </div>
 
       {/* 21. Next project + float controls */}
       {nextProject ? <NextProjectCard project={nextProject} from={backTo} /> : null}
 
-      <CaseStudyFloatControls tone="dark" />
+      <CaseStudyFloatControls tone={isDark ? 'dark' : 'orange'} />
     </div>
   )
 }
