@@ -257,49 +257,6 @@ function ComponentsKit() {
   )
 }
 
-function WireframesSection() {
-  const frames = [
-    { title: 'Login', blocks: ['hero', 'form'] },
-    { title: 'Dashboard', blocks: ['stats', 'charts', 'table'] },
-    { title: 'Bills', blocks: ['list', 'detail'] },
-    { title: 'Inventory', blocks: ['cats', 'items'] },
-  ] as const
-
-  return (
-    <section className="mx-auto max-w-[1100px] px-5 py-12 sm:px-8">
-      <PillLabel>Wireframes</PillLabel>
-      <p className="mx-auto mt-4 max-w-[560px] text-center text-[15px] font-light leading-[1.7]" style={{ color: muted }}>
-        Low-fidelity layouts explored structure and hierarchy before visual polish.
-      </p>
-
-      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {frames.map((frame) => (
-          <article
-            key={frame.title}
-            className="rounded-[18px] border border-black/10 bg-[#f3f3f3] p-3 shadow-sm"
-          >
-            <p className="mb-2 text-center text-[12px] font-medium text-[#888]">{frame.title}</p>
-            <div className="flex aspect-[3/4] gap-1.5 rounded-[12px] bg-white p-2">
-              <div className="w-[18%] rounded-[6px] bg-[#ddd]" />
-              <div className="flex flex-1 flex-col gap-1.5">
-                <div className="h-4 rounded-[4px] bg-[#e5e5e5]" />
-                {frame.blocks.map((b) => (
-                  <div
-                    key={b}
-                    className={`rounded-[6px] bg-[#ececec] ${
-                      b === 'table' || b === 'items' ? 'flex-1' : 'h-[22%]'
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-  )
-}
-
 function TabletShell({ children }: { children: ReactNode }) {
   return (
     <div className="mx-auto w-full max-w-[520px]">
@@ -390,47 +347,6 @@ function FeatureBlock({
         </p>
       </div>
       <TabletShell>{screen}</TabletShell>
-    </div>
-  )
-}
-
-function LoginScreen() {
-  return (
-    <div className="grid min-h-[340px] sm:grid-cols-2">
-      <div className="flex flex-col justify-end bg-gradient-to-br from-[#1a2744] to-[#0d1526] p-4 text-white">
-        <p className="text-[12px] font-light leading-[1.5] text-white/85">
-          Effectively manage inventory, sales and more customers.
-        </p>
-      </div>
-      <div className="flex flex-col justify-center bg-white p-4">
-        <p className="text-[11px] font-semibold tracking-wide" style={{ color: ink }}>
-          LOGIN TO CONTINUE
-        </p>
-        <label className="mt-3 block text-[10px] text-[#888]">
-          Username
-          <input
-            readOnly
-            value="shop@baber.com"
-            className="mt-1 w-full rounded-[8px] border border-black/10 px-2 py-1.5 text-[11px]"
-          />
-        </label>
-        <label className="mt-2 block text-[10px] text-[#888]">
-          Password
-          <input
-            readOnly
-            type="password"
-            value="********"
-            className="mt-1 w-full rounded-[8px] border border-black/10 px-2 py-1.5 text-[11px]"
-          />
-        </label>
-        <button
-          type="button"
-          className="mt-4 w-full rounded-[10px] py-2 text-[12px] font-semibold text-white"
-          style={{ background: accent }}
-        >
-          LOGIN
-        </button>
-      </div>
     </div>
   )
 }
@@ -857,13 +773,6 @@ export function PosHifiDesign() {
       </div>
 
       <ComponentsKit />
-      <WireframesSection />
-
-      <FeatureBlock
-        title="Log In"
-        body="User will add their name and password provided by the company for easy access."
-        screen={<LoginScreen />}
-      />
 
       <FeatureBlock
         title="Dashboard"

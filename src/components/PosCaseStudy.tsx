@@ -198,75 +198,70 @@ const findings = [
 const personas = [
   {
     name: 'Sara Ahmed',
+    initials: 'SA',
     quote:
       'I strive for excellence in every repair, but sourcing specific parts promptly is crucial; delays in availability hinder my efficiency.',
     meta: [
       ['Age', '28'],
-      ['Education', 'B.E Engineer'],
+      ['Education', 'BE Engineer'],
       ['Status', 'Single'],
       ['Occupation', 'Service Technician'],
       ['Location', 'Dubai'],
     ],
-    traits: ['Calm', 'Thinker', 'Creative'],
+    traits: ['Calm', 'Steady', 'Creative'],
     background:
-      'Sara is a seasoned service technician who balances precision repairs with the daily pressure of finding the right parts quickly for her workshop.',
+      'Sara Ahmed is a seasoned service technician based in Dubai, with over 8 years of experience in the automotive industry. Her passion for her work drives her to deliver exceptional service to her clients, ensuring their vehicles are meticulously maintained and repaired.',
     panels: [
       {
         title: 'Goals',
-        items: ['Professional excellence', 'Efficient workshop workflow', 'Continuous learning'],
+        body: 'Sara aims for professional excellence, an efficient workshop workflow, and continuous learning so every repair meets a high standard.',
       },
       {
         title: 'Frustrations',
-        items: [
-          'Parts availability delays',
-          'Inventory management challenges',
-          'Tools that feel too complex',
-        ],
+        body: 'Parts availability delays, inventory management challenges, and technological barriers slow her down when customers need fast turnaround.',
       },
       {
         title: 'Needs',
-        items: [
-          'Reliable parts supply',
-          'Clear stock visibility',
-          'Fast, dependable POS workflows',
-        ],
+        body: 'She needs a reliable parts supply, efficient workflow tools, and continuous learning support built into everyday operations.',
       },
       {
         title: 'Motivation',
-        items: ['Delivering excellent service', 'Growing as a technician'],
+        body: "Sara's motivation stems from her passion for her work and the pride she takes in her role as a service technician. She finds fulfillment in delivering top-notch service to her clients and ensuring their vehicles are well-maintained.",
       },
     ],
   },
   {
-    name: 'Ahmed',
-    quote: 'I want performance and convenience — without wasting time chasing unclear quotes.',
+    name: 'Ahmed Car Enthusiast',
+    initials: 'AH',
+    quote:
+      "I'm dedicated to maintaining peak performance for my sports car, but finding a reliable service that fits my busy schedule is a constant challenge.",
     meta: [
-      ['Age', '40'],
+      ['Age', '32'],
       ['Education', 'BA Business'],
       ['Status', 'Married'],
       ['Occupation', 'Busy Professional'],
       ['Location', 'Dubai'],
-      ['Vehicle', 'High-performance sports car'],
+      ['Vehicle', 'High-performance Sports Car'],
     ],
     traits: ['Passionate', 'Discerning', 'Driven'],
     background:
-      'Ahmed is a busy professional and car enthusiast who expects transparent communication and dependable service when maintaining his vehicle.',
+      'Ahmed is a busy professional based in Dubai who recently acquired a high-performance sports car. Balancing his demanding career with his passion for automobiles, he seeks a reliable and efficient service for maintaining his prized possession.',
     panels: [
       {
         title: 'Goals',
-        items: ['Keep the car performing at its best', 'Convenient, trusted service'],
+        body: 'Ahmed wants optimal performance from his car and convenient service that fits around a packed professional schedule.',
       },
       {
         title: 'Frustrations',
-        items: ['Lack of transparency', 'Time wasted on unclear timelines'],
+        body: 'Lack of transparency, time constraints, and quality concerns make it hard for him to trust workshops with his sports car.',
       },
       {
         title: 'Needs',
-        items: ['Dependable service', 'Clear communication and pricing'],
+        body: 'He needs dependable service, convenience, and clear transparency on timelines, pricing, and workmanship.',
       },
       {
         title: 'Motivation',
-        items: ['Passion for sports cars', 'Confidence in every service visit'],
+        body: "Ahmed's motivation stems from his passion for his sports car and the need for a trustworthy service that understands the unique requirements of high-performance vehicles. He seeks peace of mind knowing that his car is in capable hands.",
       },
     ],
   },
@@ -540,86 +535,87 @@ export function PosCaseStudy({
         </div>
       </section>
 
-      {/* Personas */}
+      {/* Personas — selectable HTML matching the designed case-study layout */}
       <section className="mx-auto max-w-[1000px] px-5 py-14 sm:px-8">
         <PillTitle before="User" highlight="Personas" />
         <p
-          className="mx-auto mt-5 max-w-[680px] text-center text-[15px] font-light leading-[1.7]"
+          className="mx-auto mt-5 max-w-[720px] text-center text-[15px] font-light leading-[1.7]"
           style={{ color: muted }}
         >
-          Personas capture the needs, frustrations, and motivations of the people this POS is built
-          for — workshop staff and the customers they serve.
+          Crafting user personas was pivotal in understanding the diverse needs and motivations of
+          our target audience. By delving into the lives of individuals like Sara Ahmed and Ahmed,
+          we gained invaluable insights into their goals, frustrations, and aspirations.
         </p>
 
-        <div className="mt-12 space-y-16">
+        <div className="mt-12 space-y-14">
           {personas.map((persona) => (
             <div
               key={persona.name}
-              className="grid gap-6 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:items-start"
+              className="grid gap-5 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)] lg:items-start lg:gap-6"
             >
-              <article className="rounded-[24px] border border-black/5 bg-white p-6 shadow-sm">
+              <article className="rounded-[22px] border border-black/5 bg-white p-6 shadow-sm">
                 <div
-                  className="mx-auto flex h-28 w-28 items-center justify-center rounded-full text-[28px] font-medium text-white"
+                  className="mx-auto flex h-[120px] w-[120px] items-center justify-center rounded-full text-[32px] font-medium text-white shadow-sm"
                   style={{ background: accent }}
                   aria-hidden="true"
                 >
-                  {persona.name
-                    .split(' ')
-                    .map((w) => w[0])
-                    .join('')
-                    .slice(0, 2)}
+                  {persona.initials}
                 </div>
-                <h3 className="mt-5 text-center text-[22px] font-medium" style={{ color: accent }}>
+                <h3 className="mt-5 text-center text-[22px] font-semibold" style={{ color: accent }}>
                   {persona.name}
                 </h3>
                 <p
-                  className="mt-3 text-center text-[14px] font-light italic leading-[1.6]"
-                  style={{ color: accent }}
+                  className="mt-3 text-center text-[13px] font-light italic leading-[1.55]"
+                  style={{ color: '#E8A05A' }}
                 >
                   “{persona.quote}”
                 </p>
-                <dl className="mt-5 space-y-2 text-[14px]">
+                <dl className="mt-5 space-y-2.5 text-[14px]">
                   {persona.meta.map(([label, value]) => (
-                    <div key={label} className="flex justify-between gap-3 border-b border-black/5 pb-2">
-                      <dt className="font-medium text-[#888]">{label}</dt>
-                      <dd className="text-right font-light">{value}</dd>
+                    <div key={label} className="flex items-baseline justify-between gap-3">
+                      <dt className="font-medium" style={{ color: accent }}>
+                        {label}
+                      </dt>
+                      <dd className="text-right font-light" style={{ color: muted }}>
+                        {value}
+                      </dd>
                     </div>
                   ))}
                 </dl>
-                <div className="mt-4 flex flex-wrap justify-center gap-2">
+                <div className="mt-5 flex flex-wrap justify-center gap-2">
                   {persona.traits.map((trait) => (
                     <span
                       key={trait}
-                      className="rounded-full border px-3 py-1 text-[13px] font-medium"
-                      style={{ borderColor: accent, color: accent }}
+                      className="rounded-full px-3.5 py-1.5 text-[12px] font-medium"
+                      style={{ background: peach, color: accent }}
                     >
                       {trait}
                     </span>
                   ))}
                 </div>
-                <p className="mt-5 text-[14px] font-light leading-[1.65]" style={{ color: muted }}>
-                  {persona.background}
-                </p>
+                <div className="mt-5 border-t border-black/5 pt-4">
+                  <p className="text-[13px] font-semibold" style={{ color: accent }}>
+                    Background
+                  </p>
+                  <p className="mt-2 text-[13px] font-light leading-[1.65]" style={{ color: muted }}>
+                    {persona.background}
+                  </p>
+                </div>
               </article>
 
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="flex flex-col gap-4">
                 {persona.panels.map((panel) => (
                   <div
                     key={panel.title}
-                    className="rounded-[20px] px-5 py-4"
+                    className="rounded-[18px] px-5 py-4 sm:px-6 sm:py-5"
                     style={{ background: soft }}
                   >
-                    <h4 className="text-[16px] font-medium" style={{ color: accent }}>
+                    <h4 className="text-[16px] font-semibold" style={{ color: accent }}>
                       {panel.title}
                     </h4>
-                    <ul className="mt-3 space-y-2 text-[14px] font-light leading-[1.55]" style={{ color: muted }}>
-                      {panel.items.map((item) => (
-                        <li key={item} className="flex gap-2">
-                          <span style={{ color: accent }}>•</span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <p className="mt-2 text-[14px] font-light leading-[1.65]" style={{ color: muted }}>
+                      {panel.body}
+                    </p>
                   </div>
                 ))}
               </div>
