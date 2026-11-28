@@ -427,9 +427,15 @@ footer .heading-sub {
  * Case study body uses invert(1) hue-rotate(180deg) to flip page chrome with theme.
  * Product screens tagged .case-study-screen get the same filter again so they keep
  * their designed (original) colors while surrounding copy still toggles.
+ * Always pair with overflow:hidden + border-radius + a plate bg matching the
+ * section’s original color — otherwise filter rasterization leaves black rectangle ears.
  */
 .case-study-screen {
   transition: filter 200ms ease;
+  isolation: isolate;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 [data-case-invert='1'] .case-study-screen {

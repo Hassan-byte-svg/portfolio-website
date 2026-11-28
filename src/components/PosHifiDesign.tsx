@@ -4,6 +4,7 @@
  */
 
 import type { ReactNode } from 'react'
+import { CaseStudyScreen } from './CaseStudyScreen'
 
 const accent = '#F49A4E'
 const accentMid = '#F5B46A'
@@ -139,131 +140,133 @@ function ComponentsKit() {
     <section className="mx-auto max-w-[1100px] px-5 py-12 sm:px-8">
       <PillLabel>Components</PillLabel>
 
-      <div className="case-study-screen mt-10 grid gap-4 lg:grid-cols-[1fr_1fr_1.1fr_auto_1.15fr]">
-        <DashedBox>
-          <div className="flex flex-col items-center gap-3">
-            {solids.map((bg) => (
-              <SolidBtn key={bg} bg={bg} />
-            ))}
-          </div>
-        </DashedBox>
+      <CaseStudyScreen plate="#fafafa" radius={20} className="mt-10">
+        <div className="grid gap-4 lg:grid-cols-[1fr_1fr_1.1fr_auto_1.15fr]">
+          <DashedBox>
+            <div className="flex flex-col items-center gap-3">
+              {solids.map((bg) => (
+                <SolidBtn key={bg} bg={bg} />
+              ))}
+            </div>
+          </DashedBox>
 
-        <DashedBox>
-          <div className="flex flex-col items-center gap-3">
-            {outlines.map((o) => (
-              <OutlineBtn key={o.bg} bg={o.bg} color={o.color} />
-            ))}
-          </div>
-        </DashedBox>
+          <DashedBox>
+            <div className="flex flex-col items-center gap-3">
+              {outlines.map((o) => (
+                <OutlineBtn key={o.bg} bg={o.bg} color={o.color} />
+              ))}
+            </div>
+          </DashedBox>
 
-        <DashedBox>
-          <div className="flex flex-col items-center gap-3">
-            {solids.map((bg) => (
-              <SolidBtn key={`icon-${bg}`} bg={bg} icon />
-            ))}
-          </div>
-        </DashedBox>
+          <DashedBox>
+            <div className="flex flex-col items-center gap-3">
+              {solids.map((bg) => (
+                <SolidBtn key={`icon-${bg}`} bg={bg} icon />
+              ))}
+            </div>
+          </DashedBox>
 
-        <DashedBox>
-          <div className="flex flex-col items-center gap-3">
-            {solids.map((bg) => (
-              <Fab key={`fab-${bg}`} bg={bg} />
-            ))}
-          </div>
-        </DashedBox>
+          <DashedBox>
+            <div className="flex flex-col items-center gap-3">
+              {solids.map((bg) => (
+                <Fab key={`fab-${bg}`} bg={bg} />
+              ))}
+            </div>
+          </DashedBox>
 
-        <DashedBox>
-          <div className="flex flex-col items-center gap-3">
-            {solids.map((bg) => (
-              <SolidBtn key={`wide-${bg}`} bg={bg} wide />
-            ))}
-          </div>
-        </DashedBox>
-      </div>
-
-      <div className="mt-6 grid gap-4 lg:grid-cols-[auto_1fr_1.2fr_auto]">
-        <div className="flex items-center">
-          <p className="text-[22px] font-semibold" style={{ color: ink }}>
-            Dashboard
-          </p>
+          <DashedBox>
+            <div className="flex flex-col items-center gap-3">
+              {solids.map((bg) => (
+                <SolidBtn key={`wide-${bg}`} bg={bg} wide />
+              ))}
+            </div>
+          </DashedBox>
         </div>
 
-        <DashedBox>
-          <div className="flex flex-wrap items-center gap-3">
-            <button
-              type="button"
-              className="inline-flex items-center gap-1.5 rounded-[10px] px-3 py-2 text-[13px] font-semibold text-white shadow-sm"
-              style={{ background: accent }}
-            >
-              <span aria-hidden="true">+</span> New Bill
-            </button>
-            <span
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[16px] shadow-sm"
-              aria-label="Notifications"
-            >
-              🔔
-            </span>
-            <span
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[16px] shadow-sm"
-              aria-label="Settings"
-            >
-              ⚙️
-            </span>
-            <Avatar size={36} label="SA" tone="warm" />
+        <div className="mt-6 grid gap-4 lg:grid-cols-[auto_1fr_1.2fr_auto]">
+          <div className="flex items-center">
+            <p className="text-[22px] font-semibold" style={{ color: ink }}>
+              Dashboard
+            </p>
           </div>
-        </DashedBox>
 
-        <DashedBox>
-          <div className="space-y-2">
-            {[
-              { active: false, hover: false },
-              { active: false, hover: true },
-              { active: true, hover: false },
-            ].map((state, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-2 rounded-[10px] px-3 py-2 text-[14px] font-medium"
-                style={
-                  state.active
-                    ? { background: accent, color: '#fff' }
-                    : state.hover
-                      ? { background: '#F0F0F0', color: ink }
-                      : { background: 'transparent', color: ink }
-                }
+          <DashedBox>
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                className="inline-flex items-center gap-1.5 rounded-[10px] px-3 py-2 text-[13px] font-semibold text-white shadow-sm"
+                style={{ background: accent }}
               >
-                <span aria-hidden="true">▦</span>
-                Dashboard
-              </div>
-            ))}
-          </div>
-        </DashedBox>
+                <span aria-hidden="true">+</span> New Bill
+              </button>
+              <span
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[16px] shadow-sm"
+                aria-label="Notifications"
+              >
+                🔔
+              </span>
+              <span
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[16px] shadow-sm"
+                aria-label="Settings"
+              >
+                ⚙️
+              </span>
+              <Avatar size={36} label="SA" tone="warm" />
+            </div>
+          </DashedBox>
 
-        <DashedBox>
-          <div className="flex items-end gap-6">
-            <div className="flex flex-col items-center gap-2">
-              <Avatar size={28} label="SA" tone="warm" />
-              <Avatar size={40} label="SA" tone="warm" />
-              <Avatar size={56} label="SA" tone="warm" />
+          <DashedBox>
+            <div className="space-y-2">
+              {[
+                { active: false, hover: false },
+                { active: false, hover: true },
+                { active: true, hover: false },
+              ].map((state, i) => (
+                <div
+                  key={i}
+                  className="flex items-center gap-2 rounded-[10px] px-3 py-2 text-[14px] font-medium"
+                  style={
+                    state.active
+                      ? { background: accent, color: '#fff' }
+                      : state.hover
+                        ? { background: '#F0F0F0', color: ink }
+                        : { background: 'transparent', color: ink }
+                  }
+                >
+                  <span aria-hidden="true">▦</span>
+                  Dashboard
+                </div>
+              ))}
             </div>
-            <div className="flex flex-col items-center gap-2">
-              <Avatar size={28} label="AH" tone="cool" />
-              <Avatar size={40} label="AH" tone="cool" />
-              <Avatar size={56} label="AH" tone="cool" />
+          </DashedBox>
+
+          <DashedBox>
+            <div className="flex items-end gap-6">
+              <div className="flex flex-col items-center gap-2">
+                <Avatar size={28} label="SA" tone="warm" />
+                <Avatar size={40} label="SA" tone="warm" />
+                <Avatar size={56} label="SA" tone="warm" />
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <Avatar size={28} label="AH" tone="cool" />
+                <Avatar size={40} label="AH" tone="cool" />
+                <Avatar size={56} label="AH" tone="cool" />
+              </div>
             </div>
-          </div>
-        </DashedBox>
-      </div>
+          </DashedBox>
+        </div>
+      </CaseStudyScreen>
     </section>
   )
 }
 
 function TabletShell({ children }: { children: ReactNode }) {
   return (
-    <div className="case-study-screen mx-auto w-full max-w-[520px]">
+    <CaseStudyScreen plate="#fafafa" radius={28} className="mx-auto w-full max-w-[520px]">
       <div className="rounded-[28px] border-[10px] border-[#1a1a1a] bg-[#1a1a1a] shadow-xl">
         <div className="overflow-hidden rounded-[18px] bg-[#f7f7f8]">{children}</div>
       </div>
-    </div>
+    </CaseStudyScreen>
   )
 }
 

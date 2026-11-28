@@ -4,6 +4,7 @@ import { useTheme } from '../theme/ThemeProvider'
 import { AiAssistantBot } from './AiAssistantBot'
 import { BackLink } from './BackLink'
 import { CaseStudyFloatControls } from './CaseStudyFloatControls'
+import { CaseStudyScreen } from './CaseStudyScreen'
 import { NextProjectCard } from './NextProjectCard'
 import { ThemeToggle } from './ThemeToggle'
 
@@ -325,7 +326,7 @@ function PhoneIconSvg() {
 function ControlPhone() {
   return (
     <div
-      className="case-study-screen relative mx-auto w-[240px] shrink-0 rounded-[34px] border-[3px] p-[3px]"
+      className="case-study-screen relative mx-auto w-[240px] shrink-0 overflow-hidden rounded-[34px] border-[3px] p-[3px]"
       style={{ borderColor: '#3b3d44', background: '#0b0c0e' }}
     >
       <div className="flex h-[480px] flex-col overflow-hidden rounded-[30px]" style={{ background: '#15161a' }}>
@@ -950,14 +951,20 @@ export function AiReplyCaseStudy({
               ))}
             </ul>
           </div>
-          <img
-            src={`${IMG}/phone-settings.png`}
-            alt="AI Reply Settings screen with AI Configuration prompt, Select Contacts and Reply Delay"
-            width={295}
-            height={580}
-            loading="lazy"
-            className="case-study-screen mx-auto h-auto w-[295px] max-w-full md:mx-0"
-          />
+          <CaseStudyScreen
+            plate={bgBlack}
+            radius={44}
+            className="mx-auto w-[295px] max-w-full md:mx-0"
+          >
+            <img
+              src={`${IMG}/phone-settings.png`}
+              alt="AI Reply Settings screen with AI Configuration prompt, Select Contacts and Reply Delay"
+              width={295}
+              height={580}
+              loading="lazy"
+              className="block h-auto w-full"
+            />
+          </CaseStudyScreen>
         </div>
       </section>
 
@@ -980,14 +987,16 @@ export function AiReplyCaseStudy({
             { src: 'contacts-off', alt: 'AutoReply Contacts with all contacts switched off', caption: 'Turning a contact off removes AI from that thread entirely' },
           ].map((phone) => (
             <figure key={phone.src} className="flex flex-col items-center">
-              <img
-                src={`${IMG}/${phone.src}.png`}
-                alt={phone.alt}
-                width={285}
-                height={570}
-                loading="lazy"
-                className="case-study-screen h-auto w-[285px] max-w-full"
-              />
+              <CaseStudyScreen plate={bgGray} radius={44} className="w-[285px] max-w-full">
+                <img
+                  src={`${IMG}/${phone.src}.png`}
+                  alt={phone.alt}
+                  width={285}
+                  height={570}
+                  loading="lazy"
+                  className="block h-auto w-full"
+                />
+              </CaseStudyScreen>
               <figcaption
                 className="mt-5 max-w-[270px] text-center text-[13px] font-light leading-[1.45] tracking-[0.05em]"
                 style={{ color: textMuted }}
@@ -1083,14 +1092,20 @@ export function AiReplyCaseStudy({
           From setup to a message being sent — while you were fully focused on something else.
         </Muted>
         <div className="mt-14 grid items-center gap-12 lg:grid-cols-[600px_minmax(0,1fr)] lg:gap-10">
-          <img
-            src={`${IMG}/story-phones.png`}
-            alt="AI Reply settings and a conversation where the bot is counting down to send a reply"
-            width={600}
-            height={585}
-            loading="lazy"
-            className="case-study-screen mx-auto h-auto w-full max-w-[600px]"
-          />
+          <CaseStudyScreen
+            plate={bgBlack}
+            radius={28}
+            className="mx-auto w-full max-w-[600px]"
+          >
+            <img
+              src={`${IMG}/story-phones.png`}
+              alt="AI Reply settings and a conversation where the bot is counting down to send a reply"
+              width={600}
+              height={585}
+              loading="lazy"
+              className="block h-auto w-full"
+            />
+          </CaseStudyScreen>
           <div className="max-w-[330px]">
             <h3 className="text-[22px] font-medium leading-tight text-white">Activate and Send</h3>
             <p className="mt-5 text-[14px] font-light leading-[1.75] tracking-[0.05em]" style={{ color: textMuted }}>

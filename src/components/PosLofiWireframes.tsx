@@ -4,6 +4,7 @@
  */
 
 import type { CSSProperties, ReactNode } from 'react'
+import { CaseStudyScreen } from './CaseStudyScreen'
 
 const peach = '#FFF3E0'
 const accent = '#F5A623'
@@ -436,7 +437,11 @@ export function PosLofiWireframes() {
       <PillTitle />
 
       {/* Mobile / tablet: readable 2-col stack */}
-      <div className="case-study-screen mt-10 grid gap-4 sm:grid-cols-2 lg:hidden">
+      <CaseStudyScreen
+        plate="#ffffff"
+        radius={20}
+        className="mt-10 grid gap-4 sm:grid-cols-2 lg:hidden"
+      >
         <div className="aspect-[4/3]">
           <DashWire />
         </div>
@@ -455,10 +460,14 @@ export function PosLofiWireframes() {
         <div className="aspect-[4/3]">
           <DetailsWire />
         </div>
-      </div>
+      </CaseStudyScreen>
 
       {/* Desktop: overlapping collage like the Figma board */}
-      <div className="case-study-screen relative mx-auto mt-10 hidden min-h-[720px] w-full max-w-[980px] lg:block">
+      <CaseStudyScreen
+        plate="#ffffff"
+        radius={24}
+        className="relative mx-auto mt-10 hidden min-h-[720px] w-full max-w-[980px] lg:block"
+      >
         <div className="absolute left-[2%] top-[8%] z-[2] h-[210px] w-[300px] -rotate-2">
           <ItemsWire />
         </div>
@@ -483,7 +492,7 @@ export function PosLofiWireframes() {
         <div className="absolute bottom-[4%] right-[16%] z-[5] h-[200px] w-[260px] -rotate-2">
           <ReceiptWire />
         </div>
-      </div>
+      </CaseStudyScreen>
     </section>
   )
 }

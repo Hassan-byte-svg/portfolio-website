@@ -5,6 +5,7 @@ import { BackLink } from './BackLink'
 import { CaseStudyFloatControls } from './CaseStudyFloatControls'
 import { ImageLightbox } from './ImageLightbox'
 import { NextProjectCard } from './NextProjectCard'
+import { CaseStudyScreen } from './CaseStudyScreen'
 import { PosHifiDesign } from './PosHifiDesign'
 import { PosLofiWireframes } from './PosLofiWireframes'
 import { ThemeToggle } from './ThemeToggle'
@@ -1068,16 +1069,22 @@ export function PosCaseStudy({
         <AccentHeading>Point of Sale</AccentHeading>
         <div className="mx-auto mt-8 max-w-[min(100%,1400px)]">
           <ImageLightbox src={cover} alt="POS Auto Spare Parts dashboard">
-            <img
-              src={cover}
-              alt=""
-              width={1400}
-              height={1030}
-              decoding="async"
-              loading="lazy"
-              className="case-study-screen mx-auto block h-auto w-full max-w-[1400px] rounded-[20px] object-contain"
-              style={{ imageRendering: 'auto' }}
-            />
+            <CaseStudyScreen
+              plate="#ffffff"
+              radius={20}
+              className="mx-auto w-full max-w-[1400px]"
+            >
+              <img
+                src={cover}
+                alt=""
+                width={1400}
+                height={1030}
+                decoding="async"
+                loading="lazy"
+                className="block h-auto w-full object-contain"
+                style={{ imageRendering: 'auto' }}
+              />
+            </CaseStudyScreen>
           </ImageLightbox>
         </div>
       </section>

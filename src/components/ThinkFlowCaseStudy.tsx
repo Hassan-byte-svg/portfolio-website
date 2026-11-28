@@ -3,6 +3,7 @@ import type { Project } from '../data/content'
 import { useTheme } from '../theme/ThemeProvider'
 import { BackLink } from './BackLink'
 import { CaseStudyFloatControls } from './CaseStudyFloatControls'
+import { CaseStudyScreen } from './CaseStudyScreen'
 import { NextProjectCard } from './NextProjectCard'
 import { ThemeToggle } from './ThemeToggle'
 
@@ -261,7 +262,7 @@ export function ThinkFlowCaseStudy({
         }}
       >
       {/* 2. Hero — the Mac mockup on mint, full-bleed */}
-      <header className="case-study-screen w-full" style={{ background: heroMint }}>
+      <header className="case-study-screen w-full overflow-hidden" style={{ background: heroMint }}>
         <img
           src={`${img}/hero.png`}
           alt="ThinkFlow workspace dashboard shown on an iMac"
@@ -541,7 +542,8 @@ export function ThinkFlowCaseStudy({
 
           {/* 9. Empty state mockup */}
           <section className={sectionGap}>
-            <img
+            <CaseStudyScreen plate="#ffffff" radius={16}>
+              <img
               src={`${img}/empty.png`}
               alt="ThinkFlow empty state on a MacBook: Welcome to ThinkFlow, create your first workspace"
               width={1068}
@@ -549,13 +551,15 @@ export function ThinkFlowCaseStudy({
               loading="lazy"
               decoding="async"
               draggable={false}
-              className="case-study-screen block h-auto w-full"
+              className="block h-auto w-full"
             />
+              </CaseStudyScreen>
           </section>
 
           {/* 10. Angled mint mockup */}
           <section className="pt-[clamp(2.5rem,6vw,5rem)]">
-            <img
+            <CaseStudyScreen plate="#ffffff" radius={16}>
+              <img
               src={`${img}/angled.png`}
               alt="Angled close-up of the ThinkFlow workspace sidebar and application cards on a mint panel"
               width={1068}
@@ -563,8 +567,9 @@ export function ThinkFlowCaseStudy({
               loading="lazy"
               decoding="async"
               draggable={false}
-              className="case-study-screen block h-auto w-full"
+              className="block h-auto w-full"
             />
+              </CaseStudyScreen>
           </section>
 
           {/* 11. Visual Identity */}
@@ -679,7 +684,8 @@ export function ThinkFlowCaseStudy({
 
           {/* 14. Dashboard mockup */}
           <section className={sectionGap}>
-            <img
+            <CaseStudyScreen plate="#ffffff" radius={16}>
+              <img
               src={`${img}/dashboard.png`}
               alt="ThinkFlow Product Design workspace dashboard on a laptop"
               width={1068}
@@ -687,8 +693,9 @@ export function ThinkFlowCaseStudy({
               loading="lazy"
               decoding="async"
               draggable={false}
-              className="case-study-screen block h-auto w-full"
+              className="block h-auto w-full"
             />
+              </CaseStudyScreen>
           </section>
 
           {/* 15. Design Breakdown */}
@@ -704,7 +711,8 @@ export function ThinkFlowCaseStudy({
 
           {/* 16. App Switcher */}
           <section className="pt-[clamp(3rem,7vw,6rem)]">
-            <img
+            <CaseStudyScreen plate="#ffffff" radius={16}>
+              <img
               src={`${img}/app-switcher.png`}
               alt="ThinkFlow App Cycler overlay showing Safari, VS Code, Slack and Figma"
               width={1068}
@@ -712,10 +720,12 @@ export function ThinkFlowCaseStudy({
               loading="lazy"
               decoding="async"
               draggable={false}
-              className="case-study-screen block h-auto w-full"
+              className="block h-auto w-full"
             />
+              </CaseStudyScreen>
             <div className="mt-[clamp(3rem,7vw,6rem)] grid items-center gap-8 md:grid-cols-[53%_minmax(0,1fr)]">
-              <img
+              <CaseStudyScreen plate="#ffffff" radius={16} className="max-w-[498px]">
+                <img
                 src={`${img}/chip-app-switcher.png`}
                 alt="App Cycler for the Product Design workspace"
                 width={498}
@@ -723,8 +733,9 @@ export function ThinkFlowCaseStudy({
                 loading="lazy"
                 decoding="async"
                 draggable={false}
-                className="case-study-screen block h-auto w-full max-w-[498px]"
+                className="block h-auto w-full"
               />
+                </CaseStudyScreen>
               <div>
                 <CalloutTitle>App Switcher</CalloutTitle>
                 <CalloutText>
@@ -738,7 +749,8 @@ export function ThinkFlowCaseStudy({
 
           {/* 17. Workspace Switcher */}
           <section className="pt-[clamp(3rem,7vw,6rem)]">
-            <img
+            <CaseStudyScreen plate="#ffffff" radius={16}>
+              <img
               src={`${img}/ws-switcher.png`}
               alt="ThinkFlow Workspace Switcher overlay listing Product Design, Frontend, Research and Marketing"
               width={1068}
@@ -746,10 +758,12 @@ export function ThinkFlowCaseStudy({
               loading="lazy"
               decoding="async"
               draggable={false}
-              className="case-study-screen block h-auto w-full"
+              className="block h-auto w-full"
             />
+              </CaseStudyScreen>
             <div className="mt-[clamp(3rem,7vw,6rem)] grid items-center gap-8 md:grid-cols-[54%_minmax(0,1fr)]">
-              <img
+              <CaseStudyScreen plate="#ffffff" radius={16} className="max-w-[502px]">
+                <img
                 src={`${img}/chip-ws-switcher.png`}
                 alt="Workspace Switcher with four workspaces"
                 width={502}
@@ -757,8 +771,9 @@ export function ThinkFlowCaseStudy({
                 loading="lazy"
                 decoding="async"
                 draggable={false}
-                className="case-study-screen block h-auto w-full max-w-[502px]"
+                className="block h-auto w-full"
               />
+                </CaseStudyScreen>
               <div>
                 <CalloutTitle>Workspace Switcher</CalloutTitle>
                 <CalloutText>
@@ -774,7 +789,7 @@ export function ThinkFlowCaseStudy({
           <section className="pt-[clamp(3rem,7vw,6rem)]">
             <div className="grid items-start gap-10 md:grid-cols-[38%_minmax(0,1fr)] md:gap-6">
               <div className="space-y-6">
-                <div className="case-study-screen space-y-6">
+                <div className="case-study-screen space-y-6 overflow-hidden rounded-[16px]" style={{ background: cardBg }}>
                   <div className="rounded-[10px] p-4" style={{ background: cardBg }}>
                     <div
                       className="flex items-center gap-3 rounded-[8px] border bg-white px-4 py-3 text-[16px]"
@@ -808,7 +823,8 @@ export function ThinkFlowCaseStudy({
                   available applications from the workspace directory.
                 </p>
               </div>
-              <img
+              <CaseStudyScreen plate="#ffffff" radius={16} className="ml-auto max-w-[665px]">
+                <img
                 src={`${img}/app-picker-search.png`}
                 alt="App Picker window showing the No App Found empty state"
                 width={665}
@@ -816,14 +832,16 @@ export function ThinkFlowCaseStudy({
                 loading="lazy"
                 decoding="async"
                 draggable={false}
-                className="case-study-screen ml-auto block h-auto w-full max-w-[665px]"
+                className="block h-auto w-full"
               />
+                </CaseStudyScreen>
             </div>
           </section>
 
           {/* 19. Create Workspace */}
           <section className="pt-[clamp(3rem,7vw,6rem)]">
-            <img
+            <CaseStudyScreen plate="#ffffff" radius={16}>
+              <img
               src={`${img}/create-ws.png`}
               alt="ThinkFlow Create Workspace form with name, color, icon and template options"
               width={1068}
@@ -831,10 +849,12 @@ export function ThinkFlowCaseStudy({
               loading="lazy"
               decoding="async"
               draggable={false}
-              className="case-study-screen block h-auto w-full"
+              className="block h-auto w-full"
             />
+              </CaseStudyScreen>
             <div className="mt-[clamp(3rem,7vw,6rem)] grid items-center gap-8 md:grid-cols-[62%_minmax(0,1fr)]">
-              <img
+              <CaseStudyScreen plate="#ffffff" radius={16} className="-ml-2 max-w-[628px]">
+                <img
                 src={`${img}/preview-card.png`}
                 alt="Workspace preview card: Development"
                 width={628}
@@ -842,8 +862,9 @@ export function ThinkFlowCaseStudy({
                 loading="lazy"
                 decoding="async"
                 draggable={false}
-                className="case-study-screen -ml-2 block h-auto w-full max-w-[628px]"
+                className="block h-auto w-full"
               />
+                </CaseStudyScreen>
               <div>
                 <CalloutTitle>All Applications Selected</CalloutTitle>
                 <CalloutText>
@@ -884,7 +905,8 @@ export function ThinkFlowCaseStudy({
                   </CalloutText>
                 </div>
               </div>
-              <img
+              <CaseStudyScreen plate="#ffffff" radius={16} className="ml-auto max-w-[665px]">
+                <img
                 src={`${img}/app-picker-all.png`}
                 alt="App Picker window with all applications listed and VS Code selected"
                 width={665}
@@ -892,14 +914,16 @@ export function ThinkFlowCaseStudy({
                 loading="lazy"
                 decoding="async"
                 draggable={false}
-                className="case-study-screen ml-auto block h-auto w-full max-w-[665px]"
+                className="block h-auto w-full"
               />
+                </CaseStudyScreen>
             </div>
           </section>
 
           {/* 20. Layouts */}
           <section className="pt-[clamp(3rem,7vw,6rem)]">
-            <img
+            <CaseStudyScreen plate="#ffffff" radius={16}>
+              <img
               src={`${img}/layouts.png`}
               alt="ThinkFlow Layout tab with Default-Macbook + 1 External and Work Focus - Single Display profiles"
               width={1068}
@@ -907,8 +931,9 @@ export function ThinkFlowCaseStudy({
               loading="lazy"
               decoding="async"
               draggable={false}
-              className="case-study-screen block h-auto w-full"
+              className="block h-auto w-full"
             />
+              </CaseStudyScreen>
 
             <div className="relative mt-[clamp(3rem,7vw,6rem)] space-y-12 pb-[clamp(4rem,9vw,8rem)] md:h-[400px] md:space-y-0 md:pb-0">
               <svg
@@ -937,7 +962,8 @@ export function ThinkFlowCaseStudy({
               />
 
               <div className="grid items-start gap-6 md:absolute md:inset-x-0 md:top-0 md:grid-cols-[62%_minmax(0,1fr)]">
-                <img
+                <CaseStudyScreen plate="#ffffff" radius={16} className="max-w-[483px]">
+                  <img
                   src={`${img}/card-dual.png`}
                   alt="Default-Macbook + 1 External layout profile"
                   width={483}
@@ -945,8 +971,9 @@ export function ThinkFlowCaseStudy({
                   loading="lazy"
                   decoding="async"
                   draggable={false}
-                  className="case-study-screen block h-auto w-full max-w-[483px]"
+                  className="block h-auto w-full"
                 />
+                  </CaseStudyScreen>
                 <div className="md:pt-3">
                   <CalloutTitle>Dual Display Layout</CalloutTitle>
                   <CalloutText>
@@ -964,7 +991,8 @@ export function ThinkFlowCaseStudy({
                     experience while keeping essential tools and information easily accessible.
                   </CalloutText>
                 </div>
-                <img
+                <CaseStudyScreen plate="#ffffff" radius={16} className="max-w-[482px]">
+                  <img
                   src={`${img}/card-single.png`}
                   alt="Work Focus - Single Display layout profile"
                   width={482}
@@ -972,8 +1000,9 @@ export function ThinkFlowCaseStudy({
                   loading="lazy"
                   decoding="async"
                   draggable={false}
-                  className="case-study-screen block h-auto w-full max-w-[482px]"
+                  className="block h-auto w-full"
                 />
+                  </CaseStudyScreen>
               </div>
             </div>
           </section>
