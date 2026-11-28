@@ -457,6 +457,7 @@ function ScopeIcon() {
 const processSteps = [
   {
     label: 'Empathize',
+    href: '#empathize',
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
         <circle cx="20" cy="14" r="7" stroke={accent} strokeWidth="2" />
@@ -466,11 +467,18 @@ const processSteps = [
           strokeWidth="2"
           strokeLinecap="round"
         />
+        <path
+          d="M15 18c1.5 2 3.5 3 5 3s3.5-1 5-3"
+          stroke={accent}
+          strokeWidth="1.6"
+          strokeLinecap="round"
+        />
       </svg>
     ),
   },
   {
     label: 'Define',
+    href: '#define',
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
         <rect x="10" y="8" width="16" height="22" rx="2" stroke={accent} strokeWidth="2" />
@@ -481,6 +489,7 @@ const processSteps = [
   },
   {
     label: 'Ideate',
+    href: '#ideate',
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
         <path
@@ -495,6 +504,7 @@ const processSteps = [
   },
   {
     label: 'Prototyping',
+    href: '#prototype',
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
         <rect x="12" y="6" width="16" height="28" rx="3" stroke={accent} strokeWidth="2" />
@@ -505,11 +515,23 @@ const processSteps = [
   },
   {
     label: 'Testing',
+    href: '#testing',
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-        <rect x="5" y="8" width="12" height="22" rx="2" stroke={accent} strokeWidth="2" />
-        <rect x="23" y="8" width="12" height="22" rx="2" stroke={accent} strokeWidth="2" />
-        <path d="M9 18h4M27 16v6M24 19h6" stroke={accent} strokeWidth="1.8" strokeLinecap="round" />
+        <path
+          d="M8 14c0-3 2.5-5.5 6-5.5 2 0 3.5 1 4.5 2.2C19.5 9.5 21 8.5 23 8.5c3.5 0 6 2.5 6 5.5 0 5.5-9 12-9 12S8 19.5 8 14Z"
+          stroke={accent}
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+        <path d="M17 13v6M14 16h6" stroke={accent} strokeWidth="1.8" strokeLinecap="round" />
+        <path
+          d="M26 22c1.2-.2 2.4.2 3.2 1.1.7.8.9 1.9.6 2.9-.5 1.8-3.2 4.2-3.8 4.8-.6-.6-3.3-3-3.8-4.8-.3-1 .0-2.1.6-2.9.7-.8 1.8-1.2 3.2-1.1Z"
+          stroke={accent}
+          strokeWidth="1.8"
+          strokeLinejoin="round"
+        />
+        <path d="M26 25v4" stroke={accent} strokeWidth="1.6" strokeLinecap="round" />
       </svg>
     ),
   },
@@ -706,8 +728,8 @@ export function PosCaseStudy({
         </h1>
       </header>
 
-      {/* Aim / Problem / Scope */}
-      <section className="mx-auto max-w-[920px] space-y-14 px-5 py-10 sm:px-8">
+      {/* Aim / Problem / Scope — staggered like the Framer case study */}
+      <section className="mx-auto max-w-[920px] space-y-16 px-5 py-10 sm:px-8 sm:space-y-20">
         <div className="flex max-w-[540px] gap-4">
           <FlagIcon />
           <div>
@@ -721,7 +743,7 @@ export function PosCaseStudy({
           </div>
         </div>
 
-        <div className="ml-auto flex max-w-[560px] gap-4">
+        <div className="ml-auto flex max-w-[560px] gap-4 sm:mr-[4%]">
           <ProblemIcon />
           <div>
             <h2 className="text-[22px] font-medium" style={{ color: accent }}>
@@ -738,7 +760,7 @@ export function PosCaseStudy({
           </div>
         </div>
 
-        <div className="flex max-w-[560px] gap-4">
+        <div className="flex max-w-[560px] gap-4 sm:ml-[2%]">
           <ScopeIcon />
           <div>
             <h2 className="text-[22px] font-medium" style={{ color: accent }}>
@@ -757,33 +779,46 @@ export function PosCaseStudy({
         </div>
       </section>
 
-      {/* Design Process */}
+      {/* Design Process — jump nav matching Framer pointorsale */}
       <section className="mx-auto max-w-[920px] px-5 py-14 text-center sm:px-8">
         <AccentHeading>Design Process</AccentHeading>
-        <div
+        <p className="mt-3 text-[15px] font-medium sm:text-[16px]" style={{ color: accent }}>
+          Jump to a section
+        </p>
+        <nav
+          aria-label="Design process sections"
           className="mt-8 rounded-[28px] border-2 px-4 py-10 sm:px-10"
           style={{ borderColor: accent, background: soft }}
         >
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-5 sm:gap-4">
+          <ul className="grid grid-cols-2 gap-8 sm:grid-cols-5 sm:gap-4">
             {processSteps.map((step) => (
-              <div key={step.label} className="flex flex-col items-center gap-3">
-                <div
-                  className="flex h-16 w-16 items-center justify-center rounded-full border-2 bg-white"
-                  style={{ borderColor: accent }}
+              <li key={step.label} className="flex justify-center">
+                <a
+                  href={step.href}
+                  className="group flex flex-col items-center gap-3 rounded-[16px] outline-none transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+                  style={{ outlineColor: accent }}
                 >
-                  {step.icon}
-                </div>
-                <p className="text-[14px] font-medium sm:text-[15px]" style={{ color: accent }}>
-                  {step.label}
-                </p>
-              </div>
+                  <div
+                    className="flex h-16 w-16 items-center justify-center rounded-full border-2 bg-white transition-transform group-hover:scale-[1.04]"
+                    style={{ borderColor: accent }}
+                  >
+                    {step.icon}
+                  </div>
+                  <span className="text-[14px] font-medium sm:text-[15px]" style={{ color: accent }}>
+                    {step.label}
+                  </span>
+                </a>
+              </li>
             ))}
-          </div>
-        </div>
+          </ul>
+        </nav>
       </section>
 
-      {/* Primary Research */}
-      <section className="mx-auto max-w-[920px] px-5 py-12 sm:px-8">
+      {/* Primary Research — Empathize */}
+      <section
+        id="empathize"
+        className="mx-auto max-w-[920px] scroll-mt-[80px] px-5 py-12 sm:px-8"
+      >
         <PillTitle before="Primary" highlight="Research" />
         <p
           className="mx-auto mt-6 max-w-[720px] text-center text-[16px] font-light leading-[1.75]"
@@ -856,8 +891,11 @@ export function PosCaseStudy({
         </div>
       </section>
 
-      {/* Personas — selectable HTML matching the designed case-study layout */}
-      <section className="mx-auto max-w-[1000px] px-5 py-14 sm:px-8">
+      {/* Personas — Define */}
+      <section
+        id="define"
+        className="mx-auto max-w-[1000px] scroll-mt-[80px] px-5 py-14 sm:px-8"
+      >
         <PillTitle before="User" highlight="Personas" />
         <p
           className="mx-auto mt-5 max-w-[720px] text-center text-[15px] font-light leading-[1.7]"
@@ -956,8 +994,11 @@ export function PosCaseStudy({
         <InformationArchitectureMap />
       </section>
 
-      {/* User Flow — designed customer purchase flowchart */}
-      <section className="mx-auto max-w-[920px] px-5 py-14 sm:px-8">
+      {/* User Flow — Ideate */}
+      <section
+        id="ideate"
+        className="mx-auto max-w-[920px] scroll-mt-[80px] px-5 py-14 sm:px-8"
+      >
         <PillTitle before="User" highlight="Flow" />
         <p className="mt-3 text-center text-[15px] font-medium" style={{ color: accent }}>
           Customer&apos;s Flow
@@ -1051,8 +1092,50 @@ export function PosCaseStudy({
       {/* Low-fidelity wireframes — grayscale overlapping screens */}
       <PosLofiWireframes />
 
-      {/* High-fidelity — real HTML components & screens (selectable text) */}
-      <PosHifiDesign />
+      {/* High-fidelity — Prototyping */}
+      <div id="prototype" className="scroll-mt-[80px]">
+        <PosHifiDesign />
+      </div>
+
+      {/* Testing */}
+      <section
+        id="testing"
+        className="mx-auto max-w-[920px] scroll-mt-[80px] px-5 py-14 sm:px-8"
+      >
+        <AccentHeading>Testing</AccentHeading>
+        <h3 className="mt-8 text-center text-[22px] font-medium" style={{ color: accent }}>
+          User Testing
+        </h3>
+        <p
+          className="mx-auto mt-4 max-w-[720px] text-center text-[15px] font-light leading-[1.75]"
+          style={{ color: muted }}
+        >
+          We conducted real-world testing with employees in an auto spare parts store. During usage,
+          we observed visibility issues due to glare from large windows, making it difficult to read
+          the screen in bright conditions.
+        </p>
+        <div
+          className="mx-auto mt-8 max-w-[720px] rounded-[20px] border border-[#f0e0c8] px-5 py-6"
+          style={{ background: soft }}
+        >
+          <p className="text-[16px] font-medium" style={{ color: accent }}>
+            After Testing (New Prototype):
+          </p>
+          <p className="mt-3 text-[15px] font-light leading-[1.7]" style={{ color: muted }}>
+            Based on feedback, we introduced a dark mode option to reduce glare and improve screen
+            visibility. Employees found the new mode significantly easier to use, especially in
+            high-light environments.
+          </p>
+          <p className="mt-5 text-[15px] font-medium" style={{ color: ink }}>
+            Key Learnings:
+          </p>
+          <ul className="mt-2 list-disc space-y-1 pl-5 text-[15px] font-light leading-[1.7]" style={{ color: muted }}>
+            <li>Environmental factors greatly impact UI usability.</li>
+            <li>Dark mode enhances visibility in bright spaces.</li>
+            <li>Flexibility in UI settings improves user comfort and efficiency.</li>
+          </ul>
+        </div>
+      </section>
 
       {/* Point of Sale cover — Next Project footer keeps a small gap above */}
       <section className="mx-auto max-w-[920px] px-5 pb-0 pt-14 sm:px-8">
