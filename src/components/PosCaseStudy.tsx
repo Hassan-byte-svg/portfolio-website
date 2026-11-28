@@ -6,6 +6,7 @@ import { CaseStudyFloatControls } from './CaseStudyFloatControls'
 import { ImageLightbox } from './ImageLightbox'
 import { NextProjectCard } from './NextProjectCard'
 import { PosHifiDesign } from './PosHifiDesign'
+import { PosLofiWireframes } from './PosLofiWireframes'
 import { ThemeToggle } from './ThemeToggle'
 import { UserJourneyMap } from './UserJourneyMap'
 
@@ -1054,6 +1055,9 @@ export function PosCaseStudy({
           </div>
         </div>
       </section>
+
+      {/* Low-fidelity wireframes — grayscale overlapping screens */}
+      <PosLofiWireframes />
 
       {/* High-fidelity — real HTML components & screens (selectable text) */}
       <PosHifiDesign />
