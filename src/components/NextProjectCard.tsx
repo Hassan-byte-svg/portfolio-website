@@ -22,7 +22,7 @@ export function NextProjectCard({
     <Link
       to={`/projects/${project.slug}`}
       state={from ? { from } : undefined}
-      className="group relative z-0 block w-full text-center text-white transition-opacity hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-white"
+      className="group relative z-0 mt-10 block w-full text-center text-white transition-opacity hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-white sm:mt-12"
       style={{ background: themeBg[project.tagTone] }}
       aria-label={`Next project: ${project.nextCard.heading}`}
     >

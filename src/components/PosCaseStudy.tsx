@@ -1063,7 +1063,7 @@ export function PosCaseStudy({
       {/* High-fidelity — real HTML components & screens (selectable text) */}
       <PosHifiDesign />
 
-      {/* Point of Sale cover — flush into Next Project footer */}
+      {/* Point of Sale cover — Next Project footer keeps a small gap above */}
       <section className="mx-auto max-w-[920px] px-5 pb-0 pt-14 sm:px-8">
         <AccentHeading>Point of Sale</AccentHeading>
         <div className="mx-auto mt-8 max-w-[min(100%,1400px)]">
